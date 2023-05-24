@@ -11,5 +11,9 @@ module.exports = {
   ],
   parserOptions: {
     ecmaVersion: 'latest'
+  },
+  rules:{
+    'no-undef':'off', 
+    'no-mixed-spaces-and-tabs': 'off',
   }
 }
