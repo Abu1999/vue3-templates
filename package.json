@@ -1,6 +1,7 @@
 {
   "name": "vue3-templates",
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "author": "布博文 <1526699702@qq.com>",
   "private": true,
   "scripts": {
     "dev": "vite",
