@@ -15,4 +15,4 @@ node:internal/process/promises:279
 [Failed to load PostCSS config: Failed to load PostCSS config (searchPath: E:/study/vue3-templates): [Error] Loading PostCSS Plugin failed: Cannot find module 'autoprefixer'
 Require stack:
 ```
-解决：在 tsconfig.josn 中有注释属性，删除即可。
+解决：重新安装 
