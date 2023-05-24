@@ -8,8 +8,6 @@
     "sourceMap":true,
     "resolveJsonModule":true,
     "esModuleInterop":true,
-    // "skipLibCheck": true,
-    // "allowSyntheticDefaultImports": true,
     "lib":["esnext","dom"],
     "allowSyntheticDefaultImports":true,
     "baseUrl":"./",
@@ -18,5 +16,4 @@
     }
   },
   "include":["src/**/*.ts","src/**/*.d.ts","src/**/*.tsx","src/**/*.vue","src/untils/baiduMap.js","src/untils/debuonce.js","**/*.ts","**/*.tsx"]
-
 }

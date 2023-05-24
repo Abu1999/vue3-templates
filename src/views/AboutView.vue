@@ -1,15 +1,13 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
+  <div style="height: 80vh;" class="w-full text-2xl flex justify-center items-center">
+    home页面
   </div>
 </template>
 
-<style>
-@media (min-width: 1024px) {
-  .about {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-  }
-}
+<script setup lang="ts">
+
+</script>
+
+<style scoped>
+
 </style>
