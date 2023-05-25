@@ -1,0 +1,24 @@
+{
+    "typescript.tsdk": "node_modules/typescript/lib",
+    "editor.insertSpaces": true,
+    // 配置 Tab 空格数
+    "editor.tabSize": 2,
+    // 保存自动格式化代码
+    "editor.formatOnSave": true,
+    // 粘贴自动格式化
+    "editor.formatOnPaste": true,
+    "editor.defaultFormatter": "Vue.volar",
+    "[vue]": {
+        "editor.defaultFormatter": "Vue.volar"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "[plaintext]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }
+}
+
