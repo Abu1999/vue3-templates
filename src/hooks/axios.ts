@@ -47,7 +47,7 @@ class RequestHttp {
                     ...config,
                     headers: {
                         'x-access-token': token, // 请求头中携带token信息
-                    }
+                    } as any
                 }
             },
             (error: AxiosError) => {

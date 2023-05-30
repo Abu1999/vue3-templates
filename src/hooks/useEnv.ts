@@ -4,6 +4,7 @@ export function useEnv() {
 
   return {
     MODE,
+    VITE_APP_TITLE,
     VITE_APP_NAME,
     VITE_BASE_API,
     VITE_PUBLIC_PATH,
