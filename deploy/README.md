@@ -1,2 +1,12 @@
-## Git Bash安装sshpass
-[参考链接](https://www.jianshu.com/p/6822e1a86d4b)
+## 文件结构
+build.sh: docker构建镜像、容器
+
+Dockerfile：docker镜像配置
+
+nginx.conf：nginx配置
+
+nginx.sh：部署sh文件
+
+window.sh: 免密登录sh文件
+
+## 参数
