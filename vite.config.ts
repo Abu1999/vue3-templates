@@ -12,11 +12,11 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src') // 路径别名
     }
   },
-  server: {
-    port: 8000,
-    host: '0.0.0.0',
-    // proxy: {
-    //   '/api': 'http://127.0.0.1:3000/',
-    // },
-  },
+  // server: {
+  //   port: 8000,
+  //   host: '0.0.0.0',
+  //   // proxy: {
+  //   //   '/api': 'http://127.0.0.1:3000/',
+  //   // },
+  // },
 })
