@@ -15,5 +15,7 @@ module.exports = {
   rules:{
     'no-undef':'off', 
     'no-mixed-spaces-and-tabs': 'off',
+    "vue/multi-word-component-names":"off"
   }
+
 }
