@@ -2,7 +2,7 @@
   <div style="height: 80vh;" class=" w-full text-2xl flex flex-col justify-center items-center">
     <div>
       home111页面
-      <ElButton @click="toggleDark()">
+      <ElButton type="primary" @click="toggleDark()">
         111111111
       </ElButton>
     </div>

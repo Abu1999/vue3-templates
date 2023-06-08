@@ -11,12 +11,26 @@ export default defineConfig({
   base: '',
   plugins: [vue(), vueJsx(),
   AutoImport({
-    resolvers: [ElementPlusResolver()],
+    resolvers: [ElementPlusResolver({
+      // 自动引入修改主题色添加这一行，使用预处理样式，不添加将会导致使用ElMessage，ElNotification等组件时默认的主题色会覆盖自定义的主题色
+      importStyle: "sass",
+    })],
   }),
   Components({
-    resolvers: [ElementPlusResolver()],
-  }),
+    resolvers: [ElementPlusResolver({
+      // 自动引入修改主题色添加这一行，使用预处理样式
+      importStyle: "sass",
+    })],
+  })
   ],
+  css: {
+    preprocessorOptions: {
+      scss: {
+        // 自定义的主题色
+        additionalData: `@use "@/styles/element/index.scss" as *;`,
+      },
+    },
+  },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src') // 路径别名
