@@ -18,10 +18,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue';
-import { layoutStore } from '@/stores/index'
+import { ref } from 'vue';
 let isCollapse = ref(true)
-let Menu = ref(true)
 
 const emit = defineEmits<{
   (event: 'changeMenu', value: boolean): void
