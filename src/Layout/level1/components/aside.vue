@@ -4,11 +4,11 @@
       <div style="width: 64px;" class="flex justify-center items-center">
         <el-image style="width: 40px; height: 40px" :src="url" fit="cover" />
       </div>
-      <div class="font-bold" v-if="!isCollapse">element-puls</div>
+      <div class="font-bold" v-if="!props.isCollapse">element-puls</div>
     </div>
 
     <el-menu style="border: 0;" background-color="#242f42" text-color="#fff" default-active="2"
-      class="el-menu-vertical-demo left-menu-bg-active-color" :collapse="isCollapse">
+      class="el-menu-vertical-demo left-menu-bg-active-color" :collapse="props.isCollapse">
       <el-sub-menu index="1">
         <template #title>
           <el-icon>
@@ -49,13 +49,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-
 interface Props {
   isCollapse: boolean
 }
-
-let { isCollapse } = defineProps<Props>()
+const props = defineProps<Props>()
 
 const url = 'https://tdesign.gtimg.com/demo/demo-image-1.png'
 
