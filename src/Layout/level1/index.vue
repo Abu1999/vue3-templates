@@ -24,7 +24,7 @@ import Header from "./components/heard.vue"
 import Aside from "./components/aside.vue"
 
 
-const isCollapse = ref(true)
+const isCollapse = ref(false)
 
 const changeMenu = (e: boolean) => {
   isCollapse.value = e
