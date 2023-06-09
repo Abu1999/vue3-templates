@@ -17,8 +17,10 @@
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.1.0",
+    "@types/nprogress": "^0.2.0",
     "axios": "^1.4.0",
     "element-plus": "^2.3.6",
+    "nprogress": "^0.2.0",
     "pinia": "^2.0.36",
     "sass": "^1.62.1",
     "unplugin-auto-import": "^0.16.4",

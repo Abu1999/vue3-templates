@@ -1,3 +1,4 @@
+import NProgress from 'nprogress'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
@@ -20,6 +21,16 @@ const router = createRouter({
       component: () => import('../views/index/1.vue')
     },
   ]
+})
+
+router.beforeEach((to, from, next) => {
+  NProgress.configure({ showSpinner: false });
+  NProgress.start();
+  next()
+})
+
+router.afterEach((to, from) => {
+  NProgress.done();
 })
 
 export default router

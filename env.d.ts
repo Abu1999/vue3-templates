@@ -10,6 +10,7 @@ interface ImportMeta {
   readonly env: ImportMetaEnv
 }
 
+
 // 简单版本
 // declare module '*.vue'
 
