@@ -18,7 +18,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-let isCollapse = ref(true)
+let isCollapse = ref(false)
 
 const emit = defineEmits<{
   (event: 'changeMenu', value: boolean): void
