@@ -8,7 +8,7 @@
     </div>
 
     <el-menu style="border: 0;" background-color="#242f42" text-color="#fff" default-active="2"
-      class="el-menu-vertical-demo left-menu-bg-active-color" :collapse="props.isCollapse">
+      class="el-menu-vertical-demo left-menu-bg-active-color" :collapse="props.isCollapse" :collapse-transition="false">
       <el-sub-menu index="1">
         <template #title>
           <el-icon>

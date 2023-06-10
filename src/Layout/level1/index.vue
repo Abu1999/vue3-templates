@@ -1,16 +1,15 @@
 <template>
   <el-container style="height: 100vh;">
-    <transition name="el-fade-in-linear">
-      <el-aside :width="`${!isCollapse ? '200px' : '64px'}`" style="overflow: hidden;">
-        <Aside :isCollapse="isCollapse"></Aside>
-      </el-aside>
-    </transition>
+    <el-aside id="Collapse" :width="`${isCollapse ? '64px' : '200px'}`" style="overflow: hidden;">
+      <Aside :isCollapse="isCollapse"></Aside>
+    </el-aside>
 
     <el-container>
       <el-header style="padding: 0;">
         <Header @changeMenu="changeMenu"></Header>
       </el-header>
       <el-main>
+        {{ isCollapse }}
         <slot></slot>
       </el-main>
       <el-footer>Footer</el-footer>
