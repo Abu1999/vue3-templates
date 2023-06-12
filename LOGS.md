@@ -16,3 +16,7 @@ node:internal/process/promises:279
 Require stack:
 ```
 解决：重新安装 
+
+3. element-plus <Setting/> 图表导致卡顿
+解决：只能删除setting图标
+  
