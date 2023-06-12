@@ -1,4 +1,4 @@
-import axios, { AxiosInstance, AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios'
+import axios, { type AxiosInstance, AxiosError, type AxiosRequestConfig, type AxiosResponse } from 'axios'
 import { useEnv } from '@/hooks/useEnv'
 
 // import { ElMessage } from 'element-plus'

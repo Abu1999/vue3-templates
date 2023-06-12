@@ -1,7 +1,7 @@
 <template>
   <div class="w-full h-full">
     <div class="h-full flex items-center space-x-2 border-b">
-      <div class="h-full flex  items-center cursor-pointer select-none px-3" @click="CollapseMenu">
+      <div class="h-full flex  items-center cursor-pointer select-none px-3" @click="changeCollapse">
         <el-icon size="18">
           <Fold v-if="true" />
           <Expand size="18" v-else />
@@ -21,13 +21,13 @@ import { ref } from 'vue';
 let isCollapse = ref(false)
 
 const emit = defineEmits<{
-  (event: 'changeMenu', value: boolean): void
+  (event: 'changeCollapse', value: boolean): void
 }>()
 
 
-const CollapseMenu = () => {
+const changeCollapse = () => {
   isCollapse.value = !isCollapse.value
-  emit('changeMenu', isCollapse.value)
+  emit('changeCollapse', isCollapse.value)
 }
 
 

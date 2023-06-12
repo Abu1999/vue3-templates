@@ -6,7 +6,7 @@
 
     <el-container>
       <el-header style="padding: 0;">
-        <Header @changeMenu="changeMenu"></Header>
+        <Header @changeCollapse="changeCollapse"></Header>
       </el-header>
       <el-main>
         {{ isCollapse }}
@@ -25,7 +25,7 @@ import Aside from "./components/aside.vue"
 
 const isCollapse = ref(false)
 
-const changeMenu = (e: boolean) => {
+const changeCollapse = (e: boolean) => {
   isCollapse.value = e
 }
 
