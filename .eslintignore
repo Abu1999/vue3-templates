@@ -29,4 +29,4 @@ coverage
 *.sw?
 
 # auto-build-page
-src/auto-build-page
+auto-build-page
