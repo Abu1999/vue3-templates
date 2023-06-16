@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 参数
-HOST="120.76.193.234";
+HOST="";
 FILE="~/nginx"
 IMAGE="my-app:1.0"
 CONTAINER="app"
