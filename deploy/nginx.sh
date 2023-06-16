@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 参数
-HOST="120.76.193.234";
+HOST="";
 FILE="~/nginx"
 IMAGE="my-app:1.0"
 CONTAINER="app"
@@ -50,7 +50,7 @@ scp -r -rC $ROOTDIR/dist $SCRIPTDIR/nginx.conf $SCRIPTDIR/Dockerfile $SCRIPTDIR/
 
 # dockerb部署
 ssh -p 22 root@$HOST > /dev/null 2>&1 << eeooff
-  cd ${FILE} && sh build.sh ${IMAGE} ${CONTAINER} ${INSIDEPORT} ${OUTPUTPORT}
+  cd ${FILE} && sed -i 's/\r//' build.sh && sh build.sh ${IMAGE} ${CONTAINER} ${INSIDEPORT} ${OUTPUTPORT}
   exit;
 eeooff
 
