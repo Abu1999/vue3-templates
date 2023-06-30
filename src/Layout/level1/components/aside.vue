@@ -8,42 +8,16 @@
     </div>
 
     <el-menu style="border: 0;" background-color="#242f42" text-color="#fff" default-active="2"
-      class="el-menu-vertical-demo left-menu-bg-active-color" :collapse="props.isCollapse" :collapse-transition="false">
-      <el-sub-menu index="1">
-        <template #title>
-          <el-icon>
-            <location />
-          </el-icon>
-          <span>Navigator One</span>
-        </template>
-        <el-menu-item-group>
-          <template #title><span>Group One</span></template>
-          <el-menu-item index="1-1">item one</el-menu-item>
-          <el-menu-item index="1-2">item two</el-menu-item>
-        </el-menu-item-group>
-        <el-menu-item-group title="Group Two">
-          <el-menu-item index="1-3">item three</el-menu-item>
-        </el-menu-item-group>
-        <el-sub-menu index="1-4">
-          <template #title><span>item four</span></template>
-          <el-menu-item index="1-4-1">item one</el-menu-item>
-        </el-sub-menu>
-      </el-sub-menu>
-      <el-menu-item index="2" @click="$router.push('/test')">
-        <template #title>Navigator Two</template>
-      </el-menu-item>
-      <el-menu-item index="3" disabled>
+      class="el-menu-vertical-demo left-menu-bg-active-color" :collapse="props.isCollapse" :collapse-transition="false"
+      :active="$route.path">
+
+      <el-menu-item index="1" @click="$router.push('/')">
         <el-icon>
           <document />
         </el-icon>
-        <template #title>Navigator Three</template>
+        <template #title>Navigator Two</template>
       </el-menu-item>
-      <el-menu-item index="4">
-        <el-icon>
-          <setting />
-        </el-icon>
-        <template #title>Navigator Four</template>
-      </el-menu-item>
+
     </el-menu>
   </div>
 </template>

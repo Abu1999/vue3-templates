@@ -9,7 +9,7 @@
       </div>
       <el-breadcrumb separator="/">
         <el-breadcrumb-item :to="{ path: '/' }">主页</el-breadcrumb-item>
-        <el-breadcrumb-item v-if="$route.path == '/test'"><a href="/test">测试页</a></el-breadcrumb-item>
+        <el-breadcrumb-item v-if="$route.path != '/'" :to="{ path: $route.path }">{{ $route.name }}</el-breadcrumb-item>
       </el-breadcrumb>
 
     </div>
