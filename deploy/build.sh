@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 参数
-HOST="";
+HOST="120.76.193.234";
 FILE="~/nginx"
 
 # 文件绝对路径
@@ -9,13 +9,14 @@ SCRIPTDIR="$( cd "$( dirname "$0"  )" && pwd  )"
 ROOTDIR="$( cd $SCRIPTDIR/.. && pwd )"
 
 # 打包文件
-echo "这个脚本文件名称为$1"
 
 if [[ $1 != '0' ]];
 then
   echo -e "开始打包"
   pnpm build;
   echo -e "打包完成! \033[32m ok \033[0m"
+else  
+  echo "-已跳过打包"
 fi
 
 chars="/-\|"
@@ -29,11 +30,6 @@ sleep 0.5
 done
 
 echo ""
-
-expect "password:"
-send "your_password\r"
-expect eof
-
 
 
 # 上传文件
