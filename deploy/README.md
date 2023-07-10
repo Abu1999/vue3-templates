@@ -1,11 +1,9 @@
 ## 文件结构
-build.sh: docker构建镜像、容器
+build.sh: 项目部署
 
-Dockerfile：docker镜像配置
+docker-compose：docker镜像配置
 
 nginx.conf：nginx配置
-
-nginx.sh：部署sh文件
 
 window.sh: 免密登录sh文件
 

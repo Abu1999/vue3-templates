@@ -1,8 +1,53 @@
-# !/bin/bash
-docker rmi -f $(docker images | grep "none" | awk '{print $3}');
-if [[ "$(docker images -q $1 2> /dev/null)" != "" ]];
-  then
-    docker stop $2 && docker rm $2 && docker rmi $1;
+#!/bin/bash
+
+# 参数
+HOST="";
+FILE="~/nginx"
+
+# 文件绝对路径
+SCRIPTDIR="$( cd "$( dirname "$0"  )" && pwd  )"
+ROOTDIR="$( cd $SCRIPTDIR/.. && pwd )"
+
+# 打包文件
+echo "这个脚本文件名称为$1"
+
+if [[ $1 != '0' ]];
+then
+  echo -e "开始打包"
+  pnpm build;
+  echo -e "打包完成! \033[32m ok \033[0m"
 fi
-docker build -t $1 -f ./Dockerfile . && docker run -d --name $2 -p $4:$3 $1;
-exit;
+
+chars="/-\|"
+echo ""
+echo -ne "\r开始部署"
+#加载动画
+for i in $(seq 5 -1 1)
+do
+printf '.%.0s' {1..i+3}
+sleep 0.5
+done
+
+echo ""
+
+expect "password:"
+send "your_password\r"
+expect eof
+
+
+
+# 上传文件
+scp -r -rC $ROOTDIR/dist $SCRIPTDIR/nginx.conf $SCRIPTDIR/docker-compose.yml root@$HOST:$FILE/ 
+
+sleep 0.5
+# docker部署
+ssh -p 22 root@$HOST > /dev/null 2>&1 << eeooff
+  cd ${FILE} && docker-compose up -d
+  exit;
+eeooff
+
+echo -ne "部署成功! \033[32m ok \033[0m"
+echo ""
+echo ""
+
+

@@ -9,7 +9,6 @@
         <Header @changeCollapse="changeCollapse"></Header>
       </el-header>
       <el-main>
-        {{ isCollapse }}
         <slot></slot>
       </el-main>
       <el-footer>Footer</el-footer>
