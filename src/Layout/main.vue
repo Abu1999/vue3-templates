@@ -1,6 +1,5 @@
 <template>
   <div>
-    aa11111
     <slot></slot>
   </div>
 </template>
