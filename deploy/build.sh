@@ -31,14 +31,21 @@ done
 
 echo ""
 
+ssh -p 22 root@$HOST > /dev/null 2>&1 << eeooff
+  cd $FILE/dist && rm -rf *
+  exit;
+eeooff
+sleep 0.5
+echo "-删除文件"
+
 
 # 上传文件
-scp -r -rC $ROOTDIR/dist $SCRIPTDIR/nginx.conf $SCRIPTDIR/docker-compose.yml root@$HOST:$FILE/ 
+scp -r -rC $ROOTDIR/dist $SCRIPTDIR/nginx.conf $SCRIPTDIR/conf.d $SCRIPTDIR/docker-compose.yml root@$HOST:$FILE/;
 
 sleep 0.5
 # docker部署
 ssh -p 22 root@$HOST > /dev/null 2>&1 << eeooff
-  cd ${FILE} && docker-compose up -d
+  cd ${FILE} && docker-compose up -d;
   exit;
 eeooff
 
