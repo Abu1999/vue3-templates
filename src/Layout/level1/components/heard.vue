@@ -3,7 +3,7 @@
     <div class="h-full flex items-center space-x-2 border-b">
       <div class="h-full flex  items-center cursor-pointer select-none px-3" @click="changeCollapse">
         <el-icon size="18">
-          <Fold v-if="true" />
+          <Fold v-if="!isCollapse" />
           <Expand size="18" v-else />
         </el-icon>
       </div>

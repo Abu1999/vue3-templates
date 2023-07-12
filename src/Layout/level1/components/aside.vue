@@ -1,10 +1,11 @@
 <template>
   <div class="w-full h-full" :style="{ backgroundColor: backgroundColor, color: '#fff' }">
-    <div class="flex justify-center items-center " style="height: 60px;">
+
+    <div class="flex justify-center items-center cursor-pointer select-none" style="height: 60px;" @click="myClick">
       <div style="width: 64px;" class="flex justify-center items-center">
         <el-image style="width: 40px; height: 40px" :src="url" fit="cover" />
       </div>
-      <div class="font-bold" v-if="!props.isCollapse" @click="myClick">element-puls</div>
+      <div class="font-bold" v-if="!props.isCollapse">element-puls</div>
     </div>
 
     <el-menu id="menu" :style="{ border: 0, '--menubackgroundColor': menubackgroundColor }"
@@ -71,6 +72,7 @@
 </template>
 
 <script setup lang="tsx">
+import router from '@/router';
 import { ref } from 'vue'
 
 interface MenuData {
@@ -89,8 +91,7 @@ const props = defineProps<Props>()
 const url = 'https://tdesign.gtimg.com/demo/demo-image-1.png'
 
 const myClick = () => {
-  console.log(111111);
-
+  router.push('/')
 }
 
 let backgroundColor = ref('#001529')
