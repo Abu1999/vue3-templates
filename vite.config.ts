@@ -69,5 +69,10 @@ export default defineConfig({
     // proxy: {
     //   '/api': 'http://127.0.0.1:3000/',
     // },
+    hmr: {
+      overlay: true,
+      // 解决热更新不同步的问题
+      port: 443
+    }
   },
 })
