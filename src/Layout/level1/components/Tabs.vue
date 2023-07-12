@@ -52,7 +52,6 @@ const addTab = (targetName: string) => {
   editableTabs.value.push({
     title: 'New Tab',
     name: newTabName,
-    content: 'New Tab content',
   })
   editableTabsValue.value = newTabName
 }

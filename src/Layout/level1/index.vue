@@ -17,14 +17,12 @@
       <!-- <el-footer>Footer</el-footer> -->
     </el-container>
   </el-container>
-
- 
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import Header from "./components/heard.vue"
-import Aside from "./components/aside.vue"
+import Header from "./components/Heard.vue"
+import Aside from "./components/Aside.vue"
 import Tabs from "./components/Tabs.vue"
 import { menuStore } from '@/stores/index'
 
