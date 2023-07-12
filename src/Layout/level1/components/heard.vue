@@ -9,7 +9,7 @@
       </div>
       <el-breadcrumb separator="/">
         <el-breadcrumb-item :to="{ path: '/' }">主页</el-breadcrumb-item>
-        <el-breadcrumb-item v-if="$route.path != '/'" :to="{ path: $route.path }">{{ $route.name }}</el-breadcrumb-item>
+        <el-breadcrumb-item v-if="route.path != '/'" :to="{ path: route.path }">{{ route.name }}</el-breadcrumb-item>
       </el-breadcrumb>
 
     </div>
@@ -18,13 +18,15 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-let isCollapse = ref(false)
+import { useRoute } from 'vue-router';
 
+const route = useRoute()
+
+// 折叠
+let isCollapse = ref(false)
 const emit = defineEmits<{
   (event: 'changeCollapse', value: boolean): void
 }>()
-
-
 const changeCollapse = () => {
   isCollapse.value = !isCollapse.value
   emit('changeCollapse', isCollapse.value)
