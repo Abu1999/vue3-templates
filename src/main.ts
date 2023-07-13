@@ -1,6 +1,7 @@
 import './index.css'
-import "nprogress/nprogress.css";
+import 'virtual:windi.css'
 import 'element-plus/theme-chalk/dark/css-vars.css'
+import "nprogress/nprogress.css";
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'

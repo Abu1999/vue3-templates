@@ -5,11 +5,12 @@ import path from 'path'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import WindiCSS from 'vite-plugin-windicss'
 
 // https://vitejs.dev/config/
 export default defineConfig({
   base: '/',
-  plugins: [vue(), vueJsx(),
+  plugins: [vue(), vueJsx(), WindiCSS(),
   AutoImport({
     resolvers: [ElementPlusResolver({
       // 自动引入修改主题色添加这一行，使用预处理样式，不添加将会导致使用ElMessage，ElNotification等组件时默认的主题色会覆盖自定义的主题色

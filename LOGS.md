@@ -19,4 +19,8 @@ Require stack:
 
 3. element-plus <Setting/> 图表导致卡顿
 解决：只能删除setting图标
+
+### 2023-7-13
+1. tailwindcss 与vit或elememt-puls冲突 打包后button样式被覆盖为透明
+解决：暂时替换为windicss使用。
   
