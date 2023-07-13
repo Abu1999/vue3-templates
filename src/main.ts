@@ -3,6 +3,7 @@ import "nprogress/nprogress.css";
 import 'element-plus/theme-chalk/dark/css-vars.css'
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
+import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import ElementPlus from 'element-plus'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import App from './App.vue'
@@ -17,10 +18,10 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 }
 // bus.$on("click", (msg) => window.alert(msg));
 
-
 app.use(router)
+
 // pinia
-app.use(createPinia())
+app.use(createPinia().use(piniaPluginPersistedstate))
 
 
 

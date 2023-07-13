@@ -1,6 +1,7 @@
 import NProgress from 'nprogress'
 import { createRouter, createWebHistory } from 'vue-router'
 import { defineAsyncComponent } from 'vue';
+import { tabsStore } from '@/stores';
 
 const router = createRouter({
   // history: createWebHistory(import.meta.env.BASE_URL),
@@ -8,32 +9,54 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'home',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: defineAsyncComponent(() => import('../views/AboutView.vue'))
+      name: '首页',
+      component: () => import('../views/AboutView.vue')
     },
     {
       path: '/app1',
-      name: 'app1',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: defineAsyncComponent(() => import('../views/app1.vue'))
+      name: '测试2-1',
+      component: () => import('../views/app1.vue'),
+    },
+    {
+      path: '/app2',
+      name: '测试1',
+      component: () => import('../views/app2.vue')
     },
     {
       path: '/404',
-      name: '404',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: defineAsyncComponent(() => import('../views/404.vue'))
+      name: '404页面',
+      component: () => import('../views/404.vue')
     },
+    {
+      path: '/test',
+      name: '菜单嵌套',
+      redirect: '/test/app1',
+      children: [
+        {
+          name: '测试1',
+          path: 'app1',
+          component: () => import('../views/app2.vue'),
+        },
+        {
+          name: '测试2',
+          path: 'app2',
+          redirect: '/test/app2/list',
+          children: [
+            {
+              name: '测试2-1',
+              path: 'list',
+              component: () => import('../views/app2.vue'),
+            }
+          ]
+        }
+      ],
+    }
   ]
 })
 
+
 router.beforeEach((to, from, next) => {
+  console.log(to);
   NProgress.configure({ showSpinner: false });
   NProgress.start();
   let have = false
@@ -41,6 +64,7 @@ router.beforeEach((to, from, next) => {
     if (route.path === to.path) have = true
   })
   if (have) {
+    tabsStore().add({ name: to.path, title: to.name ? String(to.name) : '标签页' })
     next()
   } else {
     router.push('/404')

@@ -1,8 +1,9 @@
 <template>
   <div class="w-full h-auto">
-    <el-tabs @tab-click="click1" class="w-full" id="tabs" style="height: 40px;" size="small" v-model="editableTabsValue"
-      type="card" closable @tab-remove="removeTab">
-      <el-tab-pane v-for="item in editableTabs" :key="item.name" :label="item.title" :name="item.name"></el-tab-pane>
+    <el-tabs class="w-full" id="tabs" style="height: 40px;" size="small" v-model="$route.path" type="card"
+      @tab-remove="removeTab" @tab-change="changTab">
+      <el-tab-pane :closable="item.name === '/' ? false : true" v-for="item in tabsStore().data" :key="item.name"
+        :label="item.title" :name="item.name"></el-tab-pane>
     </el-tabs>
   </div>
 
@@ -14,50 +15,16 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { tabsStore } from '@/stores'
+import { useRouter } from 'vue-router';
 
-let tabIndex = 2
-const editableTabsValue = ref('2')
-const editableTabs = ref([
-  {
-    title: 'Tab 1',
-    name: '1',
-  },
-  {
-    title: 'Tab 2',
-    name: '2',
-  },
-])
+const router = useRouter()
 
-const removeTab = (targetName: string) => {
-  const tabs = editableTabs.value
-  let activeName = editableTabsValue.value
-  if (activeName === targetName) {
-    tabs.forEach((tab, index) => {
-      if (tab.name === targetName) {
-        const nextTab = tabs[index + 1] || tabs[index - 1]
-        if (nextTab) {
-          activeName = nextTab.name
-        }
-      }
-    })
-  }
-
-  editableTabsValue.value = activeName
-  editableTabs.value = tabs.filter((tab) => tab.name !== targetName)
+const removeTab = (targetName: any) => {
+  tabsStore().remove(targetName)
 }
-
-const addTab = (targetName: string) => {
-  const newTabName = `${++tabIndex}`
-  editableTabs.value.push({
-    title: 'New Tab',
-    name: newTabName,
-  })
-  editableTabsValue.value = newTabName
-}
-
-const click1 = () => {
-  console.log(1);
+const changTab = (targetName: any) => {
+  router.push(targetName)
 }
 
 </script>

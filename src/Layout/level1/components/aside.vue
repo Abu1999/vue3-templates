@@ -9,8 +9,8 @@
     </div>
 
     <el-menu id="menu" :style="{ border: 0, '--menubackgroundColor': menubackgroundColor }"
-      :background-color="backgroundColor" text-color="#fff" default-active="2" :collapse="props.isCollapse"
-      :collapse-transition="false" :active="$route.path" active-text-color="red">
+      :background-color="backgroundColor" text-color="#fff" :collapse="props.isCollapse" :collapse-transition="false"
+      :active="$route.path" :default-active="$route.path">
       <template v-for="( item, index ) in  props.menuData " :key="index">
         <el-sub-menu background-color="red" v-if="item.children" :index="item.path ? item.path : item.title">
           <template #title>

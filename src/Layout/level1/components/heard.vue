@@ -7,9 +7,10 @@
           <Expand size="18" v-else />
         </el-icon>
       </div>
-      <el-breadcrumb separator="/">
-        <el-breadcrumb-item :to="{ path: '/' }">主页</el-breadcrumb-item>
-        <el-breadcrumb-item v-if="route.path != '/'" :to="{ path: route.path }">{{ route.name }}</el-breadcrumb-item>
+      <el-breadcrumb separator="/" v-if="arr.length">
+        <el-breadcrumb-item v-for="(item, index) in arr" :key="index" :to="{ path: item.path ? item.path : '#' }">{{
+          item.title
+        }}</el-breadcrumb-item>
       </el-breadcrumb>
 
     </div>
@@ -17,10 +18,13 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, watch, reactive } from 'vue';
 import { useRoute } from 'vue-router';
+import { menuStore } from '@/stores';
 
 const route = useRoute()
+const menuData = menuStore().data
+let data: any = ref({})
 
 // 折叠
 let isCollapse = ref(false)
@@ -31,6 +35,35 @@ const changeCollapse = () => {
   isCollapse.value = !isCollapse.value
   emit('changeCollapse', isCollapse.value)
 }
+
+let arr: any = ref([]);
+const find = (data: any) => {
+  let obj: any;
+  data.forEach((item: any) => {
+    if (obj) return
+    // 如果路由name与菜单对应可打开
+    // if (item.path === route.path && item.title === route.name) {
+    //   obj = item
+    // }
+    if (item.path === route.path) {
+      obj = item
+    }
+    if (item.children && item.children.length && !obj) {
+      if (find(item.children)) obj = item
+    }
+
+    if (obj) {
+      arr.value.unshift({ path: item.path, title: item.title })
+      return
+    }
+  })
+  return obj
+}
+
+watch(() => route.path, () => {
+  arr.value = []
+  find(menuData)
+}, { deep: true })
 
 
 </script>
