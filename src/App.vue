@@ -1,7 +1,9 @@
 <template>
-  <LayoutLevel1>
+  <!-- 添加route.name判断刷新路由会重置 -->
+  <LayoutLevel1 v-if="$route.name && !($route.meta.layout && $route.meta.layout.visible)">
     <router-view></router-view>
   </LayoutLevel1>
+  <router-view v-else></router-view>
 </template>
 
 <script setup lang="ts">
@@ -12,4 +14,6 @@ import { layoutStore } from '@/stores/index'
 const store = layoutStore()
 // // 主题颜色
 store.changeThemeColor()
+
+
 </script>

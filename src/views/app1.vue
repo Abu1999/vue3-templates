@@ -1,7 +1,6 @@
 <template>
   <div>
-    123456
-    <!-- <WujieVue width="100%" height="100%" name="vue3" :sync="sync"></WujieVue> -->
+    测试1
   </div>
 </template>
 

@@ -13,19 +13,14 @@ const router = createRouter({
       component: () => import('../views/AboutView.vue')
     },
     {
-      path: '/app1',
-      name: '测试2-1',
-      component: () => import('../views/app1.vue'),
-    },
-    {
-      path: '/app2',
-      name: '测试1',
-      component: () => import('../views/app2.vue')
-    },
-    {
       path: '/404',
       name: '404页面',
-      component: () => import('../views/404.vue')
+      meta: {
+        layout: {
+          visible: true
+        }
+      },
+      component: () => import('@/components/404.vue')
     },
     {
       path: '/test',
@@ -35,7 +30,7 @@ const router = createRouter({
         {
           name: '测试1',
           path: 'app1',
-          component: () => import('../views/app2.vue'),
+          component: () => import('../views/app1.vue'),
         },
         {
           name: '测试2',
@@ -50,13 +45,22 @@ const router = createRouter({
           ]
         }
       ],
-    }
+    },
+    {
+      path: '/login',
+      name: 'login页面',
+      meta: {
+        layout: {
+          visible: true
+        }
+      },
+      component: () => import('@/components/login.vue')
+    },
   ]
 })
 
 
 router.beforeEach((to, from, next) => {
-  console.log(to);
   NProgress.configure({ showSpinner: false });
   NProgress.start();
   let have = false

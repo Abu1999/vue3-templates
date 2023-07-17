@@ -3,7 +3,7 @@
     <div>
       测试
     </div>
-    <button type="button" @click="$router.push('/app1')">跳转</button>
+    <button type="button" @click="$router.push('/test/app1')">跳转</button>
   </div>
 </template>
 

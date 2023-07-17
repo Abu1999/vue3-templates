@@ -5,7 +5,6 @@ export const useMenuStore = defineStore({
   state: () => ({
     data: [
       { title: '首页', icon: 'House', path: '/' },
-      { title: '404页面', icon: 'WarningFilled', path: '/404' },
       {
         title: '菜单嵌套',
         icon: 'Menu',
@@ -14,6 +13,7 @@ export const useMenuStore = defineStore({
           { title: '测试2', icon: '', children: [{ title: '测试2-1', path: '/test/app2/list', icon: '' }] },
         ]
       },
+      { title: '404页面', icon: 'WarningFilled', path: '/404' },
 
     ]
   }),

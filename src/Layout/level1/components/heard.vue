@@ -1,6 +1,6 @@
 <template>
-  <div class="w-full h-full">
-    <div class="h-full flex items-center space-x-2 border-b">
+  <div class="w-full h-full flex justify-between border-b">
+    <div class="h-full flex items-center space-x-2">
       <div class="h-full flex  items-center cursor-pointer select-none px-3" @click="changeCollapse">
         <el-icon size="18">
           <Fold v-if="!isCollapse" />
@@ -12,19 +12,36 @@
           item.title
         }}</el-breadcrumb-item>
       </el-breadcrumb>
+    </div>
 
+    <div id="user_info" class="h-full flex items-center space-x-2 cursor-pointer select-none" @click="visible = true">
+      <el-dropdown trigger="click" size="95">
+        <div class="flex items-center space-x-2 px-5" style="height: 50px;">
+          <el-avatar :size="35" src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png" />
+          <el-icon size="12">
+            <ArrowDown />
+          </el-icon>
+        </div>
+        <template #dropdown>
+          <el-dropdown-menu>
+            <el-dropdown-item>Action 1</el-dropdown-item>
+            <el-dropdown-item divided @click="quit">退出登录</el-dropdown-item>
+          </el-dropdown-menu>
+        </template>
+      </el-dropdown>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, watch, reactive } from 'vue';
+import { ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
-import { menuStore } from '@/stores';
+import { menuStore, tabsStore } from '@/stores';
+import router from '@/router';
 
 const route = useRoute()
 const menuData = menuStore().data
-let data: any = ref({})
+let visible = ref(false)
 
 // 折叠
 let isCollapse = ref(false)
@@ -36,6 +53,7 @@ const changeCollapse = () => {
   emit('changeCollapse', isCollapse.value)
 }
 
+// 判断当前路由
 let arr: any = ref([]);
 const find = (data: any) => {
   let obj: any;
@@ -63,9 +81,20 @@ const find = (data: any) => {
 watch(() => route.path, () => {
   arr.value = []
   find(menuData)
-}, { deep: true })
+}, { deep: true, immediate: true })
+
+const quit = () => {
+  localStorage.removeItem('token')
+  tabsStore().clear()
+  sessionStorage.removeItem('tabs')
+  router.push('/login')
+}
 
 
 </script>
 
-<style scoped></style>
+<style scoped>
+#user_info:hover {
+  background-color: #f6f6f6;
+}
+</style>

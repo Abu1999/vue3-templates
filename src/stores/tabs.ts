@@ -7,7 +7,7 @@ interface Tab {
   title: string
 }
 
-const list = ['/404']
+const list = ['/404', '/login']
 
 export const useTabsStore = defineStore({
   id: 'tabs',
@@ -44,6 +44,9 @@ export const useTabsStore = defineStore({
       else
         router.push(this.data[this.data.length - 1].name)
     },
+    clear(): void {
+      this.data = [{ name: '/', title: '首页' }]
+    }
   },
 
   persist: {

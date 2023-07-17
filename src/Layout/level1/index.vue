@@ -5,7 +5,7 @@
     </el-aside>
 
     <el-container>
-      <el-header style="padding: 0;">
+      <el-header height="50px" style="padding: 0;">
         <Header @changeCollapse="changeCollapse"></Header>
       </el-header>
       <el-main style="padding: 0;">
