@@ -7,12 +7,13 @@ interface Tab {
   title: string
 }
 
+// 不显示tabs标签
 const list = ['/404', '/login']
 
 export const useTabsStore = defineStore({
   id: 'tabs',
   state: () => ({
-    data: [{ name: '/', title: '首页' }] as Tab[]
+    data: [{ name: '/', title: '首页' }] as Tab[] // 固定首页标签
   }),
   getters: {
 
