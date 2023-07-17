@@ -14,7 +14,16 @@ if [[ $1 != '0' ]];
 then
   echo -e "-开始打包"
   pnpm build;
-  echo -e "-打包完成! \033[32m ok \033[0m"
+  if [ $? -eq 0 ]
+  then
+    echo ""
+    echo -e "-打包完成! \033[32m ok \033[0m"
+  else
+    echo ""
+    echo -e "-打包错误! \033[31m error \033[0m"
+    exit
+  fi
+
 else  
   echo "-已跳过打包"
 fi
@@ -35,12 +44,15 @@ ssh -p 22 root@$HOST > /dev/null 2>&1 << eeooff
   cd $FILE/dist && rm -rf *
   exit;
 eeooff
+echo ""
+echo "-删除文件成功"
 sleep 0.5
-echo "-删除文件"
 
 
 # 上传文件
 scp -r -rC $ROOTDIR/dist $SCRIPTDIR/nginx.conf $SCRIPTDIR/conf.d $SCRIPTDIR/docker-compose.yml root@$HOST:$FILE/;
+echo ""
+echo "-上传文件成功"
 
 sleep 0.5
 # docker部署
@@ -49,8 +61,8 @@ ssh -p 22 root@$HOST > /dev/null 2>&1 << eeooff
   exit;
 eeooff
 
-echo -ne "-部署成功! \033[32m ok \033[0m"
 echo ""
+echo -ne "-部署成功! \033[32m ok \033[0m"
 echo ""
 
 

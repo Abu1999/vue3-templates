@@ -1,6 +1,6 @@
 <template>
   <div>
-    <slot></slot>
+    测试2-1
   </div>
 </template>
 
@@ -8,4 +8,4 @@
 
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped></style>
