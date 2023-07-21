@@ -17,7 +17,6 @@ export default defineComponent({
   },
   setup(props, { slots }) {
     const router = useRouter()
-    let id: any = 1
 
     // * 数据状态
     const state = reactive({
@@ -27,7 +26,7 @@ export default defineComponent({
 
 
     const get = () => {
-      let url = '/test/1'
+      const url = '/test/1'
       RequestHttp.get(url).then(res => {
         console.log(res);
         state.data = res

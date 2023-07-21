@@ -1,5 +1,5 @@
 <template>
-  <TestList v-slot="{ state, command }">
+  <TestList v-slot="{ state }">
     <div>
       {{ state.data }}
     </div>
