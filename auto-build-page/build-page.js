@@ -29,7 +29,7 @@ function buildPage(config) {
     fs.mkdir(tablePaths, function () {
       let strTable
       strTable = handleStr(
-        fs.readFileSync(path.resolve('./src/auto-build-page/template/table.vue'), 'utf-8', (err) => {}),
+        fs.readFileSync(path.resolve('./auto-build-page/template/table.vue'), 'utf-8', (err) => {}),
         config
       )
 
@@ -51,30 +51,21 @@ function buildPage(config) {
     if (config.page == 'models' || config.page == 'table') {
       // 新建空白页，读取空白页模版
       strConfig = handleStr(
-        fs.readFileSync(path.resolve('./src/auto-build-page/template/template.config.ts'), 'utf-8', (err) => {}),
-        config
-      )
-      strTS = handleStr(
-        fs.readFileSync(path.resolve('./src/auto-build-page/template/template.ts'), 'utf-8', (err) => {}),
+        fs.readFileSync(path.resolve('./auto-build-page/template/template.config.ts'), 'utf-8', (err) => {}),
         config
       )
       strList = handleStr(
-        fs.readFileSync(path.resolve('./src/auto-build-page/template/template.list.tsx'), 'utf-8', (err) => {}),
+        fs.readFileSync(path.resolve('./auto-build-page/template/template.list.tsx'), 'utf-8', (err) => {}),
         config
       )
-      strType = handleStr(
-        fs.readFileSync(path.resolve('./src/auto-build-page/template/types.ts'), 'utf-8', (err) => {}),
-        config
-      )
+   
     }
 
 
     // 写入文件
     console.log('开始写入models文件:' + config.class)
     fs.writeFileSync(modelsPaths + `/${config.class}.config.ts`, strConfig, (err) => {})
-    fs.writeFileSync(modelsPaths + `/${config.class}.ts`, strTS, (err) => {})
     fs.writeFileSync(modelsPaths + `/${config.class}.list.tsx`, strList, (err) => {})
-    fs.writeFileSync(modelsPaths + `/types.ts`, strType, (err) => {})
     console.log('models文件写入成功:' + config.class)
   })
 }

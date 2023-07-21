@@ -1,12 +1,12 @@
 var addConfig = {
-  pageBase: './src/pages',
+  pageBase: './src/views',
   modelsBase: './src/models',
 
   pageConfig: [{
     open: true,
-    title: '资源分配',
+    title: '测试',
     page: 'models',
-    class: 'resource_leveling',
+    class: 'test',
     // 测试生成表格页
   }, ]
 }

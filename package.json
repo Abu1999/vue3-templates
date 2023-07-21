@@ -7,6 +7,7 @@
     "dev": "vite --open --mode development",
     "build": "run-p type-check build-only",
     "build:deploy": "sh deploy/build.sh",
+    "build:page": "node ./auto-build-page/build-page.js",
     "test:unit": "vitest",
     "build-only": "vite build --mode production",
     "type-check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false",

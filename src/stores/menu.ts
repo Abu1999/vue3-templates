@@ -14,7 +14,7 @@ export const useMenuStore = defineStore({
         ]
       },
       { title: '404页面', icon: 'WarningFilled', path: '/404' },
-
+      { title: 'axios请求', icon: 'WarningFilled', path: '/axios' },
     ]
   }),
 
