@@ -22,4 +22,9 @@ export const userRoutes = [{
     }
   ],
 },
+{
+  path: '/axios',
+  name: 'axios请求',
+  component: () => import('@/views/axios.vue')
+},
 ]

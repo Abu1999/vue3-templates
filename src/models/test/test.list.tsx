@@ -4,6 +4,10 @@ import { useRouter } from 'vue-router'
 import RequestHttp from '@/utils/axios';
 
 
+interface State {
+  data: any
+}
+
 export default defineComponent({
   props: {
     id: {
@@ -19,51 +23,28 @@ export default defineComponent({
     const state = reactive({
       data: [],
       loading: false
-    });
+    } as State);
 
 
     const get = () => {
-      let url = ''
+      let url = '/test/1'
       RequestHttp.get(url).then(res => {
-        console.log('res', res);
-      }).catch(error => {
-        console.log('error', error);
+        console.log(res);
+        state.data = res
       })
 
     }
 
     const post = () => {
-      let url = ''
-      let body = {}
-      RequestHttp.post(url, body).then(res => {
-        get()
-        console.log('res', res);
-      }).catch(error => {
-        console.log('error', error);
-      })
 
     }
 
     const put = () => {
-      let url = ''
-      let body = {}
-      RequestHttp.put(url, body).then(res => {
-        get()
-        console.log('res', res);
-      }).catch(error => {
-        console.log('error', error);
-      })
+
     }
 
     const del = () => {
-      let url = ''
-      let body = {}
-      RequestHttp.delete(url, body).then(res => {
-        get()
-        console.log('res', res);
-      }).catch(error => {
-        console.log('error', error);
-      })
+
     }
 
 

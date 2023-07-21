@@ -1,5 +1,5 @@
 ## 在package.json添加启动命令
-"build:page": "node ./src/auto-build-page/build-page.js"
+"build:page": "node ./auto-build-page/build-page.js",
 
 ## 配置文件在addConfig.js
 
