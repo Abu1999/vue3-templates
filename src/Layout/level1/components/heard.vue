@@ -49,9 +49,9 @@ let isCollapse = ref(false)
 const emit = defineEmits<{
   (event: 'changeCollapse', value: boolean): void
 }>()
-const changeCollapse = (isCollapse: boolean) => {
-  console.log(isCollapse);
-  emit('changeCollapse', isCollapse)
+const changeCollapse = (show: boolean) => {
+  isCollapse.value = show
+  emit('changeCollapse', show)
 }
 
 // 判断当前路由
@@ -97,7 +97,7 @@ window.onresize = () => {
 
 
 watch(() => screenWidth.value, () => {
-  console.log(screenWidth.value);
+  console.log(screenWidth.value, '>>>>>>>>');
   if (screenWidth.value < 1000) {
     changeCollapse(true)
   }
