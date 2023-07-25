@@ -50,6 +50,7 @@ const emit = defineEmits<{
   (event: 'changeCollapse', value: boolean): void
 }>()
 const changeCollapse = (isCollapse: boolean) => {
+  console.log(isCollapse);
   emit('changeCollapse', isCollapse)
 }
 
@@ -98,7 +99,7 @@ window.onresize = () => {
 watch(() => screenWidth.value, () => {
   console.log(screenWidth.value);
   if (screenWidth.value < 1000) {
-    changeCollapse(false)
+    changeCollapse(true)
   }
 }, { deep: true, immediate: true })
 

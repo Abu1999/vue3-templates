@@ -22,7 +22,7 @@ export default defineComponent({
 
 
     const get = () => {
-      let url = '/test'
+      const url = '/test'
       RequestHttp.get(url).then(res => {
         console.log('res', res);
         state.data = res
@@ -33,7 +33,7 @@ export default defineComponent({
     }
 
     const post = (body: any) => {
-      let url = '/test'
+      const url = '/test'
       RequestHttp.post(url, body).then(res => {
         console.log('res', res);
         get()
@@ -44,7 +44,7 @@ export default defineComponent({
     }
 
     const put = (id: number, body: any) => {
-      let url = `/test/${id}`
+      const url = `/test/${id}`
       RequestHttp.put(url, body).then(res => {
         console.log('res', res);
         get()
@@ -54,7 +54,7 @@ export default defineComponent({
     }
 
     const del = (id: number) => {
-      let url = `/test/${id}`
+      const url = `/test/${id}`
       RequestHttp.delete(url).then(res => {
         console.log('res', res);
         get()
