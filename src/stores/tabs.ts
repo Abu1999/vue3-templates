@@ -1,5 +1,6 @@
 import router from '@/router';
 import { defineStore } from 'pinia'
+import { tabsConfig } from '@/appconfig'
 
 
 interface Tab {
@@ -8,12 +9,12 @@ interface Tab {
 }
 
 // 不显示tabs标签
-const list = ['/404', '/login']
+const list = tabsConfig.hidden
 
 export const useTabsStore = defineStore({
   id: 'tabs',
   state: () => ({
-    data: [{ name: '/', title: '首页' }] as Tab[] // 固定首页标签
+    data: tabsConfig.data as Tab[] // 固定首页标签
   }),
   getters: {
 
@@ -46,7 +47,7 @@ export const useTabsStore = defineStore({
         router.push(this.data[this.data.length - 1].name)
     },
     clear(): void {
-      this.data = [{ name: '/', title: '首页' }]
+      this.data = tabsConfig.data
     }
   },
 

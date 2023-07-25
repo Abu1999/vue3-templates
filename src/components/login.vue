@@ -54,7 +54,7 @@ const submit = async (formEl: FormInstance | undefined) => {
   loading.value = true
   await formEl.validate((valid: any, fields: any) => {
     if (valid) {
-      console.log('submit!')
+      // console.log('submit!')
       if (formData.name === 'admin' && formData.password === 'admin') {
         ElMessage.success('登录成功')
         localStorage.setItem('token', '123')
@@ -64,7 +64,8 @@ const submit = async (formEl: FormInstance | undefined) => {
       }
       loading.value = false
     } else {
-      console.log('error submit!', fields)
+      // console.log('error submit!', fields)
+      ElMessage.error('登陆失败')
       loading.value = false
     }
   })
