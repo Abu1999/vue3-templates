@@ -45,6 +45,7 @@ const changTab = (targetName: any) => {
   display: flex;
   align-items: center;
   margin-bottom: 0;
+  z-index: 0 !important;
 }
 
 :deep(#tabs .el-tabs__nav) {

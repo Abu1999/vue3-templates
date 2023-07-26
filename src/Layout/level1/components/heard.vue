@@ -107,6 +107,6 @@ watch(() => screenWidth.value, () => {
 
 <style scoped>
 #user_info:hover {
-  background-color: #f6f6f6;
+  background-color: var(--el-fill-color-dark);
 }
 </style>
