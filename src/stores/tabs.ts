@@ -31,20 +31,42 @@ export const useTabsStore = defineStore({
       })
       if (push) this.data.push(obj)
     },
-    remove(name: string): void {
+    remove(name: string, method?: string): void {
       let num = 1;
+      let list: Tab = { name: '', title: '' };
       this.data.forEach((item: Tab, index: number) => {
         if (item.name === name) {
           num = index
+          list = item
         } else {
           return item
         }
       })
-      this.data = this.data.filter((item: Tab) => item.name !== name)
+
+      switch (method) {
+        case 'left':
+          this.data = tabsConfig.data.concat(this.data.splice(num))
+          break;
+        case 'right':
+          this.data = this.data.splice(0, num + 1)
+          break;
+        case 'self':
+          this.data = tabsConfig.data.concat(list)
+          break;
+        case 'all':
+          this.clear()
+          break;
+
+        default:
+          this.data = this.data.filter((item: Tab) => item.name !== name)
+          break;
+      }
       if (num + 1 < this.data.length)
         router.push(this.data[num].name)
       else
         router.push(this.data[this.data.length - 1].name)
+
+
     },
     clear(): void {
       this.data = tabsConfig.data

@@ -29,7 +29,8 @@
     "unplugin-auto-import": "^0.16.4",
     "unplugin-vue-components": "^0.25.0",
     "vue": "^3.3.2",
-    "vue-router": "^4.2.0"
+    "vue-router": "^4.2.0",
+    "vue3-contextmenu": "^0.2.12"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.6.3",

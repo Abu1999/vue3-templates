@@ -9,6 +9,8 @@ import ElementPlus from 'element-plus'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import App from './App.vue'
 import router from './router'
+import contextmenu from 'vue3-contextmenu'
+import 'vue3-contextmenu/dist/vue3-contextmenu.css'
 
 const app = createApp(App)
 
@@ -24,6 +26,7 @@ app.use(router)
 // pinia
 app.use(createPinia().use(piniaPluginPersistedstate))
 
-
+// 右键菜单栏
+app.use(contextmenu)
 
 app.mount('#app')
