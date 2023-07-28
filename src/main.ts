@@ -9,6 +9,7 @@ import ElementPlus from 'element-plus'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import App from './App.vue'
 import router from './router'
+// @ts-expect-error
 import contextmenu from 'vue3-contextmenu'
 import 'vue3-contextmenu/dist/vue3-contextmenu.css'
 
