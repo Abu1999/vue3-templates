@@ -29,8 +29,8 @@
     </div>
 
     <div class="w-full flex justify-end mt-6">
-      <el-pagination @current-change="sizeChange" background :default-page-size="10" layout="prev, pager, next"
-        :total="1000" />
+      <el-pagination @current-change="sizeChange" background :default-page-size="10"
+        layout="total, sizes, prev, pager, next, jumper" :total="1000" />
     </div>
   </div>
 </template>
