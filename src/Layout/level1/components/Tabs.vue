@@ -79,7 +79,7 @@ const openContextMenu = (e: any, index: number) => {
 
 // 判断标签disable
 const disable = (list: any, index: number) => {
-  return index == 0 && list.method != 'all' || index == 1 && list.method == 'left' || index == 1 && list.method == 'self' || index == (tabsStore().data.length - 1) && list.method == 'right'
+  return index == 0 && list.method != 'all' || index == 1 && list.method == 'left' || index == (tabsStore().data.length - 1) && list.method == 'right'
 }
 
 

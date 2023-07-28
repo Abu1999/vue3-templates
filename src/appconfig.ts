@@ -9,8 +9,9 @@ export const menuData = [
       { title: '测试2', icon: '', children: [{ title: '测试2-1', path: '/test/app2/list', icon: '' }] },
     ]
   },
+  { title: 'axios请求', icon: 'Coin', path: '/axios' },
+  { title: '模版table页面', icon: 'Tickets', path: '/table' },
   { title: '404页面', icon: 'WarningFilled', path: '/404' },
-  { title: 'axios请求', icon: 'WarningFilled', path: '/axios' },
 ]
 
 // tabs设置

@@ -16,7 +16,7 @@ import 'vue3-contextmenu/dist/vue3-contextmenu.css'
 const app = createApp(App)
 
 // 全局引入图标
-app.use(ElementPlus, { size: 'small', zIndex: 3000 })
+app.use(ElementPlus, { size: 'small' })
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component)
 }

@@ -1,8 +1,11 @@
 <template>
   <div>
-    <el-switch id="dark" @change="changDark" v-model="dark" size="large" style="color: aqua;" :active-value="true"
-      :inactive-value="false" inactive-icon="sunny" active-icon="moon" inline-prompt>
-    </el-switch>
+    <el-divider>主题</el-divider>
+    <div class="w-full flex justify-center">
+      <el-switch id="dark" @change="changDark" v-model="dark" size="large" style="color: aqua;" :active-value="true"
+        :inactive-value="false" inactive-icon="sunny" active-icon="moon" inline-prompt>
+      </el-switch>
+    </div>
   </div>
 </template>
 
@@ -14,9 +17,8 @@ const isDark = useDark()
 const color = localStorage.getItem('vueuse-color-scheme')
 
 let dark = ref(color ? (color == 'dark' ? true : false) : false)
-console.log(dark);
 
-const changDark = useToggle(isDark)
+const changDark: any = useToggle(isDark)
 
 </script>
 
