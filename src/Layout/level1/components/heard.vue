@@ -1,7 +1,7 @@
 <template>
   <div class="w-full h-full flex justify-between border-b">
     <div class="h-full flex items-center space-x-2">
-      <div class="h-full flex  items-center cursor-pointer select-none px-3" @click="changeCollapse">
+      <div class="h-full flex  items-center cursor-pointer select-none px-3" @click="changeCollapse(!isCollapse)">
         <el-icon size="18">
           <Fold v-if="!isCollapse" />
           <Expand size="18" v-else />
@@ -42,15 +42,16 @@ import router from '@/router';
 const route = useRoute()
 const menuData = menuStore().data
 let visible = ref(false)
+let screenWidth = ref(document.documentElement.clientWidth)
 
 // 折叠
 let isCollapse = ref(false)
 const emit = defineEmits<{
   (event: 'changeCollapse', value: boolean): void
 }>()
-const changeCollapse = () => {
-  isCollapse.value = !isCollapse.value
-  emit('changeCollapse', isCollapse.value)
+const changeCollapse = (show: boolean) => {
+  isCollapse.value = show
+  emit('changeCollapse', show)
 }
 
 // 判断当前路由
@@ -90,11 +91,22 @@ const quit = () => {
   router.push('/login')
 }
 
+window.onresize = () => {
+  screenWidth.value = document.documentElement.clientWidth
+}
+
+
+watch(() => screenWidth.value, () => {
+  console.log(screenWidth.value, '>>>>>>>>');
+  if (screenWidth.value < 1000) {
+    changeCollapse(true)
+  }
+}, { deep: true, immediate: true })
 
 </script>
 
 <style scoped>
 #user_info:hover {
-  background-color: #f6f6f6;
+  background-color: var(--el-fill-color-dark);
 }
 </style>

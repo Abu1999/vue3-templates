@@ -1,7 +1,10 @@
 #!/bin/bash
 
 # 参数
-HOST="";
+echo -e "\033[36m-输入ip地址:\033[0m"
+read ip_address
+echo
+HOST=${ip_address};
 FILE="~/nginx"
 
 # 文件绝对路径

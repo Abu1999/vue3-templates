@@ -13,7 +13,6 @@ export default defineComponent({
   },
   setup(props, { slots }) {
     const router = useRouter()
-    let id: any = 1
 
     // * 数据状态
     const state = reactive({

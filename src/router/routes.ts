@@ -27,4 +27,9 @@ export const userRoutes = [{
   name: 'axios请求',
   component: () => import('@/views/axios.vue')
 },
+{
+  path: '/table',
+  name: 'table页面',
+  component: () => import('@/views/table.vue')
+},
 ]

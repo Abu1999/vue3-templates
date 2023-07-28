@@ -10,7 +10,7 @@
       </el-header>
       <el-main style="padding: 0;">
         <Tabs />
-        <div class="w-full p-5" style="height: calc(100% - 40px); background-color: #F5F7F9;">
+        <div class="w-full p-5 bg-[var(--el-bg-color-page)]" style="height: calc(100% - 40px); ">
           <slot></slot>
         </div>
       </el-main>

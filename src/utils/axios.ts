@@ -1,7 +1,11 @@
+import router from '@/router';
 import axios, { type AxiosInstance, AxiosError, type AxiosRequestConfig, type AxiosResponse } from 'axios'
-import { useEnv } from '@/hooks/useEnv'
+import { ElMessage } from 'element-plus'
 
-// import { ElMessage } from 'element-plus'
+
+
+
+const URL: string = import.meta.env.VITE_BASE_URL
 // 数据返回的接口
 // 定义请求响应参数，不含data
 interface Result {
@@ -13,7 +17,6 @@ interface Result {
 interface ResultData<T = any> extends Result {
     data?: T;
 }
-const URL: string = 'http://localhost:9000'
 enum RequestEnums {
     TIMEOUT = 20000,
     OVERDUE = 600, // 登录失效
@@ -67,16 +70,17 @@ class RequestHttp {
                 if (data.code === RequestEnums.OVERDUE) {
                     // 登录信息失效，应跳转到登录页面，并清空本地的token
                     localStorage.setItem('token', '');
-                    // router.replace({
-                    //   path: '/login'
-                    // })
+                    router.replace({
+                        path: '/login'
+                    })
                     return Promise.reject(data);
                 }
                 // 全局错误信息拦截（防止下载文件得时候返回数据流，没有code，直接报错）
                 if (data.code && data.code !== RequestEnums.SUCCESS) {
-                    // ElMessage.error(data); // 此处也可以使用组件提示报错信息
+                    ElMessage.error(data); // 此处也可以使用组件提示报错信息
                     return Promise.reject(data)
                 }
+                console.log(data);
                 return data;
             },
             (error: AxiosError) => {
@@ -85,11 +89,11 @@ class RequestHttp {
                     this.handleCode(response.status)
                 }
                 if (!window.navigator.onLine) {
-                    // ElMessage.error('网络连接失败');
+                    ElMessage.error('网络连接失败');
                     // 可以跳转到错误页面，也可以不做操作
-                    // return router.replace({
-                    //   path: '/404'
-                    // });
+                    return router.replace({
+                        path: '/404'
+                    });
                 }
             }
         )
@@ -97,10 +101,10 @@ class RequestHttp {
     handleCode(code: number): void {
         switch (code) {
             case 401:
-                // ElMessage.error('登录失败，请重新登录');
+                ElMessage.error('登录失败，请重新登录');
                 break;
             default:
-                // ElMessage.error('请求失败');
+                ElMessage.error('请求失败');
                 break;
         }
     }

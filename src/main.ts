@@ -9,11 +9,16 @@ import ElementPlus from 'element-plus'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import App from './App.vue'
 import router from './router'
+// @ts-expect-error
+import contextmenu from 'vue3-contextmenu'
+import 'vue3-contextmenu/dist/vue3-contextmenu.css'
+// @ts-expect-error
+import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
 
 const app = createApp(App)
 
 // 全局引入图标
-app.use(ElementPlus, { size: 'small', zIndex: 3000 })
+app.use(ElementPlus, { size: 'small', locale: zhCn, })
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component)
 }
@@ -24,6 +29,7 @@ app.use(router)
 // pinia
 app.use(createPinia().use(piniaPluginPersistedstate))
 
-
+// 右键菜单栏
+app.use(contextmenu)
 
 app.mount('#app')

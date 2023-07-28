@@ -1,7 +1,7 @@
 <template>
   <div class="w-full h-full" :style="{ backgroundColor: backgroundColor, color: '#fff' }">
 
-    <div class="flex justify-center items-center cursor-pointer select-none" style="height: 60px;" @click="myClick">
+    <div class="flex justify-center items-center cursor-pointer select-none h-[50px]" @click="myClick">
       <div style="width: 64px;" class="flex justify-center items-center">
         <el-image style="width: 40px; height: 40px" :src="url" fit="cover" />
       </div>
