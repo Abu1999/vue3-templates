@@ -4,9 +4,9 @@ var addConfig = {
 
   pageConfig: [{
     open: true,
-    title: '测试',
+    title: 'table页面',
     page: 'models',
-    class: 'test',
+    class: 'table',
     // 测试生成表格页
   }, ]
 }
