@@ -14,11 +14,12 @@ import contextmenu from 'vue3-contextmenu'
 import 'vue3-contextmenu/dist/vue3-contextmenu.css'
 // @ts-expect-error
 import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
+import 'element-plus/es/components/message/style/css'
 
 const app = createApp(App)
 
 // 全局引入图标
-app.use(ElementPlus, { size: 'small', locale: zhCn, })
+app.use(ElementPlus, { size: 'small', locale: zhCn })
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component)
 }

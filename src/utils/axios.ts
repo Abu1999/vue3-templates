@@ -2,9 +2,6 @@ import router from '@/router';
 import axios, { type AxiosInstance, AxiosError, type AxiosRequestConfig, type AxiosResponse } from 'axios'
 import { ElMessage } from 'element-plus'
 
-
-
-
 const URL: string = import.meta.env.VITE_BASE_URL
 // 数据返回的接口
 // 定义请求响应参数，不含data

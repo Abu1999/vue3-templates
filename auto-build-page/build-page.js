@@ -51,7 +51,7 @@ function buildPage(config) {
     if (config.page == 'models' || config.page == 'table') {
       // 新建空白页，读取空白页模版
       strConfig = handleStr(
-        fs.readFileSync(path.resolve('./auto-build-page/template/template.config.ts'), 'utf-8', (err) => {}),
+        fs.readFileSync(path.resolve('./auto-build-page/template/template.config.tsx'), 'utf-8', (err) => {}),
         config
       )
       strList = handleStr(
@@ -64,7 +64,7 @@ function buildPage(config) {
 
     // 写入文件
     console.log('开始写入models文件:' + config.class)
-    fs.writeFileSync(modelsPaths + `/${config.class}.config.ts`, strConfig, (err) => {})
+    fs.writeFileSync(modelsPaths + `/${config.class}.config.tsx`, strConfig, (err) => {})
     fs.writeFileSync(modelsPaths + `/${config.class}.list.tsx`, strList, (err) => {})
     console.log('models文件写入成功:' + config.class)
   })
