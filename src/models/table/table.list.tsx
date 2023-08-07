@@ -18,6 +18,11 @@ export default defineComponent({
     const state = reactive({
       data: [] as any,
       columns: [] as any,
+      pagination: {
+        pageSize: 10, // 单页数据量
+        currentPage: 1,  //当前页数
+        total: 1000, //总数据量
+      }
     });
 
     const generateColumns = (length = 10, prefix = 'column-', props?: any) =>
@@ -26,9 +31,10 @@ export default defineComponent({
         key: `${prefix}${columnIndex + 1}`,
         dataKey: `${prefix}${columnIndex + 1}`,
         title: `Column ${columnIndex + 1}`,
-        width: columnIndex == 9 ? 150 : 500,
-        fixed: columnIndex == 9 ? 'right' : false,
-        height: 100,
+        // width: columnIndex == 9 ? 150 : 200,
+        // fixed: columnIndex == 9 ? 'right' : false,
+        minWidth: 200,
+        width: 200
       }))
 
     const generateData = (
@@ -70,6 +76,7 @@ export default defineComponent({
         dataKey: 'select',
         key: 'selection',
         width: 100,
+        // minWidth: '50',
         cellRenderer: (data: any) => (
           <ElCheckbox v-model={data.rowData.select}>
           </ElCheckbox>
@@ -79,7 +86,7 @@ export default defineComponent({
             console.log(data, e, state.data);
             state.data.map((list: any) => { list.select = e })
           }
-          let allSelected: Boolean = state.data.every((row: any) => row.select)
+          const allSelected: Boolean = state.data.every((row: any) => row.select)
           return (
             <ElCheckbox v-model={allSelected} onChange={onChange} indeterminate={true}>
             </ElCheckbox>
@@ -89,8 +96,8 @@ export default defineComponent({
     }
 
     const post = () => {
-      let url = ''
-      let body = {}
+      const url = ''
+      const body = {}
       RequestHttp.post(url, body).then(res => {
         get()
         console.log('res', res);
@@ -101,8 +108,8 @@ export default defineComponent({
     }
 
     const put = () => {
-      let url = ''
-      let body = {}
+      const url = ''
+      const body = {}
       RequestHttp.put(url, body).then(res => {
         get()
         console.log('res', res);
@@ -112,8 +119,8 @@ export default defineComponent({
     }
 
     const del = () => {
-      let url = ''
-      let body = {}
+      const url = ''
+      const body = {}
       RequestHttp.delete(url, body).then(res => {
         get()
         console.log('res', res);

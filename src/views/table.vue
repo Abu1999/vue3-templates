@@ -1,6 +1,7 @@
 <template>
   <TableList v-slot="{ state, commands }">
-    <MyTable :data="state.data" :columns="state.columns" @sizeChange="commands.get" @currentChange="commands.get" />
+    <MyTable :data="state.data" :columns="state.columns" :pagination="state.pagination"
+      @paginationChange="commands.get" />
   </TableList>
 </template>
 

@@ -18,7 +18,7 @@ dependencies:
     specifier: ^1.4.0
     version: 1.4.0
   element-plus:
-    specifier: ^2.3.6
+    specifier: ^2.3.7
     version: 2.3.7(vue@3.3.4)
   nprogress:
     specifier: ^0.2.0

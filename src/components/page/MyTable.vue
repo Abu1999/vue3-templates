@@ -22,7 +22,7 @@
   <div style="height: 70vh; width:100%">
     <el-auto-resizer>
       <template #default="{ height, width }">
-        <el-table-v2 :columns="state.columns" :data="state.data" :width="width" :height="height">
+        <el-table-v2 :columns="state.columns" :data="state.data" :width="width" :height="height" :fixed="true">
           <template #overlay v-if="!props.data">
             <div class="w-full h-full flex justify-center items-center" style="background-color: rgba(255,255,255,.8);">
               <el-icon class="is-loading" color="var(--el-color-primary)" :size="26">
@@ -48,11 +48,11 @@ import { reactive, computed } from 'vue'
 const props = defineProps<{
   data: any
   columns: any
+  pagination: any
 }>()
 
 const emit = defineEmits<{
-  (e: 'currentChange', pagination: any): void
-  (e: 'sizeChange', pagination: any): void
+  (e: 'paginationChange', pagination: any): void
 }>()
 
 const state = reactive({
@@ -62,7 +62,7 @@ const state = reactive({
     pageSize: 10, // 单页数据量
     currentPage: 1,  // 当前页数
     total: 1000// 总数据量
-  },
+  } as any,
   query: {
     user: '',
     region: '',
@@ -72,12 +72,9 @@ const state = reactive({
 state.data = computed(() => props.data)
 state.columns = computed(() => props.columns)
 
-state.pagination = sessionStorage.getItem('TableList') ? JSON.parse(sessionStorage.getItem('TableList') as any) : {
-  pageSize: 10, // 单页数据量
-  currentPage: 1,  //当前页数
-  total: 1000, //总数据量
-}
+state.pagination = computed(() => props.pagination)
 
+if (sessionStorage.getItem('TableList')) Object.keys(state.pagination).forEach(i => { state.pagination[i] = JSON.parse(sessionStorage.getItem('TableList') as any)[i] || state.pagination[i] });
 
 const querySubmit = () => {
   console.log(state.query, '>>>>>>>>');
@@ -86,12 +83,12 @@ const querySubmit = () => {
 const currentChange = (e: number) => {
   state.pagination.currentPage = e
   sessionStorage.setItem('TableList', JSON.stringify(state.pagination))
-  emit('currentChange', state.pagination)
+  emit('paginationChange', state.pagination)
 }
 const sizeChange = (e: number) => {
   state.pagination.pageSize = e
   sessionStorage.setItem('TableList', JSON.stringify(state.pagination))
-  emit('sizeChange', state.pagination)
+  emit('paginationChange', state.pagination)
 }
 </script>
 
