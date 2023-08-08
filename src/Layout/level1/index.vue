@@ -23,7 +23,7 @@
 import { ref } from 'vue'
 import Header from "./components/Heard.vue"
 import Aside from "./components/Aside.vue"
-import Tabs from "./components/Tabs.vue"
+import Tabs from "../components/Tabs.vue"
 import { menuStore } from '@/stores/index'
 
 

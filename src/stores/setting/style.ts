@@ -19,6 +19,7 @@ export const useLayoutStore = defineStore({
       color: {
         primary: setting.color !== undefined ? setting.color.primary : '#409eff'
       },
+      layout: 1
     }
   }),
   getters: {
@@ -45,6 +46,14 @@ export const useLayoutStore = defineStore({
         node.style.setProperty(`${pre}-light-${i}`, mix(this.setting.color.primary, mixWhite, i * 0.1));
       }
 
+    },
+
+    changeLayout(num: number): void {
+      this.setting.layout = num
     }
-  }
+  },
+
+  persist: {
+    storage: localStorage,
+  },
 })
