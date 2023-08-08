@@ -107,4 +107,10 @@ let menubackgroundColor = ref('#0f2438')
 :deep(#menu li ul .el-sub-menu__title) {
   background-color: var(--menubackgroundColor) !important;
 }
+
+//   --el-color-primary: #409EFF;
+:deep(.el-menu-item.is-active) {
+  background-color: var(--el-color-primary);
+  color: #fff;
+}
 </style>

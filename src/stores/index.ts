@@ -1,4 +1,4 @@
-import { useLayoutStore } from './layout/level1/level1'
+import { useLayoutStore } from './setting/style'
 import { useMenuStore } from './menu'
 import { useTabsStore } from './tabs'
 

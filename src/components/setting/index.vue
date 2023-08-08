@@ -5,17 +5,21 @@
     <el-icon size="20" style="color: #fff;">
       <Setting />
     </el-icon>
-    <el-drawer :append-to-body="true" v-model="drawer" size="350px" :z-index="4000">
+    <el-drawer :append-to-body="true" v-model="drawer" size="350px">
       <template #header>
-        <span class="text-16px font-700 text-left">项目配置</span>
+        <span class="text-16px font-700 text-left ">项目配置</span>
       </template>
       <Dark />
+      <layout />
+      <Color />
     </el-drawer>
   </div>
 </template>
 
 <script setup lang="ts">
-import Dark from './dark.vue'
+import Dark from './components/dark.vue'
+import Layout from './components/layout.vue'
+import Color from './components/color.vue'
 import { ref } from 'vue'
 
 let drawer = ref(false)

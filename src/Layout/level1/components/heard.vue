@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-full flex justify-between border-b">
+  <div class="w-full h-full flex justify-between border-b" style="border-color: var(--el-border-color-light);">
     <div class="h-full flex items-center space-x-2">
       <div class="h-full flex  items-center cursor-pointer select-none px-3" @click="changeCollapse(!isCollapse)">
         <el-icon size="18">
