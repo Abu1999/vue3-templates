@@ -47,6 +47,7 @@ declare module 'vue' {
     Layout: typeof import('./src/components/setting/components/layout.vue')['default']
     Login: typeof import('./src/components/login.vue')['default']
     MyTable: typeof import('./src/components/page/MyTable.vue')['default']
+    MyTableV2: typeof import('./src/components/page/MyTableV2.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Setting: typeof import('./src/components/setting/index.vue')['default']

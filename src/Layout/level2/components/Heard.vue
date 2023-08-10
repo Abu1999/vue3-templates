@@ -11,7 +11,7 @@
       <div class="w-[80%] ml-2">
         <el-menu id="menu" style="height: 50px;" :collapse-transition="false" mode="horizontal" :active="$route.path"
           :default-active="$route.path" menu-trigger="click" popper-effect="light">
-          <template v-for="( item, index ) in menuData " :key="index">
+          <template v-for="( item, index ) in props.menuData " :key="index">
             <el-sub-menu background-color="red" v-if="item.children" :index="item.path ? item.path : item.title">
               <template #title>
                 <el-icon v-if="item.icon">
@@ -94,9 +94,20 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
-import { menuStore, tabsStore } from '@/stores';
-import router from '@/router';
+import { menuStore, tabsStore } from '@/stores/index';
+import router from '@/router/index';
 
+interface MenuData {
+  title: string
+  icon?: string
+  path?: string
+  children?: MenuData[]
+}
+
+interface Props {
+  menuData: MenuData[]
+}
+const props = defineProps<Props>()
 
 const url = 'https://tdesign.gtimg.com/demo/demo-image-1.png'
 
@@ -107,7 +118,6 @@ const myClick = () => {
 let isCollapse = ref(false)
 
 const route = useRoute()
-const menuData = menuStore().data
 let visible = ref(false)
 let screenWidth = ref(document.documentElement.clientWidth)
 
@@ -139,7 +149,7 @@ const find = (data: any) => {
 
 watch(() => route.path, () => {
   arr.value = []
-  find(menuData)
+  find(props.menuData)
 }, { deep: true, immediate: true })
 
 const quit = () => {
