@@ -1,13 +1,35 @@
 export const tableColumns = [
   {
-    colKey: 'row-select',
-    type: 'multiple',
-    width: 30,
-  }, //多选
+    key: 'name',
+    dataKey: `name`,
+    title: `名字`,
+    width: 1000,
+    maxWidth: 100
+  },
   {
-    colKey: 'name',
-    title: '名称',
-    width: 80,
+    key: 'age',
+    dataKey: `age`,
+    title: `年龄`,
+    width: 1000,
+    maxWidth: 100
+  },
+  {
+    key: 'city',
+    dataKey: `city`,
+    title: `城市`,
+    width: 1000
+  },
+  {
+    key: 'email',
+    dataKey: `email`,
+    title: `邮箱`,
+    width: 1000
+  },
+  {
+    key: 'birthday',
+    dataKey: `birthday`,
+    title: `生日`,
+    width: 1000
   },
 ];
 

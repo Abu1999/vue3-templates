@@ -53,14 +53,14 @@ sleep 0.5
 
 
 # 上传文件
-scp -r -rC $ROOTDIR/dist $SCRIPTDIR/nginx.conf $SCRIPTDIR/conf.d $SCRIPTDIR/docker-compose.yml root@$HOST:$FILE/;
+scp -r -rC $ROOTDIR/dist $ROOTDIR/server $SCRIPTDIR/nginx.conf $SCRIPTDIR/conf.d $SCRIPTDIR/docker-compose.yml root@$HOST:$FILE/;
 echo ""
 echo "-上传文件成功"
 
 sleep 0.5
 # docker部署
 ssh -p 22 root@$HOST > /dev/null 2>&1 << eeooff
-  cd ${FILE} && docker-compose up -d;
+  cd ${FILE} && docker compose up -d;
   exit;
 eeooff
 

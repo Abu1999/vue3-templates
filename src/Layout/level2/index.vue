@@ -1,7 +1,7 @@
 <template>
   <el-container style="height: 100vh;">
     <el-header height="50px" style="padding: 0;">
-      <Header></Header>
+      <Header :menuData="menuStore().data"></Header>
     </el-header>
     <el-main style="padding: 0;">
       <Tabs />
@@ -17,6 +17,7 @@
 import { ref } from 'vue'
 import Header from "./components/Heard.vue"
 import Tabs from "../components/Tabs.vue"
+import { menuStore } from '@/stores/index'
 
 
 

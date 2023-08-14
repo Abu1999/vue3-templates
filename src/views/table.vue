@@ -1,12 +1,12 @@
 <template>
   <TableList v-slot="{ state, commands }">
-    <MyTable :data="state.data" :columns="state.columns" :pagination="state.pagination"
-      @paginationChange="commands.get" />
+    <MyTableV2 :data="state.data" :columns="state.columns" :pagination="state.pagination" @paginationChange="commands.get"
+      :loading="state.loading" />
   </TableList>
 </template>
 
 <script lang="ts" setup>
-import MyTable from "@/components/page/MyTable.vue"
+import MyTableV2 from "@/components/page/MyTableV2.vue"
 import TableList from "@/models/table/table.list"
 
 </script>
