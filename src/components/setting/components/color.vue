@@ -2,15 +2,15 @@
   <div>
     <el-divider>主题</el-divider>
     <div class="w-full flex justify-center">
-      <el-color-picker size="large" v-model="layoutStore().setting.color.primary" show-alpha :predefine="predefineColors"
-        @change="(e: any) => { layoutStore().changeThemeColor(e) }" />
+      <el-color-picker size="large" v-model="settingStore().setting.color.primary" show-alpha :predefine="predefineColors"
+        @change="(e: any) => { settingStore().changeThemeColor(e) }" />
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { ref } from 'vue'
-import { layoutStore } from '@/stores/index'
+import { settingStore } from '@/stores/index'
 
 const predefineColors = ref([
   '#409EEF',

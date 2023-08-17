@@ -1,10 +1,13 @@
 import { defineStore } from 'pinia'
 import { mix } from '@/utils/layout'
+import { appConfig } from '@/appconfig'
 
 interface Setting {
   color: {
     primary: string
-  }
+  },
+  layout: number // 菜单导航
+  tabs: boolean // 主题页
 }
 
 const data: string = localStorage.getItem('setting') || ''
@@ -12,14 +15,15 @@ const data: string = localStorage.getItem('setting') || ''
 const setting: Setting = data ? JSON.parse(data) : {}
 
 
-export const useLayoutStore = defineStore({
+export const useSetting = defineStore({
   id: 'layout',
   state: () => ({
     setting: {
       color: {
         primary: setting.color !== undefined ? setting.color.primary : '#409eff'
       },
-      layout: 1
+      layout: setting.layout !== undefined ? setting.layout : appConfig.layout,
+      tabs: true
     }
   }),
   getters: {
@@ -48,12 +52,19 @@ export const useLayoutStore = defineStore({
 
     },
 
+    // 修改菜单导航样式
     changeLayout(num: number): void {
       this.setting.layout = num
+    },
+
+    // 修改菜单导航样式
+    changeTabs(show: boolean): void {
+      this.setting.tabs = show
     }
   },
 
   persist: {
     storage: localStorage,
+
   },
 })

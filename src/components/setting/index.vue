@@ -12,6 +12,7 @@
       <Dark />
       <layout />
       <Color />
+      <Tabs />
     </el-drawer>
   </div>
 </template>
@@ -20,6 +21,7 @@
 import Dark from './components/dark.vue'
 import Layout from './components/layout.vue'
 import Color from './components/color.vue'
+import Tabs from './components/tabs.vue'
 import { ref } from 'vue'
 
 let drawer = ref(false)

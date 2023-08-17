@@ -1,9 +1,9 @@
-import { useLayoutStore } from './setting/style'
+import { useSetting } from './setting'
 import { useMenuStore } from './menu'
 import { useTabsStore } from './tabs'
 
 // 样式数据配置
-export const layoutStore = useLayoutStore
+export const settingStore = useSetting
 
 // 菜单数据
 export const menuStore = useMenuStore

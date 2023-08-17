@@ -8,9 +8,9 @@
       <el-header height="50px" style="padding: 0;">
         <Header @changeCollapse="changeCollapse"></Header>
       </el-header>
-      <el-main style="padding: 0;">
-        <Tabs />
-        <div class="w-full p-5 bg-[var(--el-bg-color-page)]" style="height: calc(100% - 40px); ">
+      <el-main style="padding: 0; overflow: hidden;">
+        <Tabs v-if="settingStore().setting.tabs" />
+        <div class="w-full p-5 bg-[var(--el-bg-color-page)] overflow-auto" style="height: 100%;">
           <slot></slot>
         </div>
       </el-main>
@@ -24,7 +24,7 @@ import { ref } from 'vue'
 import Header from "./components/Heard.vue"
 import Aside from "./components/Aside.vue"
 import Tabs from "../components/Tabs.vue"
-import { menuStore } from '@/stores/index'
+import { menuStore, settingStore } from '@/stores/index'
 
 
 //菜单折叠

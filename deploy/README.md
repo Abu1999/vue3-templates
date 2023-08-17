@@ -15,6 +15,6 @@ window.sh: 免密登录sh文件
 
 ## docker-compose v2 (Ubuntu)
 ``` js
-sudo curl -L "https://github.com/docker/compose/releases/download/2.18.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose // 下载
+sudo curl -L "https://github.com/docker/compose/releases/download/2.18.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose // 或者github下载
 sudo chmod +x /usr/local/bin/docker-compose //更改权限
 ```

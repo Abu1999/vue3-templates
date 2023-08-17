@@ -8,7 +8,7 @@ interface Tab {
   title: string
 }
 
-// 不显示tabs标签
+// 不显示的tabs标签
 const list = tabsConfig.hidden
 
 export const useTabsStore = defineStore({
