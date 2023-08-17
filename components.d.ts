@@ -50,5 +50,6 @@ declare module 'vue' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Setting: typeof import('./src/components/setting/index.vue')['default']
+    Tabs: typeof import('./src/components/setting/components/tabs.vue')['default']
   }
 }

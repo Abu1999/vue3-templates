@@ -20,5 +20,14 @@ export const tabsConfig = {
   data: [{ name: '/', title: '首页' }]  // 固定首页标签
 }
 
+// 默认app设置
+export const appConfig = {
+  setting: true,  // 配置设置显示
+  tabs: true,
+  layout: 1
+}
+
+
+
 
 

@@ -1,24 +1,26 @@
 <template>
+  <!-- 查询 -->
   <div class="w-full mb-2">
     <el-form :inline="true" :model="state.query">
-      <el-form-item v-model="state.query.user" label="Approved by" size="default">
+      <el-form-item v-model="state.query.user" label="Approved by">
         <el-input placeholder="Approved by" clearable />
       </el-form-item>
-      <el-form-item v-model="state.query.region" label="Activity zone" size="default">
-        <el-select placeholder="Activity zone" clearable>
+      <el-form-item v-model="state.query.region" label="Activity zone">
+        <el-select class="w-1/3" placeholder="Activity zone" clearable>
           <el-option label="Zone one" value="shanghai" />
           <el-option label="Zone two" value="beijing" />
         </el-select>
       </el-form-item>
-      <el-form-item v-model="state.query.date" label="Activity time" size="default">
-        <el-date-picker type="date" placeholder="Pick a date" clearable />
+      <el-form-item v-model="state.query.date" label="Activity time">
+        <el-date-picker class="w-1/3" type="date" placeholder="Pick a date" clearable />
       </el-form-item>
-      <el-form-item size="default">
+      <el-form-item>
         <el-button type="primary" @click="querySubmit">搜索</el-button>
       </el-form-item>
     </el-form>
   </div>
 
+  <!-- 表格 -->
   <div style="height: 70vh; width:100%">
     <el-auto-resizer>
       <template #default="{ height, width }">
@@ -35,7 +37,13 @@
     </el-auto-resizer>
   </div>
 
-  <div class="w-full flex justify-end mt-6">
+  <!-- 分页 -->
+  <div class="w-full flex justify-end my-6" v-if="isMobile()">
+    <el-pagination @size-change="sizeChange" @current-change="currentChange" background small :pager-count="4"
+      :default-page-size="state.pagination.pageSize" :current-page="state.pagination.currentPage"
+      layout="prev, pager, next, jumper" :total="state.pagination.total" />
+  </div>
+  <div class="w-full flex justify-end my-6" v-else>
     <el-pagination @size-change="sizeChange" @current-change="currentChange" background
       :default-page-size="state.pagination.pageSize" :current-page="state.pagination.currentPage"
       layout="total, sizes, prev, pager, next, jumper" :total="state.pagination.total" />
@@ -43,8 +51,9 @@
 </template>
 
 <script lang="tsx" setup>
-import { reactive, computed } from 'vue'
+import { reactive, computed, watch } from 'vue'
 import { ElCheckbox, ElMessage } from 'element-plus'
+import { isMobile } from '@/utils/app'
 
 let props = defineProps<{
   data: any
@@ -71,50 +80,65 @@ const state = reactive({
     date: '',
   }
 })
-state.data = computed(() => props.data)
-state.columns = computed(() => props.columns)
-state.columns.unshift({
-  dataKey: 'select',
-  minWidth: '50',
-  cellRenderer: (data: any) => {
-    const onChange = (e: any) => {
-      console.log(data, e);
-    }
-    return (
-      <ElCheckbox v-model={data.rowData.select} onChange={onChange}>
-      </ElCheckbox>
-    )
-  },
-  headerCellRenderer: (data: any) => {
-    const onChange = (e: any) => {
-      console.log(data, e);
-      props.data.map((list: any) => { list.select = e })
-    }
-    let allSelected: Boolean = props.data.every((row: any) => row.select)
-    return (
-      <ElCheckbox v-model={allSelected} onChange={onChange} indeterminate={true} >
-      </ElCheckbox >
-    )
-  },
-})
-state.pagination = computed(() => props.pagination)
 
-if (sessionStorage.getItem('TableList')) Object.keys(state.pagination).forEach(i => { state.pagination[i] = JSON.parse(sessionStorage.getItem('TableList') as any)[i] || state.pagination[i] });
-
+//查询确认
 const querySubmit = () => {
   console.log(state.query, '>>>>>>>>');
 }
 
+// 当前页改变
 const currentChange = (e: number) => {
   state.pagination.currentPage = e
   sessionStorage.setItem('TableList', JSON.stringify(state.pagination))
   emit('paginationChange', state.pagination)
 }
+
+// 页面数据限制改变
 const sizeChange = (e: number) => {
   state.pagination.pageSize = e
   sessionStorage.setItem('TableList', JSON.stringify(state.pagination))
   emit('paginationChange', state.pagination)
 }
+
+// 监听数据
+watch(() => props.data, () => {
+  state.data = props.data
+}, { deep: true, immediate: true })
+
+//监听列数据
+watch(() => props.columns, () => {
+  state.columns = JSON.parse(JSON.stringify(props.columns))
+  state.columns.unshift({
+    dataKey: 'select',
+    minWidth: '50',
+    cellRenderer: (data: any) => {
+      const onChange = (e: any) => {
+        console.log(data, e);
+      }
+      return (
+        <ElCheckbox v-model={data.rowData.select} onChange={onChange}>
+        </ElCheckbox>
+      )
+    },
+    headerCellRenderer: (data: any) => {
+      const onChange = (e: any) => {
+        console.log(data, e);
+        props.data.map((list: any) => { list.select = e })
+      }
+      let allSelected: Boolean = props.data.every((row: any) => row.select)
+      return (
+        <ElCheckbox v-model={allSelected} onChange={onChange} indeterminate={true} >
+        </ElCheckbox >
+      )
+    },
+  })
+}, { deep: true, immediate: true })
+
+//监听页数
+watch(() => props.pagination, () => {
+  state.pagination = props.pagination
+  if (sessionStorage.getItem('TableList')) Object.keys(state.pagination).forEach(i => { state.pagination[i] = JSON.parse(sessionStorage.getItem('TableList') as any)[i] || state.pagination[i] });
+}, { deep: true, immediate: true })
 </script>
 
 <style scoped></style>

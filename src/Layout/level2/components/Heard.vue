@@ -8,9 +8,10 @@
         <div class="font-bold whitespace-nowrap" v-if="!isCollapse">element-puls</div>
       </div>
 
-      <div class="w-[80%] ml-2">
+      <div class="w-[70%] ml-2">
+
         <el-menu id="menu" style="height: 50px;" :collapse-transition="false" mode="horizontal" :active="$route.path"
-          :default-active="$route.path" menu-trigger="click" popper-effect="light">
+          :default-active="$route.path" :menu-trigger="isMobile() ? 'click' : 'hover'" popper-effect="light">
           <template v-for="( item, index ) in props.menuData " :key="index">
             <el-sub-menu background-color="red" v-if="item.children" :index="item.path ? item.path : item.title">
               <template #title>
@@ -74,7 +75,7 @@
 
     <div id="user_info" class="h-full flex items-center space-x-2 cursor-pointer select-none" @click="visible = true">
       <el-dropdown trigger="click" size="95">
-        <div class="flex items-center space-x-2 px-5" style="height: 50px;">
+        <div class="flex items-center space-x-2 px-5" style="height: 50px;min-width: 50px;">
           <el-avatar :size="35" src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png" />
           <el-icon size="12">
             <ArrowDown />
@@ -96,6 +97,7 @@ import { ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import { menuStore, tabsStore } from '@/stores/index';
 import router from '@/router/index';
+import { isMobile } from '@/utils/app';
 
 interface MenuData {
   title: string
@@ -159,6 +161,7 @@ const quit = () => {
   router.push('/login')
 }
 
+
 window.onresize = () => {
   screenWidth.value = document.documentElement.clientWidth
 }
@@ -168,6 +171,7 @@ watch(() => screenWidth.value, () => {
     isCollapse.value = true
   }
 }, { deep: true, immediate: true })
+
 
 </script>
 

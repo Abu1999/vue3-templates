@@ -53,7 +53,7 @@ sleep 0.5
 
 
 # 上传文件
-scp -r -rC $ROOTDIR/dist $ROOTDIR/server $SCRIPTDIR/nginx.conf $SCRIPTDIR/conf.d $SCRIPTDIR/docker-compose.yml root@$HOST:$FILE/;
+scp -r -rC $ROOTDIR/dist $SCRIPTDIR/nginx.conf $SCRIPTDIR/conf.d $SCRIPTDIR/docker-compose.yml root@$HOST:$FILE/;
 echo ""
 echo "-上传文件成功"
 
