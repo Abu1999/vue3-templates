@@ -1,7 +1,9 @@
 <template>
-  <"%Class%" v-slot="{ state, commands }">
+  <div class="p-5">
+    <"%Class%" v-slot="{ state, commands }">
 
-  </"%Class%">
+    </"%Class%">
+  </div>
 </template>
 
 <script setup lang="ts">
