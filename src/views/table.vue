@@ -1,8 +1,10 @@
 <template>
-  <TableList v-slot="{ state, commands }">
-    <MyTableV2 :data="state.data" :columns="state.columns" :pagination="state.pagination" @paginationChange="commands.get"
-      :loading="state.loading" />
-  </TableList>
+  <div class="p-5">
+    <TableList v-slot="{ state, commands }">
+      <MyTableV2 :data="state.data" :columns="state.columns" :pagination="state.pagination"
+        @paginationChange="commands.get" :loading="state.loading" />
+    </TableList>
+  </div>
 </template>
 
 <script lang="ts" setup>

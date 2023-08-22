@@ -2,16 +2,17 @@
   <div class="w-full h-full flex justify-between border-b " style="border-color: var(--el-border-color-light);">
     <div class="w-full h-full flex items-center">
       <div class="flex justify-center items-center cursor-pointer select-none h-[50px] w-auto" @click="myClick">
-        <div style="width: 64px;" class="flex justify-center items-center">
+        <!-- <div class="ml-3 flex justify-center items-center">
           <el-image style="width: 40px; height: 40px" :src="url" fit="cover" />
-        </div>
-        <div class="font-bold whitespace-nowrap" v-if="!isCollapse">element-puls</div>
+        </div> -->
+        <div class="font-bold whitespace-nowrap ml-3" v-if="!isCollapse">医养</div>
       </div>
 
       <div class="w-[70%] ml-2">
 
         <el-menu id="menu" style="height: 50px;" :collapse-transition="false" mode="horizontal" :active="$route.path"
-          :default-active="$route.path" :menu-trigger="isMobile() ? 'click' : 'hover'" popper-effect="light">
+          :default-active="$route.path" :menu-trigger="appInfoStore().data.isMobile ? 'click' : 'hover'"
+          popper-effect="light">
           <template v-for="( item, index ) in props.menuData " :key="index">
             <el-sub-menu background-color="red" v-if="item.children" :index="item.path ? item.path : item.title">
               <template #title>
@@ -95,9 +96,9 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
-import { menuStore, tabsStore } from '@/stores/index';
+import { menuStore, tabsStore, appInfoStore } from '@/stores/index';
 import router from '@/router/index';
-import { isMobile } from '@/utils/app';
+
 
 interface MenuData {
   title: string
@@ -169,6 +170,8 @@ window.onresize = () => {
 watch(() => screenWidth.value, () => {
   if (screenWidth.value < 1000) {
     isCollapse.value = true
+  } else {
+    isCollapse.value = false
   }
 }, { deep: true, immediate: true })
 

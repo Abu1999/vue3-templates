@@ -18,7 +18,8 @@
 import LayoutLevel1 from '@/Layout/level1/index.vue'
 import LayoutLevel2 from '@/Layout/level2/index.vue'
 import SettingConfig from '@/components/setting/index.vue'
-import { settingStore } from '@/stores/index'
+import { settingStore, appInfoStore } from '@/stores/index'
 import { appConfig } from './appconfig'
 
+appInfoStore().changeMobile()
 </script>

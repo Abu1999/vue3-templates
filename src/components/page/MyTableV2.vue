@@ -38,7 +38,7 @@
   </div>
 
   <!-- 分页 -->
-  <div class="w-full flex justify-end my-6" v-if="isMobile()">
+  <div class="w-full flex justify-end my-6" v-if="appInfoStore().data.isMobile">
     <el-pagination @size-change="sizeChange" @current-change="currentChange" background small :pager-count="4"
       :default-page-size="state.pagination.pageSize" :current-page="state.pagination.currentPage"
       layout="prev, pager, next, jumper" :total="state.pagination.total" />
@@ -51,9 +51,10 @@
 </template>
 
 <script lang="tsx" setup>
-import { reactive, computed, watch } from 'vue'
+import { reactive, computed, watch, onMounted, ref } from 'vue'
 import { ElCheckbox, ElMessage } from 'element-plus'
-import { isMobile } from '@/utils/app'
+import { appInfoStore } from '@/stores/index'
+import { useScroll } from '@vueuse/core';
 
 let props = defineProps<{
   data: any
@@ -139,6 +140,14 @@ watch(() => props.pagination, () => {
   state.pagination = props.pagination
   if (sessionStorage.getItem('TableList')) Object.keys(state.pagination).forEach(i => { state.pagination[i] = JSON.parse(sessionStorage.getItem('TableList') as any)[i] || state.pagination[i] });
 }, { deep: true, immediate: true })
+
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+:deep(.el-table-v2) {
+  .el-table-v2__body>div:first-child {
+    overflow: auto !important;
+  }
+
+}
+</style>

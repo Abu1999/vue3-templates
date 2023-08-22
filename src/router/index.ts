@@ -4,11 +4,7 @@ import { defineAsyncComponent } from 'vue';
 import { tabsStore } from '@/stores';
 import { userRoutes } from './routes'
 
-const fixedRoutes = [{
-  path: '/',
-  name: '首页',
-  component: () => import('../views/AboutView.vue')
-},
+const fixedRoutes = [
 {
   path: '/404',
   name: '404页面',

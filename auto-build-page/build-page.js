@@ -39,6 +39,21 @@ function buildPage(config) {
       console.log('table文件写入成功:' + config.class)
     })
 
+  }else if(config.page == 'page'){
+     let tablePaths = path.resolve(`${addConfig.pageBase}/${config.url? config.url:config.class}`)
+    console.log('table页面地址:' + tablePaths)
+    fs.mkdir(tablePaths, function () {
+      let strTable
+      strTable = handleStr(
+        fs.readFileSync(path.resolve('./auto-build-page/template/index.vue'), 'utf-8', (err) => {}),
+        config
+      )
+
+      // 写入文件
+      console.log('开始写入table文件:' + config.class)
+      fs.writeFileSync(tablePaths + '/index.vue', strTable, (err) => {})
+      console.log('table文件写入成功:' + config.class)
+    })
   }
 
 
@@ -48,7 +63,6 @@ function buildPage(config) {
   fs.mkdir(modelsPaths, function () {
     let strConfig, strTS, strList, strType
 
-    if (config.page == 'models' || config.page == 'table') {
       // 新建空白页，读取空白页模版
       strConfig = handleStr(
         fs.readFileSync(path.resolve('./auto-build-page/template/template.config.tsx'), 'utf-8', (err) => {}),
@@ -59,15 +73,13 @@ function buildPage(config) {
         config
       )
    
-    }
-
-
     // 写入文件
     console.log('开始写入models文件:' + config.class)
     fs.writeFileSync(modelsPaths + `/${config.class}.config.tsx`, strConfig, (err) => {})
     fs.writeFileSync(modelsPaths + `/${config.class}.list.tsx`, strList, (err) => {})
     console.log('models文件写入成功:' + config.class)
   })
+
 }
 
 

@@ -5,7 +5,7 @@
     </el-header>
     <el-main style="padding: 0; overflow: hidden;">
       <Tabs v-if="settingStore().setting.tabs" />
-      <div class="w-full p-5 bg-[var(--el-bg-color-page)] overflow-auto" style="height: 100%; ">
+      <div class="w-full bg-[var(--el-bg-color-page)] overflow-auto" style="height: 100%; ">
         <slot></slot>
       </div>
     </el-main>
