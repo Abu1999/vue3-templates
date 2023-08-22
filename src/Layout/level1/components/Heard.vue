@@ -7,7 +7,7 @@
           <Expand size="18" v-else />
         </el-icon>
       </div>
-      <el-breadcrumb separator="/" v-if="arr.length">
+      <el-breadcrumb separator="/" v-if="arr.length && !(!isCollapse && appInfoStore().data.isMobile)">
         <el-breadcrumb-item v-for="(item, index) in arr" :key="index" :to="{ path: item.path ? item.path : '#' }">{{
           item.title
         }}</el-breadcrumb-item>
@@ -36,7 +36,7 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
-import { menuStore, tabsStore } from '@/stores';
+import { appInfoStore, menuStore, tabsStore } from '@/stores';
 import router from '@/router';
 
 const route = useRoute()
