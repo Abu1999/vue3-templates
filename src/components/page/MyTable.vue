@@ -65,7 +65,8 @@
 
 
 <script setup lang="tsx">
-import { reactive, watch, ref } from 'vue'
+// 改变了父组件的对象值，eslint不允许，数据单项传递。所以忽略了。
+import { reactive } from 'vue'
 import { appInfoStore } from '@/stores/index'
 
 interface TableColums {
@@ -111,6 +112,7 @@ const querySubmit = () => {
 
 // 页面数据限制改变
 const sizeChange = (e: number) => {
+  // eslint-disable-next-line
   props.pagination.pageSize = e
   sessionStorage.setItem('MyTable', JSON.stringify(props.pagination))
   emit('paginationChange', props.pagination)
@@ -118,12 +120,11 @@ const sizeChange = (e: number) => {
 
 // 当前页改变
 const currentChange = (e: number) => {
+  // eslint-disable-next-line
   props.pagination.currentPage = e
   sessionStorage.setItem('MyTable', JSON.stringify(props.pagination))
   emit('paginationChange', props.pagination)
 }
-
-
 
 </script>
 

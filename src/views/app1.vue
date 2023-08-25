@@ -20,11 +20,11 @@ const input1 = ref(1)
 const input2 = ref(1)
 
 
-const changeDebounceFn: any = useDebounceFn((item, count) => {
+const changeDebounceFn: any = useDebounceFn(() => {
   input1.value = input1.value ? 0 : 1
 }, 1500)
 
-const changeuseThrottleFn: any = useThrottleFn((item, count) => {
+const changeuseThrottleFn: any = useThrottleFn(() => {
   input2.value = input2.value ? 0 : 1
 }, 1500)
 

@@ -27,11 +27,11 @@ import { ref } from 'vue'
 let drawer = ref(false)
 let setting = ref()
 
-const openDrawer = (e: any) => {
+const openDrawer = () => {
   drawer.value = true
 }
 // 拖拽开始事件
-const dragstart = (e: any) => {
+const dragstart = () => {
 }
 // 拖拽完成事件
 const dragend = (e: any) => {

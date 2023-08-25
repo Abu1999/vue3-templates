@@ -46,7 +46,6 @@
 <script setup lang="ts">
 import { tabsStore } from '@/stores'
 import { useRouter } from 'vue-router';
-import { ref, watch } from 'vue'
 import { inject } from 'vue'
 
 const router = useRouter()

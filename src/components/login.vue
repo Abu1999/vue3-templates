@@ -98,7 +98,7 @@ const signinData = reactive({
 const submit = async (formEl: FormInstance | undefined) => {
   if (!formEl) return
   loading.value = true
-  await formEl.validate((valid: any, fields: any) => {
+  await formEl.validate((valid: any) => {
     if (valid) {
       // console.log('submit!')
       if (loginData.name === 'admin' && loginData.password === 'admin') {
@@ -116,7 +116,7 @@ const submit = async (formEl: FormInstance | undefined) => {
 const signin = async (formEl: FormInstance | undefined) => {
   if (!formEl) return
   loading.value = true
-  await formEl.validate((valid: any, fields: any) => {
+  await formEl.validate((valid: any) => {
     console.log(valid);
     if (valid) {
       loading.value = false

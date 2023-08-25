@@ -3,7 +3,7 @@
     <TableList v-slot="{ state, commands }">
       <MyTable :data="state.data" :columns="state.columns" :pagination="state.pagination" @paginationChange="commands.get"
         :loading="state.loading" :border="true" :stripe="true">
-        <template #action="{ row }">
+        <template #action="{}">
           <div>
             <el-button type="danger">删除</el-button>
           </div>

@@ -96,7 +96,7 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
-import { menuStore, tabsStore, appInfoStore } from '@/stores/index';
+import { tabsStore, appInfoStore } from '@/stores/index';
 import router from '@/router/index';
 
 

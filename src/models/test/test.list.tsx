@@ -1,6 +1,4 @@
-import { defineComponent, onBeforeMount, reactive, watch } from 'vue';
-import { ElMessage } from 'element-plus'
-import { useRouter } from 'vue-router'
+import { defineComponent, onBeforeMount, reactive } from 'vue';
 import RequestHttp from '@/utils/axios';
 
 
@@ -12,8 +10,6 @@ export default defineComponent({
     },
   },
   setup(props, { slots }) {
-    const router = useRouter()
-
     // * 数据状态
     const state = reactive({
       data: [],

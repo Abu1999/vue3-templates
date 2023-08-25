@@ -1,6 +1,5 @@
 import NProgress from 'nprogress'
 import { createRouter, createWebHistory } from 'vue-router'
-import { defineAsyncComponent } from 'vue';
 import { tabsStore } from '@/stores';
 import { userRoutes } from './routes'
 
@@ -50,7 +49,7 @@ router.beforeEach((to, from, next) => {
   }
 })
 
-router.afterEach((to, from) => {
+router.afterEach(() => {
   NProgress.done();
 })
 

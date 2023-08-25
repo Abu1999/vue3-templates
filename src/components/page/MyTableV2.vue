@@ -54,10 +54,9 @@
 </template>
 
 <script lang="tsx" setup>
-import { reactive, computed, watch, onMounted, ref } from 'vue'
-import { ElCheckbox, ElMessage } from 'element-plus'
+import { reactive, watch } from 'vue'
+import { ElCheckbox } from 'element-plus'
 import { appInfoStore } from '@/stores/index'
-import { useScroll } from '@vueuse/core';
 
 let props = defineProps<{
   data: any

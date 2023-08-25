@@ -16,7 +16,9 @@ import 'vue3-contextmenu/dist/vue3-contextmenu.css'
 import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
 import 'element-plus/es/components/message/style/css'
 import { useDark } from '@vueuse/core'
-const isDark = useDark() // 不能删除，引用
+
+// eslint-disable-line
+const isDark = useDark(); // 不能删除，引用
 
 const app = createApp(App)
 

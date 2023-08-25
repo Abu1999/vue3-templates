@@ -1,6 +1,5 @@
-import { defineComponent, onBeforeMount, reactive, watch, unref } from 'vue';
-import { ElCheckbox, ElMessage } from 'element-plus'
-import { useRouter } from 'vue-router'
+import { defineComponent, onBeforeMount, reactive } from 'vue';
+import { ElMessage } from 'element-plus'
 import RequestHttp from '@/utils/axios';
 import { tableColumns } from './table.config'
 
@@ -13,8 +12,6 @@ export default defineComponent({
     },
   },
   setup(props, { slots }) {
-    const router = useRouter()
-
     // * 数据状态
     const state = reactive({
       data: [] as any,
