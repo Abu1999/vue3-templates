@@ -77,7 +77,6 @@ class RequestHttp {
                     ElMessage.error(data); // 此处也可以使用组件提示报错信息
                     return Promise.reject(data)
                 }
-                console.log(data);
                 return data;
             },
             (error: AxiosError) => {

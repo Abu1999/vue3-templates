@@ -88,7 +88,7 @@ interface Props {
 }
 const props = defineProps<Props>()
 
-const url = 'https://tdesign.gtimg.com/demo/demo-image-1.png'
+const url = 'https://img.paulzzh.com/touhou/random'
 
 const myClick = () => {
   router.push('/')

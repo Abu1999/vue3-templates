@@ -2,10 +2,10 @@
   <div class="w-full h-full flex justify-between border-b " style="border-color: var(--el-border-color-light);">
     <div class="w-full h-full flex items-center">
       <div class="flex justify-center items-center cursor-pointer select-none h-[50px] w-auto" @click="myClick">
-        <!-- <div class="ml-3 flex justify-center items-center">
+        <div class="ml-3 flex justify-center items-center">
           <el-image style="width: 40px; height: 40px" :src="url" fit="cover" />
-        </div> -->
-        <div class="font-bold whitespace-nowrap ml-3" v-if="!isCollapse">医养</div>
+        </div>
+        <div class="font-bold whitespace-nowrap ml-3" v-if="!isCollapse">element-plus</div>
       </div>
 
       <div class="w-[70%] ml-2">
@@ -77,7 +77,7 @@
     <div id="user_info" class="h-full flex items-center space-x-2 cursor-pointer select-none" @click="visible = true">
       <el-dropdown trigger="click" size="95">
         <div class="flex items-center space-x-2 px-5" style="height: 50px;min-width: 50px;">
-          <el-avatar :size="35" src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png" />
+          <el-avatar :size="35" src="https://img.paulzzh.com/touhou/random" />
           <el-icon size="12">
             <ArrowDown />
           </el-icon>
@@ -112,7 +112,7 @@ interface Props {
 }
 const props = defineProps<Props>()
 
-const url = 'https://tdesign.gtimg.com/demo/demo-image-1.png'
+const url = 'https://img.paulzzh.com/touhou/random'
 
 const myClick = () => {
   router.push('/')
