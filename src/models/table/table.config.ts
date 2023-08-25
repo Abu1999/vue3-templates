@@ -1,35 +1,12 @@
 export const tableColumns = [
-  {
-    key: 'name',
-    dataKey: `name`,
-    title: `名字`,
-    minWidth: 500
-  },
-  {
-    key: 'age',
-    dataKey: `age`,
-    title: `年龄`,
-    minWidth: 500
-  },
-  {
-    key: 'city',
-    dataKey: `city`,
-    title: `城市`,
-    minWidth: 500
-  },
-  {
-    key: 'email',
-    dataKey: `email`,
-    title: `邮箱`,
-    minWidth: 500
-  },
-  {
-    key: 'birthday',
-    dataKey: `birthday`,
-    title: `生日`,
-    minWidth: 500
-  },
-];
+  { type: 'selection' },
+  { prop: 'name', label: '名字' },
+  { prop: 'age', label: '年龄' },
+  { prop: 'city', label: '城市' },
+  { prop: 'email', label: '地址' },
+  { prop: 'birthday', label: '生日' },
+  { type: 'slot', label: '操作', prop: 'action', fixed: 'right', align: 'center' },
+]
 
 export const form = [
   {

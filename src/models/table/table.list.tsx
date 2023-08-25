@@ -1,6 +1,5 @@
-import { defineComponent, onBeforeMount, reactive, watch, unref } from 'vue';
-import { ElCheckbox, ElMessage } from 'element-plus'
-import { useRouter } from 'vue-router'
+import { defineComponent, onBeforeMount, reactive } from 'vue';
+import { ElMessage } from 'element-plus'
 import RequestHttp from '@/utils/axios';
 import { tableColumns } from './table.config'
 
@@ -13,8 +12,6 @@ export default defineComponent({
     },
   },
   setup(props, { slots }) {
-    const router = useRouter()
-
     // * 数据状态
     const state = reactive({
       data: [] as any,
@@ -23,23 +20,17 @@ export default defineComponent({
         pageSize: 10, // 单页数据量
         currentPage: 1,  //当前页数
         total: 1000, //总数据量
-      },
+      } as any,
       loading: false
     });
 
     state.columns = tableColumns
 
-    const get = (pagination?: any) => {
+    const get = () => {
       state.loading = true
-      if (!pagination) {
-        pagination = sessionStorage.getItem('TableList') ? JSON.parse(sessionStorage.getItem('TableList') as any) : {
-          pageSize: 10, // 单页数据量
-          currentPage: 1,  //当前页数
-          total: 1000, //总数据量
-        }
-      }
+      Object.keys(state.pagination).forEach(i => { state.pagination[i] = (JSON.parse(sessionStorage.getItem('MyTable') as any)?.[i] ?? state.pagination[i]) });
       const url = '/tableList'
-      RequestHttp.get(url, pagination).then(res => {
+      RequestHttp.get(url, state.pagination).then(res => {
         console.log('res', res);
         state.data = res.data
         state.loading = false

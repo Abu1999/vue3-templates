@@ -1,60 +1,62 @@
 <template>
   <!-- 查询 -->
-  <div class="w-full mb-2">
-    <el-form :inline="true" :model="state.query">
-      <el-form-item v-model="state.query.user" label="Approved by">
-        <el-input placeholder="Approved by" clearable />
-      </el-form-item>
-      <el-form-item v-model="state.query.region" label="Activity zone">
-        <el-select class="w-1/3" placeholder="Activity zone" clearable>
-          <el-option label="Zone one" value="shanghai" />
-          <el-option label="Zone two" value="beijing" />
-        </el-select>
-      </el-form-item>
-      <el-form-item v-model="state.query.date" label="Activity time">
-        <el-date-picker class="w-1/3" type="date" placeholder="Pick a date" clearable />
-      </el-form-item>
-      <el-form-item>
-        <el-button type="primary" @click="querySubmit">搜索</el-button>
-      </el-form-item>
-    </el-form>
-  </div>
+  <el-card class="w-full mb-2 h-[12vh] overflow-auto" style="overflow: auto;">
+    <div class="w-full h-full">
+      <el-form :inline="true" :model="state.query">
+        <el-form-item v-model="state.query.user" label="Approved by">
+          <el-input placeholder="Approved by" clearable />
+        </el-form-item>
+        <el-form-item v-model="state.query.region" label="Activity zone">
+          <el-select class="w-1/3" placeholder="Activity zone" clearable>
+            <el-option label="Zone one" value="shanghai" />
+            <el-option label="Zone two" value="beijing" />
+          </el-select>
+        </el-form-item>
+        <el-form-item v-model="state.query.date" label="Activity time">
+          <el-date-picker class="w-1/3" type="date" placeholder="Pick a date" clearable />
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="querySubmit">搜索</el-button>
+        </el-form-item>
+      </el-form>
+    </div>
+  </el-card>
 
   <!-- 表格 -->
-  <div style="height: 70vh; width:100%">
-    <el-auto-resizer>
-      <template #default="{ height, width }">
-        <el-table-v2 :columns="state.columns" :data="state.data" :width="width" :height="height" :fixed="false">
-          <template #overlay v-if="!props.data || props.loading">
-            <div class="w-full h-full flex justify-center items-center" style="background-color: rgba(255,255,255,.8);">
-              <el-icon class="is-loading" color="var(--el-color-primary)" :size="26">
-                <Loading />
-              </el-icon>
-            </div>
-          </template>
-        </el-table-v2>
-      </template>
-    </el-auto-resizer>
-  </div>
-
-  <!-- 分页 -->
-  <div class="w-full flex justify-end my-6" v-if="appInfoStore().data.isMobile">
-    <el-pagination @size-change="sizeChange" @current-change="currentChange" background small :pager-count="4"
-      :default-page-size="state.pagination.pageSize" :current-page="state.pagination.currentPage"
-      layout="prev, pager, next, jumper" :total="state.pagination.total" />
-  </div>
-  <div class="w-full flex justify-end my-6" v-else>
-    <el-pagination @size-change="sizeChange" @current-change="currentChange" background
-      :default-page-size="state.pagination.pageSize" :current-page="state.pagination.currentPage"
-      layout="total, sizes, prev, pager, next, jumper" :total="state.pagination.total" />
-  </div>
+  <el-card class="h-full w-full" style="overflow: auto;">
+    <div style="height: 60vh; width:100%">
+      <el-auto-resizer>
+        <template #default="{ height, width }">
+          <el-table-v2 :columns="state.columns" :data="state.data" :width="width" :height="height" :fixed="false">
+            <template #overlay v-if="!props.data || props.loading">
+              <div class="w-full h-full flex justify-center items-center" style="background-color: rgba(255,255,255,.8);">
+                <el-icon class="is-loading" color="var(--el-color-primary)" :size="26">
+                  <Loading />
+                </el-icon>
+              </div>
+            </template>
+          </el-table-v2>
+        </template>
+      </el-auto-resizer>
+    </div>
+    <!-- 分页 -->
+    <div class="w-full flex justify-end my-6" v-if="appInfoStore().data.isMobile">
+      <el-pagination @size-change="sizeChange" @current-change="currentChange" background small :pager-count="4"
+        :default-page-size="state.pagination.pageSize" :current-page="state.pagination.currentPage"
+        layout="prev, pager, next, jumper" :total="state.pagination.total" />
+    </div>
+    <div class="w-full flex justify-end my-6" v-else>
+      <el-pagination @size-change="sizeChange" @current-change="currentChange" background
+        :default-page-size="state.pagination.pageSize" :current-page="state.pagination.currentPage"
+        layout="total, sizes, prev, pager, next, jumper" :total="state.pagination.total" />
+    </div>
+  </el-card>
 </template>
 
 <script lang="tsx" setup>
-import { reactive, computed, watch, onMounted, ref } from 'vue'
-import { ElCheckbox, ElMessage } from 'element-plus'
+import { reactive, watch } from 'vue'
+import { ElCheckbox } from 'element-plus'
 import { appInfoStore } from '@/stores/index'
-import { useScroll } from '@vueuse/core';
 
 let props = defineProps<{
   data: any
@@ -90,14 +92,14 @@ const querySubmit = () => {
 // 当前页改变
 const currentChange = (e: number) => {
   state.pagination.currentPage = e
-  sessionStorage.setItem('TableList', JSON.stringify(state.pagination))
+  sessionStorage.setItem('MyTableV2', JSON.stringify(state.pagination))
   emit('paginationChange', state.pagination)
 }
 
 // 页面数据限制改变
 const sizeChange = (e: number) => {
   state.pagination.pageSize = e
-  sessionStorage.setItem('TableList', JSON.stringify(state.pagination))
+  sessionStorage.setItem('MyTableV2', JSON.stringify(state.pagination))
   emit('paginationChange', state.pagination)
 }
 
@@ -138,16 +140,9 @@ watch(() => props.columns, () => {
 //监听页数
 watch(() => props.pagination, () => {
   state.pagination = props.pagination
-  if (sessionStorage.getItem('TableList')) Object.keys(state.pagination).forEach(i => { state.pagination[i] = JSON.parse(sessionStorage.getItem('TableList') as any)[i] || state.pagination[i] });
+  if (sessionStorage.getItem('MyTableV2')) Object.keys(state.pagination).forEach(i => { state.pagination[i] = JSON.parse(sessionStorage.getItem('MyTableV2') as any)[i] || state.pagination[i] });
 }, { deep: true, immediate: true })
 
 </script>
 
-<style scoped lang="scss">
-:deep(.el-table-v2) {
-  .el-table-v2__body>div:first-child {
-    overflow: auto !important;
-  }
-
-}
-</style>
+<style scoped lang="scss"></style>

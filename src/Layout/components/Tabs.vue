@@ -3,9 +3,10 @@
     <el-tabs class="w-full" id="tabs" style="height: 40px;" size="small" v-model="$route.path" type="card"
       @tab-remove="removeTab" @tab-change="changTab">
       <el-tab-pane :closable="item.name === '/' ? false : true" v-for="(item, index) in tabsStore().data" :key="item.name"
-        :label="item.title" :name="item.name" v-contextmenu="{ name: 'context-menu-1', id: '123' }">
+        :label="item.title" :name="item.name">
         <template #label>
-          <div @contextmenu="(e) => { openContextMenu(e, index) }">
+          <div class="w-full h-full select-none flex justify-center items-center"
+            @contextmenu="(e) => { openContextMenu(e, index) }">
             {{ item.title }}
           </div>
 
@@ -15,7 +16,7 @@
                 <el-icon>
                   <RefreshRight />
                 </el-icon>
-                <div>重新加载</div>
+                <div class="select-none">重新加载</div>
               </div>
             </context-menu-item>
             <context-menu-item v-for="(list, listIndex) in contextMenuList" :key="listIndex"
@@ -25,7 +26,7 @@
                 <el-icon>
                   <component :is="list.icon"></component>
                 </el-icon>
-                <div>{{ list.title }}</div>
+                <div class="select-none">{{ list.title }}</div>
               </div>
             </context-menu-item>
           </context-menu>
@@ -45,7 +46,6 @@
 <script setup lang="ts">
 import { tabsStore } from '@/stores'
 import { useRouter } from 'vue-router';
-import { ref, watch } from 'vue'
 import { inject } from 'vue'
 
 const router = useRouter()

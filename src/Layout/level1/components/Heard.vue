@@ -7,7 +7,7 @@
           <Expand size="18" v-else />
         </el-icon>
       </div>
-      <el-breadcrumb separator="/" v-if="arr.length">
+      <el-breadcrumb separator="/" v-if="arr.length && !(!isCollapse && appInfoStore().data.isMobile)">
         <el-breadcrumb-item v-for="(item, index) in arr" :key="index" :to="{ path: item.path ? item.path : '#' }">{{
           item.title
         }}</el-breadcrumb-item>
@@ -17,7 +17,7 @@
     <div id="user_info" class="h-full flex items-center space-x-2 cursor-pointer select-none" @click="visible = true">
       <el-dropdown trigger="click" size="95">
         <div class="flex items-center space-x-2 px-5" style="height: 50px; min-width: 50px;">
-          <el-avatar :size="35" src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png" />
+          <el-avatar :size="35" src="https://img.paulzzh.com/touhou/random" />
           <el-icon size="12">
             <ArrowDown />
           </el-icon>
@@ -36,7 +36,7 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
-import { menuStore, tabsStore } from '@/stores';
+import { appInfoStore, menuStore, tabsStore } from '@/stores';
 import router from '@/router';
 
 const route = useRoute()

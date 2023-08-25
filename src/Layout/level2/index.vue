@@ -14,7 +14,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
 import Header from "./components/Heard.vue"
 import Tabs from "../components/Tabs.vue"
 import { menuStore, settingStore } from '@/stores/index'

@@ -18,11 +18,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
 import { settingStore } from '@/stores/index'
-
-let layout = ref(1)
-
 
 </script>
 
