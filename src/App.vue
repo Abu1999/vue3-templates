@@ -21,5 +21,7 @@ import SettingConfig from '@/components/setting/index.vue'
 import { settingStore, appInfoStore } from '@/stores/index'
 import { appConfig } from './appconfig'
 
+settingStore().changeThemeColor()
+
 appInfoStore().changeMobile()
 </script>
