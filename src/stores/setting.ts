@@ -44,13 +44,15 @@ export const useSetting = defineStore({
       const pre = "--el-color-primary";
       // 源码中的$color-white，也就是白色
       const mixWhite = "#ffffff"
+      // 源码中的$color-dark，也就是黑色
+      const mixBlack = "#000000";
       // 直接为根设置内联样式覆盖:root选择器的样式
       node.style.setProperty(pre, this.setting.color.primary);
       for (let i = 1; i < 10; i += 1) {
         // 同理
         node.style.setProperty(`${pre}-light-${i}`, mix(this.setting.color.primary, mixWhite, i * 0.1));
+        node.style.setProperty(`${pre}-dark-${i}`, mix(this.setting.color.primary, mixBlack, i * 0.1));
       }
-
     },
 
     // 修改菜单导航样式
