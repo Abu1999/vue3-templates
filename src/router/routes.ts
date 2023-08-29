@@ -29,6 +29,24 @@ export const userRoutes = [
     ],
   },
   {
+    path: '/com',
+    name: '组件',
+    redirect: '/com/transfer',
+    children: [
+      {
+        name: '穿梭框',
+        path: 'transfer',
+        component: () => import('../views/com/transfer.vue'),
+      },
+      {
+        name: '树数据',
+        path: 'tree',
+        component: () => import('../views/com/tree.vue'),
+      },
+
+    ],
+  },
+  {
     path: '/axios',
     name: 'axios请求',
     component: () => import('@/views/axios.vue')

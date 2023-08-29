@@ -34,6 +34,7 @@ interface FormConfig {
   required?: boolean | string
 }
 
+3
 const formRef = ref<FormInstance>()
 const props = withDefaults(defineProps<Props>(), {
   size: 'default',

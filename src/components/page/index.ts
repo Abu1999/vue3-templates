@@ -1,5 +1,7 @@
 import MyForm from "./MyForm.vue";
 import MyTable from "./MyTable.vue";
-import MyDrawer from "./MyDrawer.vue";
+import MyDrawer from "./MyDrawer.vue";    // 抽屉弹窗
+import MyTransfer from "./MyTransfer.vue";  // 穿梭框 + 树数据
+import MyTree from "./MyTree.vue";  // 树数据
 
-export { MyForm, MyTable, MyDrawer }
+export { MyForm, MyTable, MyDrawer, MyTransfer, MyTree }

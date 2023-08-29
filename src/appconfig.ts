@@ -9,6 +9,14 @@ export const menuData = [
       { title: '测试2', icon: '', children: [{ title: '测试2-1', path: '/test/app2/list', icon: '' }] },
     ]
   },
+  {
+    title: '组件',
+    icon: 'Grid',
+    children: [
+      { title: '穿梭框', icon: '', path: '/com/transfer' },
+      { title: '树数据', icon: '', path: '/com/tree' },
+    ]
+  },
   { title: 'axios请求', icon: 'Coin', path: '/axios' },
   { title: '模版table页面', icon: 'Tickets', path: '/table' },
   { title: '404页面', icon: 'WarningFilled', path: '/404' },
