@@ -1,7 +1,6 @@
 // 覆盖elmentui样式
 
 :root {
-
   .el-aside {
     transition: width 0.15s;
     -webkit-transition: width 0.15s;
@@ -12,7 +11,12 @@
   .el-table-v2__overlay {
     z-index: 0 !important;
   } 
-  
+  .el-card{
+    --el-card-padding : 10px;
+  }
+  .v-contextmenu {
+  z-index: 10000 !important;
+}
 }
 
 

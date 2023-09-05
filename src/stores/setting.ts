@@ -50,7 +50,6 @@ export const useSetting = defineStore({
         // 同理
         node.style.setProperty(`${pre}-light-${i}`, mix(this.setting.color.primary, mixWhite, i * 0.1));
       }
-
     },
 
     // 修改菜单导航样式

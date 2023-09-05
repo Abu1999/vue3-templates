@@ -47,15 +47,30 @@ ssh -p 22 root@$HOST > /dev/null 2>&1 << eeooff
   cd $FILE/dist && rm -rf *
   exit;
 eeooff
-echo ""
-echo "-删除文件成功"
+if [ $? -eq 0 ]
+then
+    echo ""
+    echo "-删除文件成功"
+  else
+    echo ""
+    echo -e "删除错误"
+    exit
+  fi
+
 sleep 0.5
 
 
 # 上传文件
 scp -r -rC $ROOTDIR/dist $SCRIPTDIR/nginx.conf $SCRIPTDIR/conf.d $SCRIPTDIR/docker-compose.yml root@$HOST:$FILE/;
-echo ""
-echo "-上传文件成功"
+if [ $? -eq 0 ]
+then
+  echo ""
+  echo "-上传文件成功"
+else
+  echo ""
+  echo -e "上传错误"
+  exit
+fi
 
 sleep 0.5
 # docker部署
@@ -63,9 +78,16 @@ ssh -p 22 root@$HOST > /dev/null 2>&1 << eeooff
   cd ${FILE} && docker compose up -d;
   exit;
 eeooff
+if [ $? -eq 0 ]
+then
+  echo ""
+  echo -ne "-部署成功! \033[32m ok \033[0m"
+  echo ""
+else
+  echo ""
+  echo -ne "-部署失败! \033[31m err \033[0m"
+  exit
+fi
 
-echo ""
-echo -ne "-部署成功! \033[32m ok \033[0m"
-echo ""
 
 

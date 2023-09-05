@@ -22,18 +22,19 @@ const isDark = useDark(); // 不能删除，引用
 /* eslint-enable  */
 
 const app = createApp(App)
+app.use(router)
 
+// pinia
+app.use(createPinia().use(piniaPluginPersistedstate))
+const flag = navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)
 // 全局引入图标
-app.use(ElementPlus, { size: 'default', locale: zhCn })
+app.use(ElementPlus, { size: flag ? 'small' : 'default', locale: zhCn })
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component)
 }
 // bus.$on("click", (msg) => window.alert(msg));
 
-app.use(router)
 
-// pinia
-app.use(createPinia().use(piniaPluginPersistedstate))
 
 // 右键菜单栏
 app.use(contextmenu)

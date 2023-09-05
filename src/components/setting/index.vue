@@ -1,5 +1,5 @@
 <template>
-  <div ref="setting"
+  <div ref="setting" style="z-index: 10000;"
     class="fixed top-[45%] right-0 w-[40px] h-[40px] text-center bg-[var(--el-color-primary)] cursor-pointer rounded-l-md flex justify-center items-center"
     @click="openDrawer" draggable="true" @dragstart="dragstart" @dragend="dragend">
     <el-icon size="20" style="color: #fff;">

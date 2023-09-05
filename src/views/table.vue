@@ -1,22 +1,78 @@
 <template>
   <div class="p-5">
     <TableList v-slot="{ state, commands }">
-      <MyTable :data="state.data" :columns="state.columns" :pagination="state.pagination" @paginationChange="commands.get"
-        :loading="state.loading" :border="true" :stripe="true">
-        <template #action="{}">
-          <div>
-            <el-button type="danger">删除</el-button>
-          </div>
-        </template>
-      </MyTable>
+      <!-- 查询 -->
+      <el-card class="mb-[2vh] p-0">
+        <MyForm :formData="formData" :formConfig="formConfig" :footer="true" class="mt-[18px]"
+          :size="appInfoStore().data.isMobile ? 'small' : 'default'"></MyForm>
+      </el-card>
+
+      <el-card>
+        <!-- 表格 -->
+        <MyTable ref="myTable" :data="state.data" :columns="state.columns" :pagination="state.pagination"
+          @paginationChange="commands.get" :loading="state.loading" :border="true" :stripe="true">
+          <template #action="{}">
+            <el-button plain size="small" @click="putData">修改</el-button>
+            <el-popconfirm title="Are you sure to delete this?">
+              <template #reference>
+                <el-button type="danger" size="small">删除</el-button>
+              </template>
+            </el-popconfirm>
+          </template>
+        </MyTable>
+
+
+        <!-- 弹框 -->
+        <MyDrawer ref="myDrawer"></MyDrawer>
+      </el-card>
     </TableList>
   </div>
 </template>
 
 <script lang="ts" setup>
-import MyTable from "@/components/page/MyTable.vue"
+import { MyForm, MyTable, MyDrawer } from "@/components/page"
 import TableList from "@/models/table/table.list"
+import { ref, reactive } from "vue";
+import { appInfoStore } from "@/stores";
 
+const myDrawer = ref()
+
+const putData = () => {
+  myDrawer.value.changeDialog(true)
+}
+
+const formData = reactive({
+  name: '',
+  number: 0,
+  checkbox: [1],
+  colorPicker: '#000'
+})
+
+const formConfig = reactive([
+  {
+    type: 'input',
+    prop: 'input',
+    label: 'input',
+    required: false
+  },
+  {
+    type: 'select',
+    prop: 'select',
+    label: 'select',
+    required: false,
+    options: [
+      { label: 'A', value: 1 },
+      { label: 'B', value: 2 },
+      { label: 'C', value: 3 }
+    ],
+    multiple: true
+  },
+
+])
 </script>
 
-<style scoped></style>
+<style scoped>
+/* :deep(.el-card__body) {
+  padding: 0 !important;
+} */
+</style>
