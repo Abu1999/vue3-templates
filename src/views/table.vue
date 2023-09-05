@@ -2,8 +2,9 @@
   <div class="p-5">
     <TableList v-slot="{ state, commands }">
       <!-- 查询 -->
-      <el-card class="mb-3">
-        <MyForm :footer="true" class="mt-[18px]"></MyForm>
+      <el-card class="mb-[2vh] p-0">
+        <MyForm :formData="formData" :formConfig="formConfig" :footer="true" class="mt-[18px]"
+          :size="appInfoStore().data.isMobile ? 'small' : 'default'"></MyForm>
       </el-card>
 
       <el-card>
@@ -31,13 +32,47 @@
 <script lang="ts" setup>
 import { MyForm, MyTable, MyDrawer } from "@/components/page"
 import TableList from "@/models/table/table.list"
-import { ref } from "vue";
+import { ref, reactive } from "vue";
+import { appInfoStore } from "@/stores";
 
 const myDrawer = ref()
 
 const putData = () => {
   myDrawer.value.changeDialog(true)
 }
+
+const formData = reactive({
+  name: '',
+  number: 0,
+  checkbox: [1],
+  colorPicker: '#000'
+})
+
+const formConfig = reactive([
+  {
+    type: 'input',
+    prop: 'input',
+    label: 'input',
+    required: false
+  },
+  {
+    type: 'select',
+    prop: 'select',
+    label: 'select',
+    required: false,
+    options: [
+      { label: 'A', value: 1 },
+      { label: 'B', value: 2 },
+      { label: 'C', value: 3 }
+    ],
+    multiple: true
+  },
+
+])
 </script>
 
-<style scoped></style>
+<style scoped>
+/* :deep(.el-card__body) {
+  padding: 0 !important;
+} */
+</style>

@@ -37,7 +37,7 @@ const generateData = () => {
 const data = ref<Option[]>(generateData())
 const value = ref([])
 
-const filterMethod = (query, item) => {
+const filterMethod = (query: any, item: any) => {
   return item.initial.toLowerCase().includes(query.toLowerCase())
 }
 </script>

@@ -1,8 +1,8 @@
 <template>
   <!-- 表格 -->
   <div class="w-full h-full">
-    <el-table v-loading="props.loading" :data="props.data" height="60vh" style="width: 100% ;" :border="props.border"
-      :stripe="props.stripe" @selectionChange="selectionChange"
+    <el-table v-loading="props.loading" :data="props.data" :height="props.height" :width="props.width"
+      :border="props.border" :stripe="props.stripe" @selectionChange="selectionChange"
       :header-cell-style="{ backgroundColor: 'var(--el-border-color-lighter)' }">
       <template v-for="( item, index ) in  props.columns " :key="index">
         <!-- 勾选框 -->
@@ -41,7 +41,6 @@
 
 <script setup lang="tsx">
 import { appInfoStore } from '@/stores/index'
-
 interface TableColums {
   type?: string // selection 
   align?: string //位置  center || left || right
@@ -50,15 +49,25 @@ interface TableColums {
   width?: string // 列宽度
   fixed?: string | boolean  // 固定列
 }
-
-let props = defineProps<{
-  data: any
+interface Props {
+  data?: { [key: string]: any }[]
   columns: TableColums[]
-  pagination?: any
-  loading?: boolean
+  pagination?: { pageSize: number, currentPage: number, total: number } | false
+  loading: boolean
   border?: boolean  // 表格线
   stripe?: boolean  // 斑马条
-}>()
+  height?: string | number  // 高
+  width?: string | number  // 宽
+}
+
+let props = withDefaults(defineProps<Props>(), {
+  data: () => ([]),
+  pagination: false,
+  border: false,
+  stripe: false,
+  height: '65vh',  // 高
+  width: '100%'
+})
 
 const emit = defineEmits<{
   (e: 'paginationChange', pagination: any): void
@@ -74,7 +83,7 @@ const selectionChange = (e: any) => {
 // 页面数据限制改变
 const sizeChange = (e: number) => {
   // eslint-disable-next-line
-  props.pagination.pageSize = e
+  if (props.pagination) props.pagination.pageSize = e
   sessionStorage.setItem('MyTable', JSON.stringify(props.pagination))
   emit('paginationChange', props.pagination)
 }
@@ -82,7 +91,7 @@ const sizeChange = (e: number) => {
 // 当前页改变
 const currentChange = (e: number) => {
   // eslint-disable-next-line
-  props.pagination.currentPage = e
+  if (props.pagination) props.pagination.currentPage = e
   sessionStorage.setItem('MyTable', JSON.stringify(props.pagination))
   emit('paginationChange', props.pagination)
 }

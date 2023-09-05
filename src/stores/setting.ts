@@ -48,7 +48,6 @@ export const useSetting = defineStore({
       node.style.setProperty(pre, this.setting.color.primary);
       for (let i = 1; i < 10; i += 1) {
         // 同理
-        console.log(this.setting.color.primary, mixWhite, i);
         node.style.setProperty(`${pre}-light-${i}`, mix(this.setting.color.primary, mixWhite, i * 0.1));
       }
     },

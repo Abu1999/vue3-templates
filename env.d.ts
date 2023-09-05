@@ -32,3 +32,4 @@ declare module 'vue-router' {
     layout?: Layout
   }
 }
+

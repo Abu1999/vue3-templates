@@ -168,7 +168,7 @@ window.onresize = () => {
 }
 
 watch(() => screenWidth.value, () => {
-  if (screenWidth.value < 1000) {
+  if (screenWidth.value < 991) {
     isCollapse.value = true
   } else {
     isCollapse.value = false
