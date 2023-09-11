@@ -17,7 +17,7 @@ export const userRoutes = [
         path: 'app1',
         component: () => import('../views/app1.vue'),
         meta: {
-          code: 'house'
+          code: 'menu-app1'
         }
       },
       {
@@ -30,7 +30,7 @@ export const userRoutes = [
             path: 'list',
             component: () => import('../views/app2.vue'),
             meta: {
-              code: 'house'
+              code: 'menu-app2-list'
             }
           }
         ]
@@ -47,7 +47,7 @@ export const userRoutes = [
         path: 'form',
         component: () => import('../views/com/form.vue'),
         meta: {
-          code: 'house'
+          code: 'com-form'
         }
       },
       {
@@ -55,7 +55,7 @@ export const userRoutes = [
         path: 'transfer',
         component: () => import('../views/com/transfer.vue'),
         meta: {
-          code: 'house'
+          code: 'com-transfer'
         }
       },
       {
@@ -63,7 +63,7 @@ export const userRoutes = [
         path: 'tree',
         component: () => import('../views/com/tree.vue'),
         meta: {
-          code: 'house'
+          code: 'com-tree'
         }
       },
       {
@@ -71,7 +71,7 @@ export const userRoutes = [
         path: 'video',
         component: () => import('../views/com/video.vue'),
         meta: {
-          code: 'house'
+          code: 'com-video'
         }
       },
     ],
@@ -81,7 +81,7 @@ export const userRoutes = [
     name: 'axios请求',
     component: () => import('@/views/axios.vue'),
     meta: {
-      code: 'house'
+      code: 'axios'
     }
   },
   {
@@ -89,7 +89,7 @@ export const userRoutes = [
     name: 'table页面',
     component: () => import('@/views/table.vue'),
     meta: {
-      code: 'house'
+      code: 'table'
     }
   },
 ]

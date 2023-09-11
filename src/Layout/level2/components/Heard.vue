@@ -13,61 +13,67 @@
         <el-menu id="menu" style="height: 50px;" :collapse-transition="false" mode="horizontal" :active="$route.path"
           :default-active="$route.path" :menu-trigger="appInfoStore().data.isMobile ? 'click' : 'hover'"
           popper-effect="light">
-          <template v-for="( item, index ) in props.menuData " :key="index">
-            <el-sub-menu background-color="red" v-if="item.children" :index="item.path ? item.path : item.title">
-              <template #title>
+          <template v-for="( item, index ) in props.menuData " :key="index+1">
+            <template v-if="item.children">
+
+              <el-sub-menu background-color="red" :index="item.path ? item.path : item.title">
+                <template #title>
+                  <el-icon v-if="item.icon">
+                    <component :is="item.icon"></component>
+                  </el-icon>
+                  <span>{{ item.title }}</span>
+                </template>
+
+                <template v-for="( list, listIndex ) in  item.children " :key="listIndex">
+                  <el-sub-menu :index="list.path ? list.path : list.title" v-if="list.children">
+                    <template #title>
+                      <el-icon v-if="list.icon">
+                        <component :is="list.icon"></component>
+                      </el-icon>
+                      {{ list.title }}
+                    </template>
+
+                    <template v-for="( listItem, listItemIndex ) in  list.children " :key="listItemIndex">
+                      <el-menu-item :index="listItem.path ? listItem.path : listItem.title"
+                        @click="listItem.path ? $router.push(listItem.path) : ''">
+                        <template #title>
+                          <el-icon v-if="listItem.icon">
+                            <component :is="listItem.icon"></component>
+                          </el-icon>
+                          {{ listItem.title }}
+                        </template>
+                      </el-menu-item>
+                    </template>
+
+
+                  </el-sub-menu>
+
+                  <el-menu-item v-else :index="list.path ? list.path : item.title"
+                    @click="list.path ? $router.push(list.path) : ''">
+                    <template #title>
+                      <el-icon v-if="list.icon">
+                        <component :is="list.icon"></component>
+                      </el-icon>
+                      {{ list.title }}
+                    </template>
+                  </el-menu-item>
+                </template>
+
+              </el-sub-menu>
+            </template>
+
+            <!-- 没用v-else是因为有警告 -->
+            <template v-if="!item.children">
+              <el-menu-item key="2" :index="item.path ? item.path : item.title"
+                @click="item.path ? $router.push(item.path) : ''">
                 <el-icon v-if="item.icon">
                   <component :is="item.icon"></component>
                 </el-icon>
-                <span>{{ item.title }}</span>
-              </template>
-
-              <template v-for="( list, listIndex ) in  item.children " :key="listIndex">
-                <el-sub-menu :index="list.path ? list.path : list.title" v-if="list.children">
-                  <template #title>
-                    <el-icon v-if="list.icon">
-                      <component :is="list.icon"></component>
-                    </el-icon>
-                    {{ list.title }}
-                  </template>
-
-                  <template v-for="( listItem, listItemIndex ) in  list.children " :key="listItemIndex">
-                    <el-menu-item :index="listItem.path ? listItem.path : listItem.title"
-                      @click="listItem.path ? $router.push(listItem.path) : ''">
-                      <template #title>
-                        <el-icon v-if="listItem.icon">
-                          <component :is="listItem.icon"></component>
-                        </el-icon>
-                        {{ listItem.title }}
-                      </template>
-                    </el-menu-item>
-                  </template>
-
-
-                </el-sub-menu>
-
-                <el-menu-item v-else :index="list.path ? list.path : item.title"
-                  @click="list.path ? $router.push(list.path) : ''">
-                  <template #title>
-                    <el-icon v-if="list.icon">
-                      <component :is="list.icon"></component>
-                    </el-icon>
-                    {{ list.title }}
-                  </template>
-                </el-menu-item>
-              </template>
-
-            </el-sub-menu>
-
-            <el-menu-item v-else :index="item.path ? item.path : item.title"
-              @click="item.path ? $router.push(item.path) : ''">
-              <el-icon v-if="item.icon">
-                <component :is="item.icon"></component>
-              </el-icon>
-              <template #title>
-                {{ item.title }}
-              </template>
-            </el-menu-item>
+                <template #title>
+                  {{ item.title }}
+                </template>
+              </el-menu-item>
+            </template>
           </template>
         </el-menu>
       </div>
@@ -156,8 +162,8 @@ watch(() => route.path, () => {
 }, { deep: true, immediate: true })
 
 const quit = () => {
-  localStorage.removeItem('token')
   tabsStore().clear()
+  localStorage.removeItem('token')
   sessionStorage.removeItem('tabs')
   router.push('/login')
 }

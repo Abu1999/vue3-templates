@@ -1,7 +1,7 @@
 <template>
   <div class="w-full flex justify-center" style="height: 100vh;">
     <div style="margin-top: 30vh;">
-      <el-card shadow="always" style="width: 500px;" v-if="type === 'login'">
+      <el-card shadow="always" style="width: 500px;" v-if="type === 'login'" class="p-5">
         <div class="flex flex-col items-center">
           <div class="text-3xl">欢迎登录</div>
           <div class="mt-8">
@@ -23,7 +23,7 @@
         </div>
       </el-card>
 
-      <el-card shadow="always" style="width: 500px;" v-else>
+      <el-card shadow="always" style="width: 500px;" v-else class="p-5">
         <div class="flex justify-start items-center w-full" @click="type = 'login'">
           <el-link :underline="false" type="primary" @click="type = 'signin'">
             <el-icon>
@@ -34,7 +34,7 @@
             </div>
           </el-link>
         </div>
-        <div class="flex flex-col items-center">
+        <div class="flex flex-col items-center ">
           <div class="text-3xl">用户注册</div>
           <div class="mt-8">
             <el-form ref="ruleFormRef" :rules="signinRules" size="default" :label-position="labelPosition"
@@ -62,6 +62,7 @@ import 'element-plus/es/components/message/style/css'
 import { reactive, ref } from 'vue'
 import { type FormInstance, type FormRules, ElMessage } from 'element-plus'
 import { useRouter } from 'vue-router';
+import { changeMenu } from './login'
 
 const router = useRouter()
 const ruleFormRef = ref()
@@ -104,6 +105,8 @@ const submit = async (formEl: FormInstance | undefined) => {
       if (loginData.name === 'admin' && loginData.password === 'admin') {
         ElMessage.success('登录成功')
         localStorage.setItem('token', '123')
+
+        changeMenu()
         router.push('/')
       } else {
         ElMessage.error('登录失败')

@@ -1,6 +1,5 @@
 // 菜单栏数据
 export const menuData = [
-  { title: '首页', icon: 'House', path: '/', code: 'house' },
   {
     title: '菜单嵌套',
     icon: 'Menu',
@@ -17,7 +16,7 @@ export const menuData = [
       { title: '表单', icon: '', path: '/com/form', code: 'com-form' },
       { title: '穿梭框', icon: '', path: '/com/transfer', code: 'com-transfer' },
       { title: '树数据', icon: '', path: '/com/tree', code: 'com-tree' },
-      { title: '视频', icon: '', path: '/com/video' },
+      { title: '视频', icon: '', path: '/com/video', code: 'com-video' },
     ],
     code: 'grid'
   },

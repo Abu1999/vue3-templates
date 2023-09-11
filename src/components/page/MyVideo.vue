@@ -5,6 +5,7 @@
 </template>
 
 <script setup lang="ts">
+// https://github.com/xdlumia/vue3-video-play github网址
 import "vue3-video-play/dist/style.css";
 import { videoPlay } from "vue3-video-play";
 

@@ -40,7 +40,7 @@ import { appInfoStore, menuStore, tabsStore } from '@/stores';
 import router from '@/router';
 
 const route = useRoute()
-const menuData = menuStore().data
+const menuData = menuStore().getMenu
 let visible = ref(false)
 let screenWidth = ref(document.documentElement.clientWidth)
 
@@ -85,9 +85,9 @@ watch(() => route.path, () => {
 }, { deep: true, immediate: true })
 
 const quit = () => {
-  localStorage.removeItem('token')
   tabsStore().clear()
-  sessionStorage.removeItem('tabs')
+  localStorage.removeItem('token')
+  sessionStorage.clear()
   router.push('/login')
 }
 
