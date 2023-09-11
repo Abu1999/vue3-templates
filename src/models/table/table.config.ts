@@ -5,7 +5,7 @@ export const tableColumns = [
   { prop: 'city', label: '城市' },
   { prop: 'email', label: '地址' },
   { prop: 'birthday', label: '生日' },
-  { type: 'slot', label: '操作', prop: 'action', fixed: 'right', align: 'center' },
+  { type: 'slot', label: '操作', prop: 'action', fixed: 'right', align: 'center', width: '150' },
 ]
 
 export const form = [

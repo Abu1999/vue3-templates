@@ -29,11 +29,13 @@ export default defineComponent({
     const get = () => {
       state.loading = true
       Object.keys(state.pagination).forEach(i => { state.pagination[i] = (JSON.parse(sessionStorage.getItem('MyTable') as any)?.[i] ?? state.pagination[i]) });
-      const url = '/tableList1'
+      const url = '/tableList'
       RequestHttp.get(url, state.pagination).then(res => {
         console.log('res', res);
-        state.data = res.data
-        state.loading = false
+        if (res?.data) {
+          state.data = res.data
+          state.loading = false
+        }
       }).catch(error => {
         console.log('error', error);
         state.loading = false
@@ -87,7 +89,7 @@ export default defineComponent({
     };
 
     onBeforeMount(() => {
-      // get()
+      get()
     });
 
     return () => {
