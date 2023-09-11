@@ -25,12 +25,12 @@
 
   <!-- 分页 -->
   <template v-if="props.pagination">
-    <div class="w-full flex justify-end my-6" v-if="appInfoStore().data.isMobile">
+    <div class="w-full flex justify-end my-[3vh]" v-if="appInfoStore().data.isMobile">
       <el-pagination @size-change="sizeChange" @current-change="currentChange" background small :pager-count="4"
         :default-page-size="props.pagination.pageSize" :current-page="props.pagination.currentPage"
         layout="prev, pager, next" :total="props.pagination.total" />
     </div>
-    <div class="w-full flex justify-end my-6" v-else>
+    <div class="w-full flex justify-end my-[3vh]" v-else>
       <el-pagination @size-change="sizeChange" @current-change="currentChange" background
         :default-page-size="props.pagination.pageSize" :current-page="props.pagination.currentPage"
         layout="total, sizes, prev, pager, next, jumper" :total="props.pagination.total" />
@@ -75,6 +75,8 @@ const emit = defineEmits<{
 }>()
 
 const selectionChange = (e: any) => {
+  console.log(1);
+
   emit('selectionChange', e)
 }
 
@@ -82,6 +84,7 @@ const selectionChange = (e: any) => {
 
 // 页面数据限制改变
 const sizeChange = (e: number) => {
+  console.log(2);
   // eslint-disable-next-line
   if (props.pagination) props.pagination.pageSize = e
   sessionStorage.setItem('MyTable', JSON.stringify(props.pagination))
@@ -90,6 +93,7 @@ const sizeChange = (e: number) => {
 
 // 当前页改变
 const currentChange = (e: number) => {
+  console.log(3);
   // eslint-disable-next-line
   if (props.pagination) props.pagination.currentPage = e
   sessionStorage.setItem('MyTable', JSON.stringify(props.pagination))

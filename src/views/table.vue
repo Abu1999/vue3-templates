@@ -1,25 +1,27 @@
 <template>
-  <div class="p-5">
+  <div class="px-5">
     <TableList v-slot="{ state, commands }">
       <!-- 查询 -->
-      <el-card class="mb-[2vh] p-0">
+      <el-card class="my-[2vh] p-0">
         <MyForm :formData="formData" :formConfig="formConfig" :footer="true" class="mt-[18px]"
           :size="appInfoStore().data.isMobile ? 'small' : 'default'"></MyForm>
       </el-card>
 
-      <el-card>
+      <el-card class="p-5">
         <!-- 表格 -->
-        <MyTable ref="myTable" :data="state.data" :columns="state.columns" :pagination="state.pagination"
-          @paginationChange="commands.get" :loading="state.loading" :border="true" :stripe="true">
-          <template #action="{}">
-            <el-button plain size="small" @click="putData">修改</el-button>
-            <el-popconfirm title="Are you sure to delete this?">
-              <template #reference>
-                <el-button type="danger" size="small">删除</el-button>
-              </template>
-            </el-popconfirm>
-          </template>
-        </MyTable>
+        <div>
+          <MyTable ref="myTable" :data="state.data" :columns="state.columns" :pagination="state.pagination"
+            @paginationChange="commands.get" :loading="state.loading" :border="true" :stripe="true">
+            <template #action="{}">
+              <el-button plain size="small" @click="putData">修改</el-button>
+              <el-popconfirm title="Are you sure to delete this?">
+                <template #reference>
+                  <el-button type="danger" size="small">删除</el-button>
+                </template>
+              </el-popconfirm>
+            </template>
+          </MyTable>
+        </div>
 
 
         <!-- 弹框 -->
@@ -53,7 +55,8 @@ const formConfig = reactive([
     type: 'input',
     prop: 'input',
     label: 'input',
-    required: false
+    // required: false,
+    rules: { min: 3, max: 5, message: 'Length should be 3 to 5', trigger: 'blur', required: true }
   },
   {
     type: 'select',

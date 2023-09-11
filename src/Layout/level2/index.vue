@@ -1,7 +1,7 @@
 <template>
   <el-container style="height: 100vh;  overflow: hidden;">
     <el-header height="50px" style="padding: 0;">
-      <Header :menuData="menuStore().data"></Header>
+      <Header :menuData="menuStore().getMenu"></Header>
     </el-header>
     <el-main style="padding: 0; overflow: hidden;">
       <Tabs v-if="settingStore().setting.tabs" />

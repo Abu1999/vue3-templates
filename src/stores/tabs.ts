@@ -1,6 +1,7 @@
 import router from '@/router';
 import { defineStore } from 'pinia'
 import { tabsConfig } from '@/appconfig'
+import { deepCopy } from '@/utils/page'
 
 
 interface Tab {
@@ -14,7 +15,8 @@ const list = tabsConfig.hidden
 export const useTabsStore = defineStore({
   id: 'tabs',
   state: () => ({
-    data: tabsConfig.data as Tab[] // 固定首页标签
+    fixedData: deepCopy(tabsConfig.data) as Tab[],
+    data: deepCopy(tabsConfig.data) as Tab[] // 固定首页标签
   }),
   getters: {
 
@@ -45,13 +47,13 @@ export const useTabsStore = defineStore({
 
       switch (method) {
         case 'left':
-          this.data = tabsConfig.data.concat(this.data.splice(num))
+          this.data = this.fixedData.concat(this.data.splice(num))
           break;
         case 'right':
           this.data = this.data.splice(0, num + 1)
           break;
         case 'self':
-          this.data = tabsConfig.data.concat(list)
+          this.data = this.fixedData.concat(list)
           break;
         case 'all':
           this.clear()
@@ -69,7 +71,7 @@ export const useTabsStore = defineStore({
 
     },
     clear(): void {
-      this.data = tabsConfig.data
+      this.data = deepCopy(tabsConfig.data)
     }
   },
 

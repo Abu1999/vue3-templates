@@ -4,14 +4,23 @@ import { tabsStore } from '@/stores';
 import { userRoutes } from './routes'
 import { menuStore } from '@/stores/index'
 
-const fixedRoutes = [
+export const fixedRoutes = [
+  {
+    path: '/',
+    name: '首页',
+    component: () => import('../views/AboutView.vue'),
+    meta: {
+      code: 'house'
+    }
+  },
   {
     path: '/404',
     name: '404页面',
     meta: {
       layout: {
         visible: true
-      }
+      },
+      code: '404'
     },
     component: () => import('@/components/404.vue')
   },
@@ -21,12 +30,13 @@ const fixedRoutes = [
     meta: {
       layout: {
         visible: true
-      }
+      },
+      code: 'login'
     },
     component: () => import('@/components/login.vue')
   },]
 
-
+const fixedCode = ['404', 'login']
 
 const router = createRouter({
   // history: createWebHistory(import.meta.env.BASE_URL),
@@ -38,14 +48,16 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   NProgress.configure({ showSpinner: false });
   NProgress.start();
-  let have = false
-  console.log(menuStore().data, to);
+  let havePath = false, haveCode = false
 
-  router.getRoutes().forEach(route => {
-
-    if (route.path === to.path) have = true
+  // 通过菜单的code值去匹配当前路由code值过滤
+  menuStore().getMenu.forEach((menu: any) => {
+    if (menu.code == to.meta?.code || fixedCode.includes(to.meta?.code as string)) haveCode = true
   })
-  if (have) {
+  router.getRoutes().forEach(route => {
+    if (route.path === to.path) havePath = true
+  })
+  if (haveCode && havePath) {
     tabsStore().add({ name: to.path, title: to.name ? String(to.name) : '标签页' })
     next()
   } else {

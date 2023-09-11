@@ -38,7 +38,6 @@ export const useSetting = defineStore({
       if (color) this.setting.color.primary = color
       localStorage.setItem('setting', JSON.stringify(this.setting))
 
-      console.log(this.setting.color.primary, '>>>>>>>>>');
       const node = document.documentElement;
       // 前缀
       const pre = "--el-color-primary";

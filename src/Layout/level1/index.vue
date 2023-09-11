@@ -2,7 +2,7 @@
   <el-container style="height: 100vh;">
     <el-aside id="Collapse" :width="`${isCollapse ? '64px' : '200px'}`" style="overflow: hidden;"
       v-if="!appInfoStore().data.isMobile || isCollapse == false">
-      <Aside :isCollapse="isCollapse" :menuData="menuStore().data"></Aside>
+      <Aside :isCollapse="isCollapse" :menuData="menuStore().getMenu"></Aside>
     </el-aside>
 
     <el-container>

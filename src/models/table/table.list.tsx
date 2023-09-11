@@ -32,8 +32,10 @@ export default defineComponent({
       const url = '/tableList'
       RequestHttp.get(url, state.pagination).then(res => {
         console.log('res', res);
-        state.data = res.data
-        state.loading = false
+        if (res?.data) {
+          state.data = res.data
+          state.loading = false
+        }
       }).catch(error => {
         console.log('error', error);
         state.loading = false
