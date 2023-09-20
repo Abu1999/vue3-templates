@@ -18,7 +18,7 @@
           :fixed="item.fixed" />
       </template>
       <template #empty>
-        <el-empty description="暂无数据" />
+        <el-empty class="select-none" description="暂无数据" />
       </template>
     </el-table>
   </div>
@@ -26,7 +26,7 @@
   <!-- 分页 -->
   <template v-if="props.pagination">
     <div class="w-full flex justify-end my-[3vh]" v-if="appInfoStore().data.isMobile">
-      <el-pagination @size-change="sizeChange" @current-change="currentChange" background small :pager-count="4"
+      <el-pagination @size-change="sizeChange" @current-change="currentChange" background small
         :default-page-size="props.pagination.pageSize" :current-page="props.pagination.currentPage"
         layout="prev, pager, next" :total="props.pagination.total" />
     </div>
@@ -65,7 +65,7 @@ let props = withDefaults(defineProps<Props>(), {
   pagination: false,
   border: false,
   stripe: false,
-  height: '65vh',  // 高
+  height: '62vh',  // 高
   width: '100%'
 })
 
@@ -99,6 +99,7 @@ const currentChange = (e: number) => {
   sessionStorage.setItem('MyTable', JSON.stringify(props.pagination))
   emit('paginationChange', props.pagination)
 }
+
 
 </script>
 

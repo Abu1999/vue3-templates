@@ -102,8 +102,9 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
-import { tabsStore, appInfoStore } from '@/stores/index';
+import { tabsStore, appInfoStore, menuStore } from '@/stores/index';
 import router from '@/router/index';
+import { ElMessage } from 'element-plus'
 
 
 interface MenuData {
@@ -163,8 +164,10 @@ watch(() => route.path, () => {
 
 const quit = () => {
   tabsStore().clear()
+  menuStore().clear()
   localStorage.removeItem('token')
   sessionStorage.removeItem('tabs')
+  ElMessage.success('退出登录')
   router.push('/login')
 }
 

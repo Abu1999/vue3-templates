@@ -1,13 +1,13 @@
 <!-- eslint-disable -->
 <template>
   <div class="w-full h-full">
-    <el-form ref="formRef" :inline="props.inline" :model="props.formData" label-width="auto"
-      :label-position="props.labelPosition" :size="props.size">
+    <el-form ref="formRef" :inline="props.inline" :model="props.data" label-width="auto"
+      :label-position="props.labelPosition" :size="props.size" :disabled="props.disabled">
       <template v-for="(item, index) in props.formConfig" :key="index">
         <!-- 选择框 -->
         <el-form-item v-if="item.type === 'select'" :prop="item.prop" :label="item.label" :size="item.size"
-          :rules="item.rules ?? setRules(item)" :required="item.required">
-          <el-select v-model="props.formData[item.prop]" :multiple="item.multiple" collapse-tags collapse-tags-tooltip
+          :rules="item.rules ?? setRules(item)" :required="item.required" :disabled="item.disabled">
+          <el-select v-model="props.data[item.prop]" :multiple="item.multiple" collapse-tags collapse-tags-tooltip
             :max-collapse-tags="item.collapse ?? 2" :placeholder="item.placeholder ?? ('请输入' + item.label)">
             <el-option v-for="list in item.options" :key="list.value" :label="list.label" :value="list.value" />
           </el-select>
@@ -15,23 +15,22 @@
 
         <!-- 事件日期选择框 -->
         <el-form-item v-else-if="item.type && datePicker.includes(item.type)" :prop="item.prop" :label="item.label"
-          :size="item.size" :rules="item.rules ?? setRules(item)" :required="item.required">
-          <el-date-picker v-model="props.formData[item.prop]" :type="item.type as any ?? 'date'"
+          :size="item.size" :rules="item.rules ?? setRules(item)" :required="item.required" :disabled="item.disabled">
+          <el-date-picker v-model="props.data[item.prop]" :type="item.type as any ?? 'date'"
             :placeholder="item.placeholder ?? ('请输入' + item.label)" />
         </el-form-item>
 
         <!-- 数字框 -->
         <el-form-item v-else-if="item.type === 'number'" :prop="item.prop" :label="item.label" :size="item.size"
-          :rules="item.rules ?? setRules(item)" :required="item.required">
-          <el-input-number v-model="props.formData[item.prop]" :precision="2" :step="0.1" :min="item.min"
-            :max="item.max" />
+          :rules="item.rules ?? setRules(item)" :required="item.required" :disabled="item.disabled">
+          <el-input-number v-model="props.data[item.prop]" :precision="2" :step="0.1" :min="item.min" :max="item.max" />
         </el-form-item>
 
 
         <!-- 多选框 -->
         <el-form-item v-else-if="item.type === 'checkbox'" :prop="item.prop" :label="item.label" :size="item.size"
-          :rules="item.rules ?? setRules(item)" :required="item.required">
-          <el-checkbox-group v-model="props.formData[item.prop]">
+          :rules="item.rules ?? setRules(item)" :required="item.required" :disabled="item.disabled">
+          <el-checkbox-group v-model="props.data[item.prop]">
             <el-checkbox v-for="list in item.options" :key="list.value" :label="list.value">
               {{ list.label }}
             </el-checkbox>
@@ -39,8 +38,9 @@
         </el-form-item>
 
         <el-form-item v-else-if="item.type === 'checkboxButton'" :prop="item.prop" :label="item.label" :size="item.size"
-          :rules="item.rules ?? setRules(item)" :required="item.required">
-          <el-checkbox-group v-model="props.formData[item.prop]">
+          :rules="item.rules ?? setRules(item)" :required="item.required" :disabled="item.disabled">
+
+          <el-checkbox-group v-model="props.data[item.prop]">
             <el-checkbox-button v-for="list in item.options" :key="list.value" :label="list.value">
               {{ list.label }}
             </el-checkbox-button>
@@ -49,8 +49,8 @@
 
         <!-- 单选框 -->
         <el-form-item v-else-if="item.type === 'radio'" :prop="item.prop" :label="item.label" :size="item.size"
-          :rules="item.rules ?? setRules(item)" :required="item.required">
-          <el-radio-group v-model="props.formData[item.prop]">
+          :rules="item.rules ?? setRules(item)" :required="item.required" :disabled="item.disabled">
+          <el-radio-group v-model="props.data[item.prop]">
             <el-radio v-for="list in item.options" :key="list.value" :label="list.value">
               {{ list.label }}
             </el-radio>
@@ -58,8 +58,8 @@
         </el-form-item>
 
         <el-form-item v-else-if="item.type === 'radioButton'" :prop="item.prop" :label="item.label" :size="item.size"
-          :rules="item.rules ?? setRules(item)" :required="item.required">
-          <el-radio-group v-model="props.formData[item.prop]">
+          :rules="item.rules ?? setRules(item)" :required="item.required" :disabled="item.disabled">
+          <el-radio-group v-model="props.data[item.prop]">
             <el-radio-button v-for="list in item.options" :key="list.value" :label="list.value">
               {{ list.label }}
             </el-radio-button>
@@ -67,25 +67,48 @@
         </el-form-item>
         <!-- 开关 -->
         <el-form-item v-else-if="item.type === 'switch'" :prop="item.prop" :label="item.label" :size="item.size"
-          :rules="item.rules ?? setRules(item)" :required="item.required">
-          <el-switch v-model="props.formData[item.prop]" />
+          :rules="item.rules ?? setRules(item)" :required="item.required" :disabled="item.disabled">
+          <el-switch v-model="props.data[item.prop]" />
         </el-form-item>
 
         <!-- 取色器 -->
         <el-form-item v-else-if="item.type === 'colorPicker'" :prop="item.prop" :label="item.label" :size="item.size"
-          :rules="item.rules ?? setRules(item)" :required="item.required">
-          <el-color-picker v-model="props.formData[item.prop]" show-alpha />
+          :rules="item.rules ?? setRules(item)" :required="item.required" :disabled="item.disabled">
+          <el-color-picker v-model="props.data[item.prop]" show-alpha />
         </el-form-item>
 
+        <!-- 密码框 -->
+        <el-form-item v-else-if="item.type === 'password'" :prop="item.prop" :label="item.label"
+          :rules="item.rules ?? setRules(item)" :size="item.size" :required="item.required" :disabled="item.disabled">
+          <el-input v-model="props.data[item.prop]" type="password" show-password
+            :placeholder="item.placeholder ?? ('请输入' + item.label)" />
+        </el-form-item>
+        <!-- 文本域 -->
+        <el-form-item v-else-if="item.type === 'textarea'" :prop="item.prop" :label="item.label"
+          :rules="item.rules ?? setRules(item)" :size="item.size" :required="item.required" :disabled="item.disabled">
+          <el-input v-model="props.data[item.prop]" type="textarea" :autosize="{ minRows: 4 }"
+            :placeholder="item.placeholder ?? ('请输入' + item.label)" />
+        </el-form-item>
+        <!-- slot插槽 -->
+        <el-form-item v-else-if="item.type === 'slot'" :prop="item.prop" :label="item.label"
+          :rules="item.rules ?? setRules(item)" :size="item.size" :required="item.required" :disabled="item.disabled">
+          <slot :name="item.prop" :data="item"></slot>
+        </el-form-item>
 
         <el-form-item v-else :prop="item.prop" :label="item.label" :rules="item.rules ?? setRules(item)" :size="item.size"
-          :required="item.required">
-          <el-input v-model="props.formData[item.prop]" :placeholder="item.placeholder ?? ('请输入' + item.label)" />
+          :required="item.required" :disabled="item.disabled">
+          <el-input v-model="props.data[item.prop]" :placeholder="item.placeholder ?? ('请输入' + item.label)" />
         </el-form-item>
       </template>
 
       <el-form-item v-if="props.footer">
-        <el-button type="primary" @click="submitForm(formRef)">搜索</el-button>
+        <el-button type="primary" @click="submitForm()"><el-icon>
+            <Search />
+          </el-icon><span>搜索</span> </el-button>
+      </el-form-item>
+
+      <el-form-item>
+        <slot name="action" :submitForm="submitForm" :resetForm="resetForm"></slot>
       </el-form-item>
     </el-form>
   </div>
@@ -102,13 +125,15 @@ interface Props {
   inline?: boolean  // 同行
   footer?: boolean
   formConfig?: FormConfig[]  // 配置
-  formData: any
+  data: any
+  disabled?: boolean
 }
 
 interface FormConfig {
-  type?: string, // 'select'| datePicker | 'number' | checkbox | checkboxButton | checkbox | checkboxButton | switch 
+  type?: string, // 'select'| datePicker | 'number' | checkbox | checkboxButton | checkbox | checkboxButton | switch | password | textarea | slot
   prop: string,
   label: string,
+  disabled?: boolean,
   placeholder?: string, //提示语
   rules?: any,  // 规则
   required?: boolean | any // 必填 或 提示
@@ -120,15 +145,20 @@ interface FormConfig {
   collapse?: number //select多选标签数
 }
 
+const emit = defineEmits<{
+  (e: 'submit'): void
+}>()
+
 const datePicker = ['date', 'dates', 'datetime', "daterange", 'datetimerange', 'week', 'month', "monthrange", 'year', 'yearmerange']
 
 const formRef = ref<FormInstance>()
 const props = withDefaults(defineProps<Props>(), {
   size: 'default',
   labelPosition: 'left',
-  inline: true,
+  inline: false,
   footer: false,
-  formData: []
+  data: [],
+  disabled: false
 })
 
 
@@ -141,17 +171,29 @@ const setRules = (item: FormConfig) => [
 ]
 
 // 确定按钮
-const submitForm = (formEl: FormInstance | undefined) => {
-  if (!formEl) return
-  formEl.validate((valid) => {
+const submitForm = () => {
+  if (!formRef.value) return
+  formRef.value.validate((valid) => {
     if (valid) {
-      console.log('submit!')
+      emit('submit')
     } else {
       console.log('error submit!')
       return false
     }
   })
+  // resetForm()
 }
+
+const resetForm = () => {
+  console.log(formRef.value);
+  if (!formRef.value) return
+  formRef.value.resetFields()
+}
+
+// 通过ref传递方法,父组件触发
+defineExpose({ submitForm, resetForm })
+
 </script>
 
-<style></style>
+<style scoped>
+</style>

@@ -46,15 +46,29 @@ const router = createRouter({
 
 
 router.beforeEach((to, from, next) => {
+  if (to.path == '/login') {
+    next();
+    return
+  }
+  //加载框
   NProgress.configure({ showSpinner: false });
   NProgress.start();
   let havePath = false, haveCode = false
 
   // 通过菜单的code值去匹配当前路由code值过滤
-  menuStore().getMenu.forEach((menu: any) => {
-    if (menu.code == to.meta?.code || fixedCode.includes(to.meta?.code as string)) haveCode = true
-  })
-  router.getRoutes().forEach(route => {
+  const filter = (data: any) => {
+    console.log(data);
+    data.forEach((menu: any) => {
+      if (menu.code == to.meta?.code || fixedCode.includes(to.meta?.code as string)) {
+        haveCode = true
+      }
+      if (menu?.children) filter(menu.children)
+    })
+  }
+  if (menuStore().getMenu.length > 0) filter(menuStore().getMenu)
+
+
+  if (router.getRoutes().length > 0) router.getRoutes().forEach(route => {
     if (route.path === to.path) havePath = true
   })
   if (haveCode && havePath) {

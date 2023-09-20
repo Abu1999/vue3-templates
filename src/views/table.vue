@@ -4,7 +4,7 @@
       <!-- 查询 -->
       <el-card class="my-[2vh] p-0">
         <MyForm :formData="formData" :formConfig="formConfig" :footer="true" class="mt-[18px]"
-          :size="appInfoStore().data.isMobile ? 'small' : 'default'"></MyForm>
+          :size="appInfoStore().data.isMobile ? 'small' : 'default'" :inline="true"></MyForm>
       </el-card>
 
       <el-card class="p-5">

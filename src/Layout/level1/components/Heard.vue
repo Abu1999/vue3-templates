@@ -38,6 +38,7 @@ import { ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import { appInfoStore, menuStore, tabsStore } from '@/stores';
 import router from '@/router';
+import { ElMessage } from 'element-plus'
 
 const route = useRoute()
 const menuData = menuStore().getMenu
@@ -86,8 +87,10 @@ watch(() => route.path, () => {
 
 const quit = () => {
   tabsStore().clear()
+  menuStore().clear()
   localStorage.removeItem('token')
-  sessionStorage.clear()
+  sessionStorage.removeItem('tabs')
+  ElMessage.success('退出登录')
   router.push('/login')
 }
 

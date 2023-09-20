@@ -1,19 +1,36 @@
+<!-- eslint-disable -->
 <template>
-  <el-tree :data="data" highlight-current :default-expand-all="props.defaultExpandAll" :show-checkbox="props.showCheckbox"
-    :icon="props.icon" node-key="id" :props="props.defaultProps" />
+  <el-input v-model="filterText" placeholder="输入关键字过滤" :suffix-icon="Search" />
+  <div class="mt-2 p-2 select-none">
+    <el-tree ref="treeRef" :data="props.data" highlight-current :default-expand-all="props.defaultExpandAll"
+      :show-checkbox="props.showCheckbox" :icon="props.icon" node-key="id" :props="props.defaultProps"
+      :default-checked-keys="props.config?.checkedKeys" :filter-node-method="filterNode" @node-click="nodeClick"
+      @check="check" :check-strictly="props.config?.checkStrictly" :expand-on-click-node="false" />
+  </div>
 </template>
 
 <script lang="tsx" setup>
-import { ArrowRightBold } from '@element-plus/icons-vue';
-import { type Component } from 'vue';
+import { ArrowRightBold, Search } from '@element-plus/icons-vue';
+import { type Component, ref, watch } from 'vue';
 
 interface Props {
-  defaultProps: { children: string; label: string; }
-  showCheckbox: boolean
-  defaultExpandAll: boolean
-  icon: string | Component
+  data: any
+  defaultProps?: { children: string; label: string; }
+  showCheckbox?: boolean
+  defaultExpandAll?: boolean
+  icon?: string | Component
+  config?: {
+    checkedKeys?: any
+    checkStrictly?: boolean
+  }
 }
 
+const emit = defineEmits<{
+  (e: 'nodeClick', value: any): void
+}>()
+
+const filterText = ref('')
+const treeRef = ref()
 const props = withDefaults(defineProps<Props>(), {
   defaultProps: () => ({
     children: 'children',
@@ -24,54 +41,34 @@ const props = withDefaults(defineProps<Props>(), {
   defaultExpandAll: true
 })
 
-const data = [
-  {
-    id: 1,
-    label: 'Level one 1',
-    children: [
-      {
-        id: 4,
-        label: 'Level two 1-1',
-        children: [
-          {
-            id: 9,
-            label: 'Level three 1-1-1',
-          },
-          {
-            id: 10,
-            label: 'Level three 1-1-2',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    id: 2,
-    label: 'Level one 2',
-    children: [
-      {
-        id: 5,
-        label: 'Level two 2-1',
-      },
-      {
-        id: 6,
-        label: 'Level two 2-2',
-      },
-    ],
-  },
-  {
-    id: 3,
-    label: 'Level one 3',
-    // children: [
-    //   {
-    //     id: 7,
-    //     label: 'Level two 3-1',
-    //   },
-    //   {
-    //     id: 8,
-    //     label: 'Level two 3-2',
-    //   },
-    // ],
-  },
-]
+// 节点点击
+const nodeClick = (e: any) => {
+  emit('nodeClick', e)
+}
+// 复选框
+const check = () => {
+  treeRef.value!.getCheckedNodes()
+  // eslint-disable-next-line
+  if (props.config) props.config.checkedKeys = treeRef.value!.getCheckedKeys()
+}
+
+// 过滤
+const filterNode = (value: string, data: any) => {
+  if (!value) return true
+  return data.label.includes(value)
+}
+
+const resetChecked = () => {
+  treeRef.value!.setCheckedKeys([], false)
+}
+
+
+
+watch(filterText, (val) => {
+  treeRef.value!.filter(val)
+}, { deep: true })
+
+// 通过ref传递方法,父组件触发
+defineExpose({ resetChecked })
+
 </script>

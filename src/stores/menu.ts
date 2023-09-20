@@ -17,6 +17,10 @@ export const useMenuStore = defineStore({
   actions: {
     changemenuData(data: any) {
       this.menu = data
+    },
+
+    clear(): void {
+      this.menu = menuData
     }
   },
 
