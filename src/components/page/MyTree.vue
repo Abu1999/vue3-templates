@@ -48,6 +48,7 @@ const nodeClick = (e: any) => {
 // 复选框
 const check = () => {
   treeRef.value!.getCheckedNodes()
+  // eslint-disable-next-line
   if (props.config) props.config.checkedKeys = treeRef.value!.getCheckedKeys()
 }
 
