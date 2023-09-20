@@ -1,7 +1,7 @@
 <template>
   <div class="w-full h-full p-5">
     <el-card class="w-[220px] h-[80vh]">
-      <MyTree></MyTree>
+      <MyTree :data="[]"></MyTree>
     </el-card>
   </div>
 </template>

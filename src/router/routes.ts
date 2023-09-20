@@ -1,13 +1,5 @@
 export const userRoutes = [
   {
-    path: '/',
-    name: '首页',
-    component: () => import('../views/AboutView.vue'),
-    meta: {
-      code: 'house'
-    }
-  },
-  {
     path: '/test',
     name: '菜单嵌套',
     redirect: '/test/app1',
@@ -36,6 +28,9 @@ export const userRoutes = [
         ]
       }
     ],
+    meta: {
+      code: 'menu'
+    }
   },
   {
     path: '/com',
@@ -75,7 +70,11 @@ export const userRoutes = [
         }
       },
     ],
+    meta: {
+      code: 'grid'
+    }
   },
+
   {
     path: '/axios',
     name: 'axios请求',

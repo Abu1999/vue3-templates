@@ -5,6 +5,9 @@ export const useAppInfoStore = defineStore({
   state: () => ({
     data: {
       isMobile: false
+    },
+    user: {
+
     }
   }),
   actions: {
@@ -16,6 +19,9 @@ export const useAppInfoStore = defineStore({
         is = flag || document.documentElement.clientWidth < 767
         this.data.isMobile = is
       })
+    },
+    changeUser(data: any) {
+      this.user = data
     }
   },
 })
