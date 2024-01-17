@@ -15,31 +15,36 @@
     --el-card-padding : 10px;
   }
   .v-contextmenu {
-  z-index: 10000 !important;
-}
+    z-index: 10000 !important;
+  }
+  .el-card__body {
+    padding: 0 !important;
+    width: 100%;
+    height: 100%;
+  } 
 }
 
 
 //滚动条
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 4px;
   height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: rgb(239, 239, 239);
+  background: var(--el-bg-color);
   border-radius: 2px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #bfbfbf;
+  background: var(--el-color-info-light-7);
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #bfbfbf;
+  background: var(--el-color-info-light-7);
 }
 
 ::-webkit-scrollbar-corner {
-  background: #bfbfbf;
+  background: var(--el-color-info-light-7);
 }

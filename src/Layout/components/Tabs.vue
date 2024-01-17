@@ -6,7 +6,7 @@
         :label="item.title" :name="item.name">
         <template #label>
           <div class="w-full h-full select-none flex justify-center items-center"
-            @contextmenu="(e) => { openContextMenu(e, index) }">
+            @contextmenu="(e: any) => { openContextMenu(e, index) }">
             {{ item.title }}
           </div>
 
@@ -54,6 +54,7 @@ const removeTab = (targetName: any, method?: string) => {
   tabsStore().remove(targetName, method)
 }
 const changTab = (targetName: any) => {
+  console.log(targetName);
   router.push(targetName)
 }
 
@@ -93,7 +94,7 @@ const disable = (list: any, index: number) => {
   width: auto;
   height: 30px;
   border: 1px solid var(--el-border-color-light);
-  border-radius: 0;
+  border-radius: 4px;
   margin-left: 5px;
 }
 

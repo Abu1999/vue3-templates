@@ -1,1 +1,16 @@
+@font-face {
+    font-family: YouSheBiaoTiHei;
+    src: url('@/assets/fonts/YouSheBiaoTiHei.ttf');
+}
+@font-face {
+    font-family: PangMenZhengDaoBiaoTi;
+    src: url('@/assets/fonts/PangMenZhengDaoBiaoTi.ttf');
+}
+@font-face {
+    font-family: HarmonyOS_Sans_Medium;
+    src: url('@/assets/fonts/HarmonyOS_Sans_Medium.ttf');
+}
 
+body {
+    font-family: HarmonyOS_Sans_Medium !important;
+}

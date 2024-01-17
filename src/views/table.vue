@@ -1,18 +1,28 @@
+<!--
+ * @Author: bbw 1526699702@qq.com
+ * @Date: 2024-01-17 15:10:30
+ * @LastEditors: bbw 1526699702@qq.com
+ * @LastEditTime: 2024-01-17 15:29:10
+ * @FilePath: \vue3-templates\src\views\table.vue
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
 <template>
-  <div class="px-5">
+  <div class="h-full px-5">
     <TableList v-slot="{ state, commands }">
       <!-- 查询 -->
-      <el-card class="my-[2vh] p-0">
-        <MyForm :formData="formData" :formConfig="formConfig" :footer="true" class="mt-[18px]"
-          :size="appInfoStore().data.isMobile ? 'small' : 'default'" :inline="true"></MyForm>
-      </el-card>
+      <div class="w-full py-4">
+        <el-card class=" px-4">
+          <MyForm :formData="formData" :formConfig="formConfig" :footer="true" class="mt-[18px]"
+            :size="appInfoStore().data.isMobile ? 'small' : 'default'" :inline="true"></MyForm>
+        </el-card>
+      </div>
 
-      <el-card class="p-5">
+      <el-card class="w-full h-[calc(100%-140px)] p-5">
         <!-- 表格 -->
-        <div>
+        <div class="w-full h-full">
           <MyTable ref="myTable" :data="state.data" :columns="state.columns" :pagination="state.pagination"
             @paginationChange="commands.get" :loading="state.loading" :border="true" :stripe="true">
-            <template #action="{}">
+            <template #action="{ }">
               <el-button plain size="small" @click="putData">修改</el-button>
               <el-popconfirm title="Are you sure to delete this?">
                 <template #reference>

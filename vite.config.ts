@@ -7,6 +7,7 @@ import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import WindiCSS from 'vite-plugin-windicss'
 
+const timeStamp = new Date().getTime();
 // https://vitejs.dev/config/
 export default defineConfig({
   base: '/',
@@ -53,27 +54,32 @@ export default defineConfig({
       output: {
         manualChunks(id) {
           if (id.includes('node_modules')) {
-            return id.toString().split('node_modules/')[1].split('/')[0].toString();
+            const name = id.toString().split('node_modules/')[1].split('/');
+            if (name[0].toString() == ".pnpm") {
+              return name[1].toString();
+            } else {
+              return name[0].toString()
+            }
           }
         },
         chunkFileNames: (chunkInfo) => {
           const facadeModuleId = chunkInfo.facadeModuleId ? chunkInfo.facadeModuleId.split('/') : [];
           const fileName = facadeModuleId[facadeModuleId.length - 2] || '[name]';
-          return `js/${fileName}/[name].[hash].js`;
+          return `js/${fileName}/[name].${timeStamp}.js`;
         }
       }
     }
   },
   server: {
-    port: 7000,
+    port: 7050,
     host: '0.0.0.0',
     // proxy: {
     //   '/api': 'http://127.0.0.1:3000/',
     // },
-    hmr: {
-      overlay: true,
-      // 解决热更新不同步的问题
-      port: 443
-    }
+    // hmr: {
+    //   overlay: true,
+    //   // 解决热更新不同步的问题
+    //   port: 443
+    // }
   },
 })

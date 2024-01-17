@@ -1,42 +1,51 @@
 <template>
-  <div class="w-full h-full" :style="{ backgroundColor: backgroundColor, color: '#fff' }">
+  <div class="w-full h-full " :style="{ backgroundColor: backgroundColor }">
 
     <div class="flex justify-center items-center cursor-pointer select-none h-[50px]" @click="myClick">
       <div style="width: 64px;" class="flex justify-center items-center">
         <el-image style="width: 40px; height: 40px" :src="url" fit="cover" />
       </div>
-      <div class="font-bold" v-if="!props.isCollapse">element-puls</div>
+      <div class="font-bold" v-if="!props.isCollapse">智慧屋系统</div>
     </div>
 
     <el-menu id="menu" :style="{ border: 0, '--menubackgroundColor': menubackgroundColor }"
-      :background-color="backgroundColor" text-color="#fff" :collapse="props.isCollapse" :collapse-transition="false"
-      :active="$route.path" :default-active="$route.path">
+      :background-color="backgroundColor" text-color="--el-tree-text-color" :collapse="props.isCollapse"
+      :collapse-transition="false" :active="$route.path" :default-active="$route.path" :default-openeds="props.openeds">
       <template v-for="( item, index ) in  props.menuData " :key="index">
         <el-sub-menu background-color="red" v-if="item.children" :index="item.path ? item.path : item.title">
           <template #title>
-            <el-icon v-if="item.icon">
-              <component :is="item.icon"></component>
-            </el-icon>
-            <span>{{ item.title }}</span>
+            <template v-if="item.icon">
+              <el-icon>
+                <component :is="item.icon" v-if="item.icon.indexOf('/') == -1"></component>
+                <el-image style="width: 18px; height: 18px;" :src="item.icon" fit="cover" v-else />
+              </el-icon>
+            </template>
+            <span class="select-none">{{ item.title }}</span>
           </template>
 
-          <template v-for="( list, listIndex ) in  item.children " :key="listIndex">
+          <template v-for="( list, listIndex ) in  item?.children " :key="listIndex">
             <el-sub-menu :index="list.path ? list.path : list.title" v-if="list.children">
-              <template #title>
-                <el-icon v-if="list.icon">
-                  <component :is="list.icon"></component>
+              <template v-if="list.icon">
+                <el-icon>
+                  <component :is="list.icon" v-if="list.icon.indexOf('/') == -1"></component>
+                  <el-image style="width: 18px; height: 18px;" :src="list.icon" fit="cover" v-else />
                 </el-icon>
-                {{ list.title }}
+              </template>
+              <template #title>
+                <span class="select-none">{{ list.title }}</span>
               </template>
 
               <template v-for="( listItem, listItemIndex ) in  list.children " :key="listItemIndex">
                 <el-menu-item :index="listItem.path ? listItem.path : listItem.title"
                   @click="listItem.path ? $router.push(listItem.path) : ''">
-                  <template #title>
-                    <el-icon v-if="listItem.icon">
-                      <component :is="listItem.icon"></component>
+                  <template v-if="listItem.icon">
+                    <el-icon>
+                      <component :is="listItem.icon" v-if="listItem.icon.indexOf('/') == -1"></component>
+                      <el-image style="width: 18px; height: 18px;" :src="listItem.icon" fit="cover" v-else />
                     </el-icon>
-                    {{ listItem.title }}
+                  </template>
+                  <template #title>
+                    <span class="select-none">{{ listItem.title }}</span>
                   </template>
                 </el-menu-item>
               </template>
@@ -46,11 +55,14 @@
 
             <el-menu-item v-else :index="list.path ? list.path : item.title"
               @click="list.path ? $router.push(list.path) : ''">
-              <template #title>
-                <el-icon v-if="list.icon">
-                  <component :is="list.icon"></component>
+              <template v-if="list.icon">
+                <el-icon>
+                  <component :is="list.icon" v-if="list.icon.indexOf('/') == -1"></component>
+                  <el-image style="width: 18px; height: 18px;" :src="list.icon" fit="cover" v-else />
                 </el-icon>
-                {{ list.title }}
+              </template>
+              <template #title>
+                <span class="select-none">{{ list.title }}</span>
               </template>
             </el-menu-item>
           </template>
@@ -59,11 +71,14 @@
 
         <el-menu-item v-else :index="item.path ? item.path : item.title"
           @click="item.path ? $router.push(item.path) : ''">
-          <el-icon v-if="item.icon">
-            <component :is="item.icon"></component>
-          </el-icon>
+          <template v-if="item.icon">
+            <el-icon>
+              <component :is="item.icon" v-if="item.icon.indexOf('/') == -1"></component>
+              <el-image style="width: 18px; height: 18px;" :src="item.icon" fit="cover" v-else />
+            </el-icon>
+          </template>
           <template #title>
-            {{ item.title }}
+            <span class="select-none">{{ item.title }}</span>
           </template>
         </el-menu-item>
       </template>
@@ -85,17 +100,18 @@ interface MenuData {
 interface Props {
   isCollapse: boolean
   menuData: MenuData[]
+  openeds?: any
 }
 const props = defineProps<Props>()
 
-const url = 'https://img.paulzzh.com/touhou/random'
+const url = 'https://fanmingming.com/bing'
 
 const myClick = () => {
   router.push('/')
 }
 
-let backgroundColor = ref('#001529')
-let menubackgroundColor = ref('#0f2438')
+let backgroundColor = ref('var(--el-bg-color)')
+let menubackgroundColor = ref('var(--el-bg-color)')
 
 </script>
 
@@ -106,11 +122,20 @@ let menubackgroundColor = ref('#0f2438')
 
 :deep(#menu li ul .el-sub-menu__title) {
   background-color: var(--menubackgroundColor) !important;
+
+  :hover {
+    background-color: var(--el-color-primary-light-7);
+  }
 }
 
 //   --el-color-primary: #409EFF;
 :deep(.el-menu-item.is-active) {
-  background-color: var(--el-color-primary);
-  color: #fff;
+  background-color: var(--el-color-primary-light-7);
+  color: --el-color-primary;
+}
+
+//   --el-color-primary: #409EFF;
+:deep(.el-menu) {
+  --el-menu-hover-bg-color: var(--el-color-primary-light-9) !important;
 }
 </style>

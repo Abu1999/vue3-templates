@@ -8,72 +8,80 @@
         <div class="font-bold whitespace-nowrap ml-3" v-if="!isCollapse">element-plus</div>
       </div>
 
-      <div class="w-[70%] ml-2">
-
+      <div class="w-10/12 ml-2">
         <el-menu id="menu" style="height: 50px;" :collapse-transition="false" mode="horizontal" :active="$route.path"
           :default-active="$route.path" :menu-trigger="appInfoStore().data.isMobile ? 'click' : 'hover'"
           popper-effect="light">
-          <template v-for="( item, index ) in props.menuData " :key="index+1">
-            <template v-if="item.children">
-
-              <el-sub-menu background-color="red" :index="item.path ? item.path : item.title">
-                <template #title>
-                  <el-icon v-if="item.icon">
-                    <component :is="item.icon"></component>
+          <template v-for="( item, index ) in  props.menuData " :key="index">
+            <el-sub-menu background-color="red" v-if="item.children" :index="item.path ? item.path : item.title">
+              <template #title>
+                <template v-if="item.icon">
+                  <el-icon>
+                    <component :is="item.icon" v-if="item.icon.indexOf('/') == -1"></component>
+                    <el-image style="width: 18px; height: 18px;" :src="item.icon" fit="cover" v-else />
                   </el-icon>
-                  <span>{{ item.title }}</span>
                 </template>
+                <span class="select-none">{{ item.title }}</span>
+              </template>
 
-                <template v-for="( list, listIndex ) in  item.children " :key="listIndex">
-                  <el-sub-menu :index="list.path ? list.path : list.title" v-if="list.children">
-                    <template #title>
-                      <el-icon v-if="list.icon">
-                        <component :is="list.icon"></component>
-                      </el-icon>
-                      {{ list.title }}
-                    </template>
+              <template v-for="( list, listIndex ) in  item?.children " :key="listIndex">
+                <el-sub-menu :index="list.path ? list.path : list.title" v-if="list.children">
+                  <template v-if="list.icon">
+                    <el-icon>
+                      <component :is="list.icon" v-if="list.icon.indexOf('/') == -1"></component>
+                      <el-image style="width: 18px; height: 18px;" :src="list.icon" fit="cover" v-else />
+                    </el-icon>
+                  </template>
+                  <template #title>
+                    <span class="select-none">{{ list.title }}</span>
+                  </template>
 
-                    <template v-for="( listItem, listItemIndex ) in  list.children " :key="listItemIndex">
-                      <el-menu-item :index="listItem.path ? listItem.path : listItem.title"
-                        @click="listItem.path ? $router.push(listItem.path) : ''">
-                        <template #title>
-                          <el-icon v-if="listItem.icon">
-                            <component :is="listItem.icon"></component>
-                          </el-icon>
-                          {{ listItem.title }}
-                        </template>
-                      </el-menu-item>
-                    </template>
+                  <template v-for="( listItem, listItemIndex ) in  list.children " :key="listItemIndex">
+                    <el-menu-item :index="listItem.path ? listItem.path : listItem.title"
+                      @click="listItem.path ? $router.push(listItem.path) : ''">
+                      <template v-if="listItem.icon">
+                        <el-icon>
+                          <component :is="listItem.icon" v-if="listItem.icon.indexOf('/') == -1"></component>
+                          <el-image style="width: 18px; height: 18px;" :src="listItem.icon" fit="cover" v-else />
+                        </el-icon>
+                      </template>
+                      <template #title>
+                        <span class="select-none">{{ listItem.title }}</span>
+                      </template>
+                    </el-menu-item>
+                  </template>
 
 
-                  </el-sub-menu>
+                </el-sub-menu>
 
-                  <el-menu-item v-else :index="list.path ? list.path : item.title"
-                    @click="list.path ? $router.push(list.path) : ''">
-                    <template #title>
-                      <el-icon v-if="list.icon">
-                        <component :is="list.icon"></component>
-                      </el-icon>
-                      {{ list.title }}
-                    </template>
-                  </el-menu-item>
-                </template>
+                <el-menu-item v-else :index="list.path ? list.path : item.title"
+                  @click="list.path ? $router.push(list.path) : ''">
+                  <template v-if="list.icon">
+                    <el-icon>
+                      <component :is="list.icon" v-if="list.icon.indexOf('/') == -1"></component>
+                      <el-image style="width: 18px; height: 18px;" :src="list.icon" fit="cover" v-else />
+                    </el-icon>
+                  </template>
+                  <template #title>
+                    <span class="select-none">{{ list.title }}</span>
+                  </template>
+                </el-menu-item>
+              </template>
 
-              </el-sub-menu>
-            </template>
+            </el-sub-menu>
 
-            <!-- 没用v-else是因为有警告 -->
-            <template v-if="!item.children">
-              <el-menu-item key="2" :index="item.path ? item.path : item.title"
-                @click="item.path ? $router.push(item.path) : ''">
-                <el-icon v-if="item.icon">
-                  <component :is="item.icon"></component>
+            <el-menu-item v-else :index="item.path ? item.path : item.title"
+              @click="item.path ? $router.push(item.path) : ''">
+              <template v-if="item.icon">
+                <el-icon>
+                  <component :is="item.icon" v-if="item.icon.indexOf('/') == -1"></component>
+                  <el-image style="width: 18px; height: 18px;" :src="item.icon" fit="cover" v-else />
                 </el-icon>
-                <template #title>
-                  {{ item.title }}
-                </template>
-              </el-menu-item>
-            </template>
+              </template>
+              <template #title>
+                <span class="select-none">{{ item.title }}</span>
+              </template>
+            </el-menu-item>
           </template>
         </el-menu>
       </div>
@@ -83,15 +91,17 @@
     <div id="user_info" class="h-full flex items-center space-x-2 cursor-pointer select-none" @click="visible = true">
       <el-dropdown trigger="click" size="95">
         <div class="flex items-center space-x-2 px-5" style="height: 50px;min-width: 50px;">
-          <el-avatar :size="35" src="https://img.paulzzh.com/touhou/random" />
+          <el-avatar :size="35" src="https://fanmingming.com/bing" />
           <el-icon size="12">
             <ArrowDown />
           </el-icon>
         </div>
         <template #dropdown>
           <el-dropdown-menu>
-            <el-dropdown-item>Action 1</el-dropdown-item>
-            <el-dropdown-item divided @click="quit">退出登录</el-dropdown-item>
+            <!-- <el-dropdown-item>Action 1</el-dropdown-item> -->
+            <el-dropdown-item @click="tomine">个人中心</el-dropdown-item>
+            <el-dropdown-item @click="quit">退出登录</el-dropdown-item>
+            <!-- <el-dropdown-item divided @click="quit">退出登录</el-dropdown-item> -->
           </el-dropdown-menu>
         </template>
       </el-dropdown>
@@ -119,7 +129,7 @@ interface Props {
 }
 const props = defineProps<Props>()
 
-const url = 'https://img.paulzzh.com/touhou/random'
+const url = 'https://fanmingming.com/bing'
 
 const myClick = () => {
   router.push('/')
@@ -145,15 +155,22 @@ const find = (data: any) => {
     if (item.path === route.path) {
       obj = item
     }
+
     if (item.children && item.children.length && !obj) {
       if (find(item.children)) obj = item
     }
 
-    if (obj) {
+    if (obj && obj.path !== route.path) {
       arr.value.unshift({ path: item.path, title: item.title })
       return
     }
   })
+
+  // 如果没有找到，则将当前路由添加到数组中
+  if (arr.value.length === 0) {
+    arr.value.push({ path: route.path, title: route.name })
+  }
+
   return obj
 }
 
@@ -171,6 +188,9 @@ const quit = () => {
   router.push('/login')
 }
 
+const tomine = () => {
+  router.push('/mine')
+}
 
 window.onresize = () => {
   screenWidth.value = document.documentElement.clientWidth

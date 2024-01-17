@@ -1,3 +1,11 @@
+<!--
+ * @Author: bbw 1526699702@qq.com
+ * @Date: 2023-09-12 14:33:45
+ * @LastEditors: bbw 1526699702@qq.com
+ * @LastEditTime: 2023-11-10 10:47:39
+ * @FilePath: \smart-web\src\components\page\MyVideo.vue
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
 <template>
   <div class="w-full h-full">
     <videoPlay v-bind="options" poster="https://cdn.jsdelivr.net/gh/xdlumia/files/video-play/ironMan.jpg" />
@@ -8,8 +16,8 @@
 // https://github.com/xdlumia/vue3-video-play github网址
 import "vue3-video-play/dist/style.css";
 import { videoPlay } from "vue3-video-play";
-
 import { reactive } from "vue";
+
 const options = reactive({
   width: "800px", //播放器宽度
   height: "450px", //播放器高度

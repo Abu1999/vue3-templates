@@ -1,3 +1,11 @@
+/*
+ * @Author: bbw 1526699702@qq.com
+ * @Date: 2024-01-17 15:10:30
+ * @LastEditors: bbw 1526699702@qq.com
+ * @LastEditTime: 2024-01-17 15:21:14
+ * @FilePath: \vue3-templates\src\appconfig.ts
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 // 菜单栏数据
 export const menuData = [
   {
@@ -24,6 +32,11 @@ export const menuData = [
   { title: '模版table页面', icon: 'Tickets', path: '/table', code: 'table' },
   { title: '404页面', icon: 'WarningFilled', path: '/404', code: '404' },
 ]
+
+//菜单默认展开
+export const menuConfig = {
+  openeds: ['/admin', '/device']
+}
 
 // tabs设置
 export const tabsConfig = {
