@@ -7,7 +7,7 @@
           <div class="w-7/12 h-full">
             <el-image class="w-full h-full" src="https://api.vvhan.com/api/view"></el-image>
           </div>
-          <div class="w-6/12 h-full p-4">
+          <div class="w-5/12 h-full p-4">
             <div class="w-full h-full flex flex-col items-center justify-center select-none">
               <div class="text-3xl">欢迎登录</div>
               <div class="mt-12">
