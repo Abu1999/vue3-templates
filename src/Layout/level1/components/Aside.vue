@@ -5,7 +5,7 @@
       <div style="width: 64px;" class="flex justify-center items-center">
         <el-image style="width: 40px; height: 40px" :src="url" fit="cover" />
       </div>
-      <div class="font-bold" v-if="!props.isCollapse">智慧屋系统</div>
+      <div class="font-bold" v-if="!props.isCollapse">vue3+vite+ts</div>
     </div>
 
     <el-menu id="menu" :style="{ border: 0, '--menubackgroundColor': menubackgroundColor }"

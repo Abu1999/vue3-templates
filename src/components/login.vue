@@ -1,29 +1,38 @@
 <template>
-  <div class="w-full flex justify-center" style="height: 100vh;">
-    <div style="margin-top: 30vh;">
-      <el-card shadow="always" style="width: 500px;" v-if="type === 'login'" class="p-5">
-        <div class="flex flex-col items-center">
-          <div class="text-3xl">欢迎登录</div>
-          <div class="mt-8">
-            <el-form ref="ruleFormRef" :rules="loginRules" size="default" :label-position="labelPosition"
-              label-width="100px" :model="loginData" style="max-width: 460px">
-              <el-form-item label="用户名" prop="name">
-                <el-input v-model="loginData.name" />
-              </el-form-item>
-              <el-form-item label="密码" prop="password">
-                <el-input v-model="loginData.password" type="password" show-password />
-              </el-form-item>
-              <div class="w-11/12 flex justify-end">
-                <el-link :underline="false" type="primary" @click="type = 'signin'">注册</el-link>
+  <div class="w-full h-full flex justify-center items-center bg-[var(--el-bg-color-page)]" style="height: 100vh;">
+
+    <div class="w-[960px] h-[540px]">
+      <el-card shadow="always" v-if="type === 'login'" class="h-full">
+        <div class="w-full h-full flex">
+          <div class="w-7/12 h-full">
+            <el-image class="w-full h-full" src="https://api.vvhan.com/api/view"></el-image>
+          </div>
+          <div class="w-6/12 h-full p-4">
+            <div class="w-full h-full flex flex-col items-center justify-center select-none">
+              <div class="text-3xl">欢迎登录</div>
+              <div class="mt-12">
+                <el-form ref="ruleFormRef" :rules="loginRules" size="default" :label-position="labelPosition"
+                  label-width="0" :model="loginData" style="max-width: 460px">
+                  <el-form-item label="" prop="name">
+                    <el-input :prefix-icon="User" placeholder="用户名" v-model="loginData.name" />
+                  </el-form-item>
+                  <el-form-item label="" prop="password">
+                    <el-input v-model="loginData.password" :prefix-icon="Lock" placeholder="密码" type="password"
+                      show-password />
+                  </el-form-item>
+                  <div class="w-11/12 flex justify-end">
+                    <!-- <el-link :underline="false" type="primary" @click="type = 'signin'">注册</el-link> -->
+                  </div>
+                  <el-button :loading="loading" size="large" class="w-full mt-5" type="primary"
+                    @click="submit(ruleFormRef)">登录</el-button>
+                </el-form>
               </div>
-              <el-button :loading="loading" size="large" class="w-full mt-5" type="primary"
-                @click="submit(ruleFormRef)">登录</el-button>
-            </el-form>
+            </div>
           </div>
         </div>
       </el-card>
 
-      <el-card shadow="always" style="width: 500px;" v-else class="p-5">
+      <el-card shadow="always" v-else class="p-5">
         <div class="flex justify-start items-center w-full" @click="type = 'login'">
           <el-link :underline="false" type="primary" @click="type = 'signin'">
             <el-icon>
@@ -39,12 +48,16 @@
           <div class="mt-8">
             <el-form ref="ruleFormRef" :rules="signinRules" size="default" :label-position="labelPosition"
               label-width="100px" :model="signinData" style="max-width: 460px">
-              <el-form-item label="用户名" prop="name">
-                <el-input v-model="signinData.name" />
+              <el-form-item label="" prop="name">
+                <el-input :prefix-icon="Phone" placeholder="手机号" v-model="signinData.name" />
               </el-form-item>
-              <el-form-item label="密码" prop="password">
-                <el-input v-model="signinData.password" type="password" show-password />
-              </el-form-item>
+              <!-- <el-form-item label="" prop="code">
+                <el-input :prefix-icon="Message" placeholder="验证码" v-model="signinData.code" class="input-with-select">
+                  <template #append>
+                    <el-button :disabled="signinData.disabled" @click="send">{{ signinData.title }}</el-button>
+                  </template>
+                </el-input>
+              </el-form-item> -->
 
               <el-button :loading="loading" size="large" class="w-full mt-5" type="primary"
                 @click="signin(ruleFormRef)">注册</el-button>
@@ -59,14 +72,16 @@
 
 <script setup lang="ts">
 import 'element-plus/es/components/message/style/css'
-import { reactive, ref } from 'vue'
+import { reactive, ref, onMounted } from 'vue'
 import { type FormInstance, type FormRules, ElMessage } from 'element-plus'
+import { User, Lock, Phone, Message } from '@element-plus/icons-vue'
 import { useRouter } from 'vue-router';
 import { changeMenu } from './login'
 
 const router = useRouter()
 const ruleFormRef = ref()
 let loading = ref(false)
+let bgLoading = ref(true)
 let type = ref('login')
 
 let labelPosition = ref('left' as any)
@@ -127,6 +142,12 @@ const signin = async (formEl: FormInstance | undefined) => {
   })
 }
 
+
+onMounted(() => {
+  setTimeout(() => {
+    bgLoading.value = false
+  }, 1000)
+})
 
 </script>
 

@@ -5,7 +5,7 @@
         <div class="ml-3 flex justify-center items-center">
           <el-image style="width: 40px; height: 40px" :src="url" fit="cover" />
         </div>
-        <div class="font-bold whitespace-nowrap ml-3" v-if="!isCollapse">element-plus</div>
+        <div class="font-bold whitespace-nowrap ml-3" v-if="!isCollapse">vue3+vite+ts</div>
       </div>
 
       <div class="w-10/12 ml-2">

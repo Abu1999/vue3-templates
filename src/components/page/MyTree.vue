@@ -7,7 +7,7 @@
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
 <template>
-  <div class="w-full h-full relative">
+  <div class="w-full h-full relative p-4">
     <div class="relative top-0">
       <el-input v-model="filterText" placeholder="输入关键字过滤" :suffix-icon="Search" />
     </div>

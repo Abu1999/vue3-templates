@@ -13,9 +13,13 @@
   } 
   .el-card{
     --el-card-padding : 10px;
+    border-radius:10px;
   }
   .v-contextmenu {
     z-index: 10000 !important;
+  }
+  .el-table{
+    border-radius:4px;
   }
   .el-card__body {
     padding: 0 !important;
