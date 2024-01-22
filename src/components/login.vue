@@ -5,7 +5,7 @@
       <el-card shadow="always" v-if="type === 'login'" class="h-full">
         <div class="w-full h-full flex">
           <div class="w-7/12 h-full">
-            <el-image class="w-full h-full" src="https://api.vvhan.com/api/view"></el-image>
+            <el-image class="w-full h-full" :src="bg"></el-image>
           </div>
           <div class="w-5/12 h-full p-4">
             <div class="w-full h-full flex flex-col items-center justify-center select-none">
@@ -77,6 +77,7 @@ import { type FormInstance, type FormRules, ElMessage } from 'element-plus'
 import { User, Lock, Phone, Message } from '@element-plus/icons-vue'
 import { useRouter } from 'vue-router';
 import { changeMenu } from './login'
+import bg from '@/assets/bg.jpg'
 
 const router = useRouter()
 const ruleFormRef = ref()
