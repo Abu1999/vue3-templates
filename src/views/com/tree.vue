@@ -7,7 +7,7 @@
 </template>
 
 <script setup lang="ts">
-import { MyTree } from "@/components/page"
+// import { MyTree } from "@/components/page"
 
 </script>
 

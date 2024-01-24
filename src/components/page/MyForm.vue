@@ -128,6 +128,10 @@
 import { ref } from 'vue'
 import type { EpPropMergeType } from 'element-plus/es/utils';
 import type { FormInstance } from 'element-plus'
+defineOptions({
+  name: 'MyForm'
+})
+
 
 interface Props {
   size?: EpPropMergeType<StringConstructor, "" | "default" | "small" | "large", unknown> | undefined// 尺寸

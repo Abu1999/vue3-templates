@@ -6,6 +6,10 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 
+defineOptions({
+  name: 'MyTransfer'
+})
+
 interface Option {
   key: number
   label: string

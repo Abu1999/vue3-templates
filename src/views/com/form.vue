@@ -8,7 +8,7 @@
 </template>
 
 <script setup lang="ts">
-import { MyForm } from "@/components/page"
+// import { MyForm } from "@/components/page"
 import { reactive } from "vue";
 
 const formData = reactive({

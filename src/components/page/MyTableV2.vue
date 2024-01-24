@@ -58,6 +58,10 @@ import { reactive, watch } from 'vue'
 import { ElCheckbox } from 'element-plus'
 import { appInfoStore } from '@/stores/index'
 
+defineOptions({
+  name: 'MyTableV2'
+})
+
 let props = defineProps<{
   data: any
   columns: any

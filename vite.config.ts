@@ -73,9 +73,13 @@ export default defineConfig({
   server: {
     port: 7000,
     host: '0.0.0.0',
-    // proxy: {
-    //   '/api': 'http://127.0.0.1:3000/',
-    // },
+    proxy: {
+      "/api": {
+        target: "http://81.70.100.130",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ""),
+      },
+    }
     // hmr: {
     //   overlay: true,
     //   // 解决热更新不同步的问题

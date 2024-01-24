@@ -38,6 +38,10 @@
 import { ArrowRightBold, Search } from '@element-plus/icons-vue';
 import { type Component, ref, watch } from 'vue';
 
+defineOptions({
+  name: 'MyTree'
+})
+
 interface Config {
   defaultCheckedKeys?: any
   checkedKeys?: any

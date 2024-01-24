@@ -22,7 +22,7 @@ enum RequestEnums {
 }
 const config = {
     // 默认地址
-    baseURL: URL as string,
+    // baseURL: URL as string,
     // 设置超时时间
     timeout: RequestEnums.TIMEOUT as number,
     // 跨域时候允许携带凭证
@@ -47,7 +47,7 @@ class RequestHttp {
                 return {
                     ...config,
                     headers: {
-                        'x-access-token': token, // 请求头中携带token信息
+                        // 'x-access-token': token, // 请求头中携带token信息
                     } as any
                 }
             },

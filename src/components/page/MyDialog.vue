@@ -13,6 +13,9 @@
   </el-dialog>
 </template>
 <script lang="ts" setup>
+defineOptions({
+  name: 'MyDialog'
+})
 
 interface Props {
   config: {

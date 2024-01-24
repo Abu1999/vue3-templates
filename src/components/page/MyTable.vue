@@ -49,6 +49,10 @@
 <script setup lang="tsx">
 import { appInfoStore } from '@/stores/index'
 import { number } from 'echarts';
+
+defineOptions({
+  name: 'MyTable'
+})
 interface TableColums {
   type?: string // selection 
   align?: string //位置  center || left || right
