@@ -3,8 +3,8 @@
   <div class="w-full h-full relative">
     <div class="w-full h-full absolute flex flex-col justify-between">
       <div class="w-full h-[calc(100%-52px)]">
-        <el-table v-loading="props.loading" :data="props.data" :height="props.height" :width="props.width" :size="props.tablesize"
-          :border="props.border" :stripe="props.stripe" @selectionChange="selectionChange"
+        <el-table v-loading="props.loading" :data="props.data" :height="props.height" :width="props.width"
+          :size="props.tablesize" :border="props.border" :stripe="props.stripe" @selectionChange="selectionChange"
           :header-cell-style="{ backgroundColor: 'var(--el-border-color-lighter)' }" show-overflow-tooltip>
           <template v-for="( item, index ) in  props.columns " :key="index">
             <!-- 勾选框 -->
@@ -12,15 +12,15 @@
               type="selection" :width="item.width ?? '55'" :fixed="item.fixed" />
             <el-table-column v-else-if="item.type == 'slot'" :label="item.label" :align="item.align" :width="item.width"
               :min-width="item.minWidth" :fixed="item.fixed">
-              <template #default="{ scope, row }">
-                <slot :name="item.prop" :row=row :scope="scope"></slot>
+              <template #default="{ row, column, $index }">
+                <slot :name="item.prop" :row=row :column="column" :index="$index"></slot>
               </template>
             </el-table-column>
             <el-table-column v-else :prop="item.prop" :label="item.label" :align="item.align" :width="item.width"
               :min-width="item.minWidth" :fixed="item.fixed" />
           </template>
           <template #empty>
-            <el-empty class="select-none" :image-size="props.imagesize? props.imagesize : 200" description="暂无数据" />
+            <el-empty class="select-none" :image-size="props.imagesize ? props.imagesize : 200" description="暂无数据" />
           </template>
         </el-table>
       </div>
@@ -71,8 +71,8 @@ interface Props {
   stripe?: boolean  // 斑马条
   height?: string | number  // 高
   width?: string | number  // 宽
-  imagesize?:number  // 空状态图片宽度
-  tablesize?:any  // large / default /small
+  imagesize?: number  // 空状态图片宽度
+  tablesize?: any  // large / default /small
 }
 
 let props = withDefaults(defineProps<Props>(), {
@@ -82,7 +82,7 @@ let props = withDefaults(defineProps<Props>(), {
   stripe: false,
   height: '100%',  // 高
   width: '100%',
-  tablesize:'default'
+  tablesize: 'default'
 })
 
 const emit = defineEmits<{
