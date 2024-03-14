@@ -72,7 +72,7 @@ router.beforeEach((to, from, next) => {
     if (route.path === to.path) havePath = true
   })
   if (haveCode && havePath) {
-    tabsStore().add({ name: to.path, title: to.name ? String(to.name) : '标签页' })
+    tabsStore().add({ name: to.fullPath, title: to.name ? String(to.name) : '标签页' })
     next()
   } else {
     router.push('/404')

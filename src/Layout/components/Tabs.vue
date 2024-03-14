@@ -1,6 +1,6 @@
 <template>
   <div class="w-full h-auto">
-    <el-tabs class="w-full" id="tabs" style="height: 40px;" size="small" v-model="$route.path" type="card"
+    <el-tabs class="w-full" id="tabs" style="height: 40px;" size="small" v-model="$route.fullPath" type="card"
       @tab-remove="removeTab" @tab-change="changTab">
       <el-tab-pane :closable="item.name === '/' ? false : true" v-for="(item, index) in tabsStore().data" :key="item.name"
         :label="item.title" :name="item.name">
@@ -54,7 +54,6 @@ const removeTab = (targetName: any, method?: string) => {
   tabsStore().remove(targetName, method)
 }
 const changTab = (targetName: any) => {
-  console.log(targetName);
   router.push(targetName)
 }
 

@@ -48,7 +48,6 @@
 
 <script setup lang="tsx">
 import { appInfoStore } from '@/stores/index'
-import { number } from 'echarts';
 
 defineOptions({
   name: 'MyTable'
