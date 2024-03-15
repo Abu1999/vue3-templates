@@ -1,11 +1,3 @@
-/*
- * @Author: bbw 1526699702@qq.com
- * @Date: 2024-01-17 15:10:30
- * @LastEditors: bbw 1526699702@qq.com
- * @LastEditTime: 2024-01-17 15:21:14
- * @FilePath: \vue3-templates\src\appconfig.ts
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
- */
 // 菜单栏数据
 export const menuData = [
   {
@@ -15,7 +7,8 @@ export const menuData = [
       { title: '测试1', icon: '', path: '/test/app1', code: 'menu-app1' },
       { title: '测试2', icon: '', children: [{ title: '测试2-1', path: '/test/app2/list', icon: '', code: 'menu-app2-list' }], code: 'menu-app2' },
     ],
-    code: 'menu'
+    code: 'menu',
+    path: '/test'
   },
   {
     title: '组件',
@@ -35,7 +28,7 @@ export const menuData = [
 
 //菜单默认展开
 export const menuConfig = {
-  openeds: ['/admin', '/device']
+  openeds: ['/test']
 }
 
 // tabs设置

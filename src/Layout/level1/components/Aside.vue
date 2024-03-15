@@ -5,12 +5,12 @@
       <div style="width: 64px;" class="flex justify-center items-center">
         <el-image style="width: 40px; height: 40px" :src="url" fit="cover" />
       </div>
-      <div class="font-bold" v-if="!props.isCollapse">vue3+vite+ts</div>
+      <div class="font-bold text-[#fff]" v-if="!props.isCollapse">vue3+vite+ts</div>
     </div>
-
+    <!-- text-color="--el-tree-text-color" -->
     <el-menu id="menu" :style="{ border: 0, '--menubackgroundColor': menubackgroundColor }"
-      :background-color="backgroundColor" text-color="--el-tree-text-color" :collapse="props.isCollapse"
-      :collapse-transition="false" :active="$route.path" :default-active="$route.path" :default-openeds="props.openeds">
+      :background-color="backgroundColor" text-color="#fff" :collapse="props.isCollapse" :collapse-transition="false"
+      :active="$route.path" :default-active="$route.path" :default-openeds="props.openeds">
       <template v-for="( item, index ) in  props.menuData " :key="index">
         <el-sub-menu background-color="red" v-if="item.children" :index="item.path ? item.path : item.title">
           <template #title>
@@ -110,32 +110,50 @@ const myClick = () => {
   router.push('/')
 }
 
-let backgroundColor = ref('var(--el-bg-color)')
-let menubackgroundColor = ref('var(--el-bg-color)')
+// let backgroundColor = ref('var(--el-bg-color)')
+// let menubackgroundColor = ref('var(--el-bg-color)')
+
+let backgroundColor = ref('#001529')
+let menubackgroundColor = ref('#0f2438')
 
 </script>
 
 <style lang="scss" scoped>
+// :deep(#menu li ul) {
+//   background-color: var(--menubackgroundColor) !important;
+// }
+
+// :deep(#menu li ul .el-sub-menu__title) {
+//   background-color: var(--menubackgroundColor) !important;
+
+//   // :hover {
+//   //   background-color: var(--el-color-primary-light-7) !important;
+//   // }
+// }
+
+// //   --el-color-primary: #409EFF;
+// :deep(.el-menu-item.is-active) {
+//   background-color: var(--el-color-primary-light-7);
+//   color: --el-color-primary;
+// }
+
+// //   --el-color-primary: #409EFF;
+// :deep(.el-menu) {
+//   // --el-menu-hover-bg-color: var(--el-color-primary-light-9) !important;
+//   --el-menu-hover-bg-color: var(--el-color-primary-light-9) !important;
+// }
+
 :deep(#menu li ul) {
   background-color: var(--menubackgroundColor) !important;
 }
 
 :deep(#menu li ul .el-sub-menu__title) {
   background-color: var(--menubackgroundColor) !important;
-
-  :hover {
-    background-color: var(--el-color-primary-light-7);
-  }
 }
 
 //   --el-color-primary: #409EFF;
 :deep(.el-menu-item.is-active) {
-  background-color: var(--el-color-primary-light-7);
-  color: --el-color-primary;
-}
-
-//   --el-color-primary: #409EFF;
-:deep(.el-menu) {
-  --el-menu-hover-bg-color: var(--el-color-primary-light-9) !important;
+  background-color: var(--el-color-primary);
+  color: #fff;
 }
 </style>

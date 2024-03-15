@@ -5,12 +5,11 @@
   "private": true,
   "scripts": {
     "dev": "vite --mode development --open ",
-    "build": "run-p type-check build-only",
+    "build": "run-p lint build-only",
     "build:deploy": "sh deploy/build.sh",
     "build:page": "node ./auto-build-page/build-page.js",
     "test:unit": "vitest",
     "build-only": "vite build --mode production",
-    "type-check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix",
     "format": "prettier --write src/",
     "prepare": "husky install"

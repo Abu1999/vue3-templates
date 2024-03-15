@@ -24,9 +24,9 @@ import RequestHttp from '@/utils/axios';
 let src = ref(undefined)
 let key = ref(0)
 
-const next = () => {
+const next = async () => {
   const url = '/api/api/xjj.php'
-  RequestHttp.get(url).then((res: any) => {
+  await RequestHttp.get(url).then((res: any) => {
     src.value = res
     key.value++
   })
