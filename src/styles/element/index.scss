@@ -1,5 +1,6 @@
 // 覆盖elmentui样式
 
+
 :root {
   .el-aside {
     transition: width 0.15s;
@@ -10,24 +11,23 @@
   }
   .el-table-v2__overlay {
     z-index: 0 !important;
-  } 
-  .el-card{
-    --el-card-padding : 10px;
-    border-radius:10px;
+  }
+  .el-card {
+    --el-card-padding: 10px;
+    border-radius: 10px;
   }
   .v-contextmenu {
     z-index: 10000 !important;
   }
-  .el-table{
-    border-radius:4px;
+  .el-table {
+    border-radius: 4px;
   }
   .el-card__body {
     padding: 0 !important;
     width: 100%;
     height: 100%;
-  } 
+  }
 }
-
 
 //滚动条
 ::-webkit-scrollbar {

@@ -9,7 +9,7 @@
         <router-view></router-view>
       </LayoutLevel2>
     </div>
-    <SettingConfig v-if="appConfig.setting" />
+    <SettingConfig v-if="appConfig.setting && !appInfoStore().data.isMobile" />
   </template>
   <router-view v-else></router-view>
 </template>

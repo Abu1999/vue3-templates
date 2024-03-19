@@ -1,8 +1,7 @@
-import router from '@/router';
+import router from '@/router'
 import { defineStore } from 'pinia'
 import { tabsConfig } from '@/appconfig'
 import { deepCopy } from '@/utils/page'
-
 
 interface Tab {
   name: string
@@ -18,24 +17,22 @@ export const useTabsStore = defineStore({
     fixedData: deepCopy(tabsConfig.data) as Tab[],
     data: deepCopy(tabsConfig.data) as Tab[] // 固定首页标签
   }),
-  getters: {
-
-  },
+  getters: {},
 
   actions: {
     add(obj: Tab): void {
       let push = true
-      list.forEach(item => {
+      list.forEach((item) => {
         if (obj.name === item) push = false
       })
-      this.data.forEach(item => {
+      this.data.forEach((item) => {
         if (item.name === obj.name) push = false
       })
       if (push) this.data.push(obj)
     },
     remove(name: string, method?: string): void {
-      let num = 1;
-      let list: Tab = { name: '', title: '' };
+      let num = 1
+      let list: Tab = { name: '', title: '' }
       this.data.forEach((item: Tab, index: number) => {
         if (item.name === name) {
           num = index
@@ -48,27 +45,23 @@ export const useTabsStore = defineStore({
       switch (method) {
         case 'left':
           this.data = this.fixedData.concat(this.data.splice(num))
-          break;
+          break
         case 'right':
           this.data = this.data.splice(0, num + 1)
-          break;
+          break
         case 'self':
           this.data = this.fixedData.concat(list)
-          break;
+          break
         case 'all':
           this.clear()
-          break;
+          break
 
         default:
           this.data = this.data.filter((item: Tab) => item.name !== name)
-          break;
+          break
       }
-      if (num + 1 < this.data.length)
-        router.push(this.data[num].name)
-      else
-        router.push(this.data[this.data.length - 1].name)
-
-
+      if (num + 1 < this.data.length) router.push(this.data[num].name)
+      else router.push(this.data[this.data.length - 1].name)
     },
     clear(): void {
       this.data = deepCopy(tabsConfig.data)
@@ -76,6 +69,6 @@ export const useTabsStore = defineStore({
   },
 
   persist: {
-    storage: sessionStorage,
-  },
+    storage: sessionStorage
+  }
 })

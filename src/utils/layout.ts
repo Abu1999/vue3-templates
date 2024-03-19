@@ -14,4 +14,3 @@ export const mix = (color1: string, color2: string, weight: number) => {
   const _b = ('0' + (b || 0).toString(16)).slice(-2)
   return '#' + _r + _g + _b
 }
-

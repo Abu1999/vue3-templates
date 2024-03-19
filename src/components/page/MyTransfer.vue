@@ -1,6 +1,11 @@
 <template>
-  <el-transfer v-model="value" filterable :filter-method="filterMethod" filter-placeholder="State Abbreviations"
-    :data="data" />
+  <el-transfer
+    v-model="value"
+    filterable
+    :filter-method="filterMethod"
+    filter-placeholder="State Abbreviations"
+    :data="data"
+  />
 </template>
 
 <script lang="ts" setup>
@@ -25,14 +30,14 @@ const generateData = () => {
     'Texas',
     'Florida',
     'Colorado',
-    'Connecticut ',
+    'Connecticut '
   ]
   const initials = ['CA', 'IL', 'MD', 'TX', 'FL', 'CO', 'CT']
   states.forEach((city, index) => {
     data.push({
       label: city,
       key: index,
-      initial: initials[index],
+      initial: initials[index]
     })
   })
   return data

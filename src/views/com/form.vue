@@ -1,5 +1,5 @@
 <template>
-  <div class=" w-full h-full p-5">
+  <div class="w-full h-full p-5">
     <div class="w-full h-[60vh] p-5 overflow-auto border">
       <MyForm :formData="formData" :formConfig="formConfig" :inline="false" :footer="true"></MyForm>
     </div>
@@ -9,7 +9,7 @@
 
 <script setup lang="ts">
 // import { MyForm } from "@/components/page"
-import { reactive } from "vue";
+import { reactive } from 'vue'
 
 const formData = reactive({
   name: '',
@@ -94,7 +94,7 @@ const formConfig = reactive([
       { label: 'A', value: 1 },
       { label: 'B', value: 2 },
       { label: 'C', value: 3 }
-    ],
+    ]
   },
   {
     type: 'checkboxButton',
@@ -105,7 +105,7 @@ const formConfig = reactive([
       { label: 'A', value: 1 },
       { label: 'B', value: 2 },
       { label: 'C', value: 3 }
-    ],
+    ]
   },
   {
     type: 'radio',
@@ -116,7 +116,7 @@ const formConfig = reactive([
       { label: 'A', value: 1 },
       { label: 'B', value: 2 },
       { label: 'C', value: 3 }
-    ],
+    ]
   },
   {
     type: 'radioButton',
@@ -127,22 +127,21 @@ const formConfig = reactive([
       { label: 'A', value: 1 },
       { label: 'B', value: 2 },
       { label: 'C', value: 3 }
-    ],
+    ]
   },
   {
     type: 'switch',
     prop: 'switch',
     label: 'switch',
-    required: false,
+    required: false
   },
   {
     type: 'colorPicker',
     prop: 'colorPicker',
     label: 'colorPicker',
-    required: false,
-  },
+    required: false
+  }
 ])
-
 </script>
 
 <style scoped></style>

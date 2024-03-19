@@ -1,7 +1,13 @@
 <template>
-  <div class="w-full h-full flex justify-between border-b " style="border-color: var(--el-border-color-light);">
+  <div
+    class="w-full h-full flex justify-between border-b"
+    style="border-color: var(--el-border-color-light)"
+  >
     <div class="w-full h-full flex items-center">
-      <div class="flex justify-center items-center cursor-pointer select-none h-[50px] w-auto" @click="myClick">
+      <div
+        class="flex justify-center items-center cursor-pointer select-none h-[50px] w-auto"
+        @click="myClick"
+      >
         <div class="ml-3 flex justify-center items-center">
           <el-image style="width: 40px; height: 40px" :src="url" fit="cover" />
         </div>
@@ -9,40 +15,71 @@
       </div>
 
       <div class="w-10/12 ml-2">
-        <el-menu id="menu" style="height: 50px;" :collapse-transition="false" mode="horizontal" :active="$route.path"
-          :default-active="$route.path" :menu-trigger="appInfoStore().data.isMobile ? 'click' : 'hover'"
-          popper-effect="light">
-          <template v-for="( item, index ) in  props.menuData " :key="index">
-            <el-sub-menu background-color="red" v-if="item.children" :index="item.path ? item.path : item.title">
+        <el-menu
+          id="menu"
+          style="height: 50px"
+          :collapse-transition="false"
+          mode="horizontal"
+          :active="$route.path"
+          :default-active="$route.path"
+          :menu-trigger="appInfoStore().data.isMobile ? 'click' : 'hover'"
+          popper-effect="light"
+        >
+          <template v-for="(item, index) in props.menuData" :key="index">
+            <el-sub-menu
+              background-color="red"
+              v-if="item.children"
+              :index="item.path ? item.path : item.title"
+            >
               <template #title>
                 <template v-if="item.icon">
                   <el-icon>
                     <component :is="item.icon" v-if="item.icon.indexOf('/') == -1"></component>
-                    <el-image style="width: 18px; height: 18px;" :src="item.icon" fit="cover" v-else />
+                    <el-image
+                      style="width: 18px; height: 18px"
+                      :src="item.icon"
+                      fit="cover"
+                      v-else
+                    />
                   </el-icon>
                 </template>
                 <span class="select-none">{{ item.title }}</span>
               </template>
 
-              <template v-for="( list, listIndex ) in  item?.children " :key="listIndex">
+              <template v-for="(list, listIndex) in item?.children" :key="listIndex">
                 <el-sub-menu :index="list.path ? list.path : list.title" v-if="list.children">
                   <template v-if="list.icon">
                     <el-icon>
                       <component :is="list.icon" v-if="list.icon.indexOf('/') == -1"></component>
-                      <el-image style="width: 18px; height: 18px;" :src="list.icon" fit="cover" v-else />
+                      <el-image
+                        style="width: 18px; height: 18px"
+                        :src="list.icon"
+                        fit="cover"
+                        v-else
+                      />
                     </el-icon>
                   </template>
                   <template #title>
                     <span class="select-none">{{ list.title }}</span>
                   </template>
 
-                  <template v-for="( listItem, listItemIndex ) in  list.children " :key="listItemIndex">
-                    <el-menu-item :index="listItem.path ? listItem.path : listItem.title"
-                      @click="listItem.path ? $router.push(listItem.path) : ''">
+                  <template v-for="(listItem, listItemIndex) in list.children" :key="listItemIndex">
+                    <el-menu-item
+                      :index="listItem.path ? listItem.path : listItem.title"
+                      @click="listItem.path ? $router.push(listItem.path) : ''"
+                    >
                       <template v-if="listItem.icon">
                         <el-icon>
-                          <component :is="listItem.icon" v-if="listItem.icon.indexOf('/') == -1"></component>
-                          <el-image style="width: 18px; height: 18px;" :src="listItem.icon" fit="cover" v-else />
+                          <component
+                            :is="listItem.icon"
+                            v-if="listItem.icon.indexOf('/') == -1"
+                          ></component>
+                          <el-image
+                            style="width: 18px; height: 18px"
+                            :src="listItem.icon"
+                            fit="cover"
+                            v-else
+                          />
                         </el-icon>
                       </template>
                       <template #title>
@@ -50,16 +87,22 @@
                       </template>
                     </el-menu-item>
                   </template>
-
-
                 </el-sub-menu>
 
-                <el-menu-item v-else :index="list.path ? list.path : item.title"
-                  @click="list.path ? $router.push(list.path) : ''">
+                <el-menu-item
+                  v-else
+                  :index="list.path ? list.path : item.title"
+                  @click="list.path ? $router.push(list.path) : ''"
+                >
                   <template v-if="list.icon">
                     <el-icon>
                       <component :is="list.icon" v-if="list.icon.indexOf('/') == -1"></component>
-                      <el-image style="width: 18px; height: 18px;" :src="list.icon" fit="cover" v-else />
+                      <el-image
+                        style="width: 18px; height: 18px"
+                        :src="list.icon"
+                        fit="cover"
+                        v-else
+                      />
                     </el-icon>
                   </template>
                   <template #title>
@@ -67,15 +110,17 @@
                   </template>
                 </el-menu-item>
               </template>
-
             </el-sub-menu>
 
-            <el-menu-item v-else :index="item.path ? item.path : item.title"
-              @click="item.path ? $router.push(item.path) : ''">
+            <el-menu-item
+              v-else
+              :index="item.path ? item.path : item.title"
+              @click="item.path ? $router.push(item.path) : ''"
+            >
               <template v-if="item.icon">
                 <el-icon>
                   <component :is="item.icon" v-if="item.icon.indexOf('/') == -1"></component>
-                  <el-image style="width: 18px; height: 18px;" :src="item.icon" fit="cover" v-else />
+                  <el-image style="width: 18px; height: 18px" :src="item.icon" fit="cover" v-else />
                 </el-icon>
               </template>
               <template #title>
@@ -85,12 +130,15 @@
           </template>
         </el-menu>
       </div>
-
     </div>
 
-    <div id="user_info" class="h-full flex items-center space-x-2 cursor-pointer select-none" @click="visible = true">
+    <div
+      id="user_info"
+      class="h-full flex items-center space-x-2 cursor-pointer select-none"
+      @click="visible = true"
+    >
       <el-dropdown trigger="click" size="95">
-        <div class="flex items-center space-x-2 px-5" style="height: 50px;min-width: 50px;">
+        <div class="flex items-center space-x-2 px-5" style="height: 50px; min-width: 50px">
           <el-avatar :size="35" src="https://fanmingming.com/bing" />
           <el-icon size="12">
             <ArrowDown />
@@ -110,12 +158,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue';
-import { useRoute } from 'vue-router';
-import { tabsStore, appInfoStore, menuStore } from '@/stores/index';
-import router from '@/router/index';
+import { ref, watch } from 'vue'
+import { useRoute } from 'vue-router'
+import { tabsStore, appInfoStore, menuStore } from '@/stores/index'
+import router from '@/router/index'
 import { ElMessage } from 'element-plus'
-
 
 interface MenuData {
   title: string
@@ -141,11 +188,10 @@ const route = useRoute()
 let visible = ref(false)
 let screenWidth = ref(document.documentElement.clientWidth)
 
-
 // 判断当前路由
-let arr: any = ref([]);
+let arr: any = ref([])
 const find = (data: any) => {
-  let obj: any;
+  let obj: any
   data.forEach((item: any) => {
     if (obj) return
     // 如果路由name与菜单对应可打开
@@ -174,10 +220,14 @@ const find = (data: any) => {
   return obj
 }
 
-watch(() => route.path, () => {
-  arr.value = []
-  find(props.menuData)
-}, { deep: true, immediate: true })
+watch(
+  () => route.path,
+  () => {
+    arr.value = []
+    find(props.menuData)
+  },
+  { deep: true, immediate: true }
+)
 
 const quit = () => {
   tabsStore().clear()
@@ -196,15 +246,17 @@ window.onresize = () => {
   screenWidth.value = document.documentElement.clientWidth
 }
 
-watch(() => screenWidth.value, () => {
-  if (screenWidth.value < 991) {
-    isCollapse.value = true
-  } else {
-    isCollapse.value = false
-  }
-}, { deep: true, immediate: true })
-
-
+watch(
+  () => screenWidth.value,
+  () => {
+    if (screenWidth.value < 991) {
+      isCollapse.value = true
+    } else {
+      isCollapse.value = false
+    }
+  },
+  { deep: true, immediate: true }
+)
 </script>
 
 <style scoped>

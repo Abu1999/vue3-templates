@@ -8,6 +8,6 @@ export const useRoutesStore = defineStore({
   }),
 
   persist: {
-    storage: localStorage,
-  },
+    storage: localStorage
+  }
 })

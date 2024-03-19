@@ -18,8 +18,8 @@
 
 <script setup lang="ts">
 // import { MyVideo } from "@/components/page"
-import { ref } from "vue";
-import RequestHttp from '@/utils/axios';
+import { ref } from 'vue'
+import RequestHttp from '@/utils/axios'
 
 let src = ref(undefined)
 let key = ref(0)
@@ -31,7 +31,6 @@ const next = async () => {
     key.value++
   })
 }
-
 </script>
 
 <style scoped></style>

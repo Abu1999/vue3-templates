@@ -68,7 +68,7 @@ export const userRoutes = [
         meta: {
           code: 'com-video'
         }
-      },
+      }
     ],
     meta: {
       code: 'grid'
@@ -90,5 +90,5 @@ export const userRoutes = [
     meta: {
       code: 'table'
     }
-  },
+  }
 ]

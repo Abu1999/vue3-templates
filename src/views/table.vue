@@ -7,11 +7,11 @@
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
 <template>
-  <div class="h-full px-5">
+  <div class="h-full  px-5">
     <TableList v-slot="{ state, commands }">
       <!-- 查询 -->
       <div class="w-full py-4">
-        <el-card class=" px-4">
+        <el-card class="px-4">
           <MyForm :formData="formData" :formConfig="formConfig" :footer="true" class="mt-[18px]"
             :size="appInfoStore().data.isMobile ? 'small' : 'default'" :inline="true"></MyForm>
         </el-card>
@@ -33,7 +33,6 @@
           </MyTable>
         </div>
 
-
         <!-- 弹框 -->
         <MyDrawer ref="myDrawer"></MyDrawer>
       </el-card>
@@ -42,10 +41,10 @@
 </template>
 
 <script lang="ts" setup>
-import { MyForm, MyTable, MyDrawer } from "@/components/page"
-import TableList from "@/models/table/table.list"
-import { ref, reactive } from "vue";
-import { appInfoStore } from "@/stores";
+import { MyForm, MyTable, MyDrawer } from '@/components/page'
+import TableList from '@/models/table/table.list'
+import { ref, reactive } from 'vue'
+import { appInfoStore } from '@/stores'
 
 const myDrawer = ref()
 
@@ -67,20 +66,19 @@ const formConfig = reactive([
     label: 'input',
     // required: false,
     rules: { min: 3, max: 5, message: 'Length should be 3 to 5', trigger: 'blur', required: true }
-  },
-  {
-    type: 'select',
-    prop: 'select',
-    label: 'select',
-    required: false,
-    options: [
-      { label: 'A', value: 1 },
-      { label: 'B', value: 2 },
-      { label: 'C', value: 3 }
-    ],
-    multiple: true
-  },
-
+  }
+  // {
+  //   type: 'select',
+  //   prop: 'select',
+  //   label: 'select',
+  //   required: false,
+  //   options: [
+  //     { label: 'A', value: 1 },
+  //     { label: 'B', value: 2 },
+  //     { label: 'C', value: 3 }
+  //   ],
+  //   multiple: true
+  // },
 ])
 </script>
 

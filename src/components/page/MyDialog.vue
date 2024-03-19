@@ -1,13 +1,16 @@
 <!-- eslint-disable -->
 <template>
-  <el-dialog v-model="props.config.visible" :title="props.config.title ?? ''" width="30%" align-center>
+  <el-dialog
+    v-model="props.config.visible"
+    :title="props.config.title ?? ''"
+    width="30%"
+    align-center
+  >
     <slot name="body"></slot>
     <template #footer>
       <span class="dialog-footer">
         <el-button @click="props.config.visible = false">取消</el-button>
-        <el-button type="primary" @click="submit()">
-          确认
-        </el-button>
+        <el-button type="primary" @click="submit()"> 确认 </el-button>
       </span>
     </template>
   </el-dialog>
@@ -19,8 +22,8 @@ defineOptions({
 
 interface Props {
   config: {
-    visible: boolean,
-    title?: string,
+    visible: boolean
+    title?: string
   }
 }
 
@@ -35,7 +38,6 @@ const props = withDefaults(defineProps<Props>(), {
 const submit = () => {
   emit('submit')
 }
-
 </script>
 <style scoped>
 .dialog-footer button:first-child {

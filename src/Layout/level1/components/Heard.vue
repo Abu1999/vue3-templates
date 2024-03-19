@@ -1,22 +1,35 @@
 <template>
-  <div class="w-full h-full flex justify-between border-b" style="border-color: var(--el-border-color-light);">
+  <div
+    class="w-full h-full flex justify-between border-b"
+    style="border-color: var(--el-border-color-light)"
+  >
     <div class="h-full flex items-center space-x-2" v-if="arr.length">
-      <div class="h-full flex  items-center cursor-pointer select-none px-3" @click="changeCollapse(!isCollapse)">
+      <div
+        class="h-full flex items-center cursor-pointer select-none px-3"
+        @click="changeCollapse(!isCollapse)"
+      >
         <el-icon size="18">
           <Fold v-if="!isCollapse" />
           <Expand size="18" v-else />
         </el-icon>
       </div>
       <el-breadcrumb separator="/">
-        <el-breadcrumb-item v-for="(item, index) in arr" :key="index" :to="{ path: item.path ? '#' : '#' }">{{
-          item.title
-        }}</el-breadcrumb-item>
+        <el-breadcrumb-item
+          v-for="(item, index) in arr"
+          :key="index"
+          :to="{ path: item.path ? '#' : '#' }"
+          >{{ item.title }}</el-breadcrumb-item
+        >
       </el-breadcrumb>
     </div>
 
-    <div id="user_info" class="h-full flex items-center space-x-2 cursor-pointer select-none" @click="visible = true">
+    <div
+      id="user_info"
+      class="h-full flex items-center space-x-2 cursor-pointer select-none"
+      @click="visible = true"
+    >
       <el-dropdown trigger="click" size="95">
-        <div class="flex items-center space-x-2 px-5" style="height: 50px; min-width: 50px;">
+        <div class="flex items-center space-x-2 px-5" style="height: 50px; min-width: 50px">
           <el-avatar :size="35" src="https://fanmingming.com/bing" />
           <el-icon size="12">
             <ArrowDown />
@@ -35,12 +48,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue';
-import { useRoute } from 'vue-router';
-import { appInfoStore, menuStore, tabsStore } from '@/stores';
-import router from '@/router';
+import { ref, watch } from 'vue'
+import { useRoute } from 'vue-router'
+import { appInfoStore, menuStore, tabsStore } from '@/stores'
+import router from '@/router'
 import { ElMessage } from 'element-plus'
-
 
 const route = useRoute()
 const menuData = menuStore().getMenu
@@ -58,9 +70,9 @@ const changeCollapse = (show: boolean) => {
 }
 
 // 判断当前路由
-let arr: any = ref([]);
+let arr: any = ref([])
 const find = (data: any) => {
-  let obj: any;
+  let obj: any
   data.forEach((item: any) => {
     if (obj) return
     // 如果路由name与菜单对应可打开
@@ -89,10 +101,14 @@ const find = (data: any) => {
   return obj
 }
 
-watch(() => route.path, () => {
-  arr.value = []
-  find(menuData)
-}, { deep: true, immediate: true })
+watch(
+  () => route.path,
+  () => {
+    arr.value = []
+    find(menuData)
+  },
+  { deep: true, immediate: true }
+)
 
 const quit = () => {
   tabsStore().clear()
@@ -111,13 +127,15 @@ window.onresize = () => {
   screenWidth.value = document.documentElement.clientWidth
 }
 
-
-watch(() => screenWidth.value, () => {
-  if (screenWidth.value < 1024) {
-    changeCollapse(true)
-  }
-}, { deep: true, immediate: true })
-
+watch(
+  () => screenWidth.value,
+  () => {
+    if (screenWidth.value < 1024) {
+      changeCollapse(true)
+    }
+  },
+  { deep: true, immediate: true }
+)
 </script>
 
 <style scoped>

@@ -14,7 +14,6 @@
 
 <script setup lang="ts">
 // import { MyTransfer } from "@/components/page"
-
 </script>
 
 <style scoped></style>

@@ -1,8 +1,14 @@
 <!-- eslint-disable -->
 <template>
   <!-- 弹框 -->
-  <el-drawer ref="drawerRef" v-model="props.config.dialog" :title="props.config.title"
-    :direction="appInfoStore().data.isMobile ? 'btt' : 'rtl'" :size="props.size" :before-close="beforeClose">
+  <el-drawer
+    ref="drawerRef"
+    v-model="props.config.dialog"
+    :title="props.config.title"
+    :direction="appInfoStore().data.isMobile ? 'btt' : 'rtl'"
+    :size="props.size"
+    :before-close="beforeClose"
+  >
     <slot></slot>
     <template #footer>
       <div style="flex: auto">
@@ -14,11 +20,10 @@
 </template>
 
 <script setup lang="ts">
-import { appInfoStore } from '@/stores';
+import { appInfoStore } from '@/stores'
 defineOptions({
   name: 'MyDrawer'
 })
-
 
 interface Drawer {
   dialog: boolean
@@ -55,7 +60,6 @@ function confirmClick() {
 function beforeClose() {
   emit('cancel')
 }
-
 </script>
 
 <style scoped></style>

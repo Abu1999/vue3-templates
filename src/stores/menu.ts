@@ -25,6 +25,6 @@ export const useMenuStore = defineStore({
   },
 
   persist: {
-    storage: localStorage,
-  },
+    storage: localStorage
+  }
 })

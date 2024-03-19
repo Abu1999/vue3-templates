@@ -5,7 +5,7 @@ import { appConfig } from '@/appconfig'
 interface Setting {
   color: {
     primary: string
-  },
+  }
   layout: number // 菜单导航
   tabs: boolean // 主题页
 }
@@ -13,7 +13,6 @@ interface Setting {
 const data: string = localStorage.getItem('setting') || ''
 
 const setting: Setting = data ? JSON.parse(data) : {}
-
 
 export const useSetting = defineStore({
   id: 'layout',
@@ -29,8 +28,7 @@ export const useSetting = defineStore({
   getters: {
     getSetting(): Setting {
       return this.setting
-    },
-
+    }
   },
   actions: {
     // 修改主题色
@@ -38,16 +36,19 @@ export const useSetting = defineStore({
       if (color) this.setting.color.primary = color
       localStorage.setItem('setting', JSON.stringify(this.setting))
 
-      const node = document.documentElement;
+      const node = document.documentElement
       // 前缀
-      const pre = "--el-color-primary";
+      const pre = '--el-color-primary'
       // 源码中的$color-white，也就是白色
-      const mixWhite = "#ffffff"
+      const mixWhite = '#ffffff'
       // 直接为根设置内联样式覆盖:root选择器的样式
-      node.style.setProperty(pre, this.setting.color.primary);
+      node.style.setProperty(pre, this.setting.color.primary)
       for (let i = 1; i < 10; i += 1) {
         // 同理
-        node.style.setProperty(`${pre}-light-${i}`, mix(this.setting.color.primary, mixWhite, i * 0.1));
+        node.style.setProperty(
+          `${pre}-light-${i}`,
+          mix(this.setting.color.primary, mixWhite, i * 0.1)
+        )
       }
     },
 
@@ -63,7 +64,6 @@ export const useSetting = defineStore({
   },
 
   persist: {
-    storage: localStorage,
-
-  },
+    storage: localStorage
+  }
 })
