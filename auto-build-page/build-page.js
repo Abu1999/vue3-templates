@@ -2,6 +2,18 @@ let addConfig = require('./addConfig')
 let fs = require('fs')
 let path = require('path')
 
+// 创建目录
+function mkdirsSync(dirname) {
+      if (fs.existsSync(dirname)) {
+        return true;
+      } else {
+        if (mkdirsSync(path.dirname(dirname))) {
+          fs.mkdirSync(dirname);
+          return true;
+        }
+      }
+    }
+
 addConfig.pageConfig.forEach((e) => {
   let UpperCase;
   if (e.class.includes('_') || e.class.includes('-')) {
@@ -22,9 +34,9 @@ addConfig.pageConfig.forEach((e) => {
 })
 
 function buildPage(config) {
+  let tablePaths = path.resolve(`${addConfig.pageBase}/${config.dir}/${config.url? config.url:config.class}`)
 
   if (config.page == 'table') {
-    let tablePaths = path.resolve(`${addConfig.pageBase}/${config.url? config.url:config.class}`)
     console.log('table页面地址:' + tablePaths)
     fs.mkdir(tablePaths, function () {
       let strTable
@@ -35,12 +47,13 @@ function buildPage(config) {
 
       // 写入文件
       console.log('开始写入table文件:' + config.class)
+    
+      mkdirsSync(tablePaths)
       fs.writeFileSync(tablePaths + '/index.vue', strTable, (err) => {})
       console.log('table文件写入成功:' + config.class)
     })
 
   }else if(config.page == 'page'){
-     let tablePaths = path.resolve(`${addConfig.pageBase}/${config.url? config.url:config.class}`)
     console.log('table页面地址:' + tablePaths)
     fs.mkdir(tablePaths, function () {
       let strTable
@@ -51,6 +64,7 @@ function buildPage(config) {
 
       // 写入文件
       console.log('开始写入table文件:' + config.class)
+      mkdirsSync(tablePaths)
       fs.writeFileSync(tablePaths + '/index.vue', strTable, (err) => {})
       console.log('table文件写入成功:' + config.class)
     })
@@ -58,7 +72,7 @@ function buildPage(config) {
 
 
   // 生成model页面
-  let modelsPaths = path.resolve(`${addConfig.modelsBase}/${config.class}`)
+  let modelsPaths = path.resolve(`${addConfig.modelsBase}/${config.dir}/${config.class}`)
   console.log('models页面地址:' + modelsPaths)
   fs.mkdir(modelsPaths, function () {
     let strConfig, strTS, strList, strType
@@ -75,6 +89,7 @@ function buildPage(config) {
    
     // 写入文件
     console.log('开始写入models文件:' + config.class)
+    mkdirsSync(modelsPaths)
     fs.writeFileSync(modelsPaths + `/${config.class}.config.tsx`, strConfig, (err) => {})
     fs.writeFileSync(modelsPaths + `/${config.class}.list.tsx`, strList, (err) => {})
     console.log('models文件写入成功:' + config.class)
@@ -91,6 +106,7 @@ function handleStr(str, config) {
   str = str.replace(/"%Class%"/g, config.Class)
   str = str.replace(/"%IClass%"/g, config.IClass)
   str = str.replace(/"%title%"/g, config.title)
+  str = str.replace(/"%dir%"/g, config.dir)
 
   return str
 }
