@@ -7,7 +7,7 @@
 </template>
 
 <script setup lang="ts">
-import "%Class%" from '@/models/"%class%"/"%class%".list'
+import "%Class%" from '@/models"%dir%"/"%class%"/"%class%".list'
 
 </script>
 

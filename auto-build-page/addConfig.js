@@ -7,7 +7,7 @@ var addConfig = {
     open: true,
     title: '身份信息管理',
     page: 'table',
-    class: 'people',
+    className: 'test',
   }
 ]
 }

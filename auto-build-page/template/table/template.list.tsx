@@ -40,7 +40,7 @@ export default defineComponent({
       }
     });
 
-    const baseUrl = '/api/"%dir%"'
+    const baseUrl = '/api'
 
     const get = async () => {
       state.table.loading = true
@@ -80,8 +80,6 @@ export default defineComponent({
         } state.drawer.loading = false
       }).catch(error => {
         console.log('error', error);
-        ElMessage.error('添加失败')
-
       })
 
     }
@@ -101,7 +99,6 @@ export default defineComponent({
         } state.drawer.loading = false
       }).catch(error => {
         console.log('error', error);
-        ElMessage.error('修改失败')
       })
     }
 
@@ -115,7 +112,6 @@ export default defineComponent({
           ElMessage.error('删除失败')
         }
       }).catch(error => {
-        ElMessage.error('删除失败')
         console.log('error', error);
       })
     }
