@@ -1,5 +1,5 @@
 <template>
-  <div class="px-5 overflow-auto">
+  <div class="w-full h-full px-5 overflow-auto">
     <"%Class%" v-slot="{ state, commands }">
       <!-- 查询 -->
       <div class="w-full h-full flex space-x-5">
@@ -23,9 +23,9 @@
             </MyForm>
           </el-card>
 
-          <el-card class="w-full h-full p-4">
+          <el-card class="w-full h-[calc(100%-140px)] p-4" body-style="height: 100%">
             <!-- 表格 -->
-            <div class="overflow-auto">
+            <div class="w-full h-full">
               <MyTable ref="myTable" :data="state.table.data" :columns="tableColumns" :pagination="state.table.pagination"
                 @paginationChange="commands.get" :loading="state.table.loading" :border="true" :stripe="true">
                 <template #action="{ row }">
@@ -70,7 +70,7 @@ let nowSelectTree = ref()
 const add = (state: any, commands: any) => {
   state.drawer.data = {}
   mode.value = 'post'
-  state.drawer.config.title = '创建人员'
+  state.drawer.config.title = '创建'
   state.drawer.config.dialog = true
 }
 
@@ -82,7 +82,7 @@ const nodeClick = (e: any, state: any, commands: any) => {
 const change = (state: any, commands: any, row: any) => {
   mode.value = 'put'
   rowData.value = row
-  state.drawer.config.title = '修改人员'
+  state.drawer.config.title = '修改'
   commands.getItem(row.id);
   state.drawer.config.dialog = true
 }
