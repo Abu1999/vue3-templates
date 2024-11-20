@@ -30,3 +30,5 @@ coverage
 
 # auto-build-page
 auto-build-page
+src/components/live2d/*
+src/library/*

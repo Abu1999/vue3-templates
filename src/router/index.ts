@@ -8,7 +8,7 @@ export const fixedRoutes = [
   {
     path: '/',
     name: '首页',
-    component: () => import('../views/AboutView.vue'),
+    component: () => import('../views/index/index.vue'),
     meta: {
       code: 'house'
     }

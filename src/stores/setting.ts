@@ -22,7 +22,7 @@ export const useSetting = defineStore({
         primary: setting.color !== undefined ? setting.color.primary : '#409eff'
       },
       layout: setting.layout !== undefined ? setting.layout : appConfig.layout,
-      tabs: true
+      tabs: appConfig.tabs
     }
   }),
   getters: {

@@ -12,6 +12,7 @@
     <SettingConfig v-if="appConfig.setting && !appInfoStore().data.isMobile" />
   </template>
   <router-view v-else></router-view>
+  <canvas id="canvas_view"></canvas>
 </template>
 
 <script setup lang="ts">
@@ -20,8 +21,30 @@ import LayoutLevel2 from '@/Layout/level2/index.vue'
 import SettingConfig from '@/components/setting/index.vue'
 import { settingStore, appInfoStore } from '@/stores/index'
 import { appConfig } from './appconfig'
+import { init } from '@/components/live2d/index'
+import { onMounted } from 'vue'
 
+
+onMounted(() => {
+  init()
+})
+// 颜色设置
 settingStore().changeThemeColor()
 
+// 判断客户端
 appInfoStore().changeMobile()
 </script>
+
+
+<style>
+#canvas_view {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  /* z-index: 1000000; */
+  /* width: 200px;
+  height: 200px; */
+  /* background: #000; */
+  /* 防止点击广告 */
+}
+</style>

@@ -13,7 +13,7 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix",
     "format": "prettier --write src/",
     "prepare": "husky install",
-    "preview":"vite preview"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.1.0",
@@ -24,6 +24,8 @@
     "nprogress": "^0.2.0",
     "pinia": "^2.0.36",
     "pinia-plugin-persistedstate": "^3.1.0",
+    "pixi-live2d-display": "^0.4.0",
+    "pixi.js": "^6.4.2",
     "sass": "^1.62.1",
     "terser": "^5.17.7",
     "unplugin-auto-import": "^0.16.4",

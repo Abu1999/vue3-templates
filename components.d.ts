@@ -58,6 +58,7 @@ declare module 'vue' {
     ElTransfer: typeof import('element-plus/es')['ElTransfer']
     ElTree: typeof import('element-plus/es')['ElTree']
     Layout: typeof import('./src/components/setting/components/layout.vue')['default']
+    Live2d: typeof import('./src/components/live2d')['default']
     Login: typeof import('./src/components/login.vue')['default']
     MyDialog: typeof import('./src/components/page/MyDialog.vue')['default']
     MyDrawer: typeof import('./src/components/page/MyDrawer.vue')['default']

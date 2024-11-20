@@ -5,6 +5,7 @@
     "moduleResolution":"node",
     "strict":true,
     "jsx":"preserve",
+    "jsxImportSource": "vue",
     "sourceMap":true,
     "resolveJsonModule":true,
     "esModuleInterop":true,
@@ -15,5 +16,5 @@
       "@/*":["src/*"]
     }
   },
-  "include":["src/**/*.ts","src/**/*.d.ts","src/**/*.tsx","src/**/*.vue","src/untils/baiduMap.js","src/untils/debuonce.js","**/*.ts","**/*.tsx"]
+  "include":["src/**/*.ts","src/**/*.d.ts","src/**/*.tsx","src/**/*.vue","src/untils/baiduMap.js","src/untils/debuonce.js","**/*.ts","**/*.tsx", "src/components/live2d/index.js"]
 }
